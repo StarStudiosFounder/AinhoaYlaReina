@@ -375,7 +375,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   position:absolute; inset:0;
   background:radial-gradient(circle at 50% 50%, rgba(120,0,0,.45), #000 70%);
   animation:virusFlash 0.35s infinite alternate;
-  z-index:-1;
+  z-index:0;
 }
 
 @keyframes virusFlash{
@@ -383,7 +383,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   100%{ opacity:.85; }
 }
 
-/* Fotos Saw que aparecen como flashes */
+/* ---------- FOTOS SAW POR TODA LA PANTALLA ---------- */
 .virus-fotos{
   position:absolute;
   inset:0;
@@ -391,36 +391,32 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   overflow:hidden;
   z-index:1;
 }
+
 .virus-foto{
   position:absolute;
-  width:clamp(120px, 22vw, 320px);
   height:auto;
   opacity:0;
-  filter:grayscale(1) contrast(1.8) brightness(.85) sepia(.3) hue-rotate(-30deg);
+  filter:grayscale(1) contrast(1.9) brightness(.9) sepia(.35) hue-rotate(-30deg);
   mix-blend-mode:screen;
   pointer-events:none;
-  border:1px solid rgba(193,18,31,.4);
-  box-shadow:0 0 30px rgba(193,18,31,.6);
-  animation:virusFotoFlash 1.2s steps(2) infinite;
+  border:1px solid rgba(193,18,31,.5);
+  box-shadow:0 0 25px rgba(193,18,31,.7);
+  animation-name:virusFotoFlash;
+  animation-iteration-count:infinite;
+  animation-timing-function:steps(2);
 }
-.virus-foto:nth-child(1){ top:8%;  left:6%;  animation-delay:0s;    transform:rotate(-8deg); }
-.virus-foto:nth-child(2){ top:14%; right:5%; animation-delay:.4s;   transform:rotate(7deg); }
-.virus-foto:nth-child(3){ bottom:10%; left:10%; animation-delay:.8s; transform:rotate(-4deg); }
-.virus-foto:nth-child(4){ bottom:14%; right:9%; animation-delay:1.2s; transform:rotate(10deg); }
-.virus-foto:nth-child(5){ top:44%; left:2%;  animation-delay:.6s;    transform:rotate(5deg); }
-.virus-foto:nth-child(6){ top:48%; right:3%; animation-delay:1s;    transform:rotate(-6deg); }
 
 @keyframes virusFotoFlash{
-  0%,20%   { opacity:0; }
-  21%,45%  { opacity:.55; }
-  46%,70%  { opacity:0; }
-  71%,90%  { opacity:.35; }
-  91%,100% { opacity:0; }
+  0%,18%   { opacity:0; }
+  19%,42%  { opacity:.7; }
+  43%,68%  { opacity:0; }
+  69%,88%  { opacity:.45; }
+  89%,100% { opacity:0; }
 }
 
 #virus-overlay .scanlines-virus{
   position:absolute; inset:0; pointer-events:none;
-  z-index:3;
+  z-index:4;
   background:repeating-linear-gradient(
     to bottom,
     rgba(0,0,0,0)   0px,
@@ -479,29 +475,82 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   animation:parpadeo 1.2s infinite;
 }
 
-.virus-lineas{
-  margin-top:24px;
-  font-family:'Special Elite',monospace;
-  font-size:clamp(.65rem, 2.2vw, .85rem);
-  letter-spacing:3px;
-  color:#7a0000;
+/* ============================================================
+   BSOD — PANTALLA AZUL DE WINDOWS
+   ============================================================ */
+#virus-bsod{
+  position:absolute;
+  inset:0;
+  z-index:8;
+  background:#0000AA;
+  color:#ffffff;
+  font-family:'Lucida Console','Courier New',monospace;
+  font-size:clamp(.65rem, 1.6vw, 1rem);
+  line-height:1.55;
+  padding:6vh 6vw;
   text-align:left;
-  line-height:1.8;
-  max-width:520px;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  overflow:hidden;
 }
-.virus-lineas span{
-  display:block;
-  opacity:0;
-  animation:aparecerLinea .4s forwards;
-}
-.virus-lineas span:nth-child(1){ animation-delay:.2s; }
-.virus-lineas span:nth-child(2){ animation-delay:.9s; }
-.virus-lineas span:nth-child(3){ animation-delay:1.6s; }
-.virus-lineas span:nth-child(4){ animation-delay:2.3s; }
-.virus-lineas span:nth-child(5){ animation-delay:3.0s; }
+#virus-bsod.activo{ display:flex; }
 
-@keyframes aparecerLinea{
+#virus-bsod::before{
+  content:'';
+  position:absolute; inset:0;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0) 0px,
+    rgba(255,255,255,0) 3px,
+    rgba(0,0,0,.15) 4px,
+    rgba(0,0,0,.15) 5px);
+  pointer-events:none;
+  opacity:.6;
+}
+
+.bsod-linea{
+  margin:0 0 1em;
+  opacity:0;
+  animation:bsodAparece .15s forwards;
+}
+.bsod-linea:nth-child(1){ animation-delay:.05s; }
+.bsod-linea:nth-child(2){ animation-delay:.35s; }
+.bsod-linea:nth-child(3){ animation-delay:.65s; }
+.bsod-linea:nth-child(4){ animation-delay:.95s; }
+.bsod-linea:nth-child(5){ animation-delay:1.25s; }
+.bsod-linea:nth-child(6){ animation-delay:1.55s; }
+.bsod-linea:nth-child(7){ animation-delay:1.85s; }
+
+@keyframes bsodAparece{
   to{ opacity:1; }
+}
+
+.bsod-titulo{
+  display:inline-block;
+  background:#ffffff;
+  color:#0000AA;
+  padding:1px 8px;
+  font-weight:bold;
+  margin-bottom:.6em;
+}
+
+.bsod-pct{
+  margin-top:1.2em;
+  font-weight:bold;
+}
+
+.bsod-cursor{
+  display:inline-block;
+  width:.55em;
+  height:1em;
+  background:#fff;
+  vertical-align:-2px;
+  animation:bsodCursor 1s steps(2) infinite;
+}
+@keyframes bsodCursor{
+  0%,49%{ opacity:1; }
+  50%,100%{ opacity:0; }
 }
 
 /* ============================================================
@@ -515,19 +564,15 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .btn--grande{ padding:16px 30px; letter-spacing:4px; }
   .input-codigo{ letter-spacing:6px; font-size:1.1rem; }
   #app{ padding:88px 16px 60px; }
-  .virus-foto{ width:clamp(90px, 32vw, 180px); }
+  #virus-bsod{ padding:8vh 5vw; font-size:.7rem; }
 }
 
-/* ============================================================
-   RESPONSIVE — TABLET
-   ============================================================ */
+/* TABLET */
 @media (min-width:521px) and (max-width:1024px){
   .pantalla{ max-width:720px; }
 }
 
-/* ============================================================
-   RESPONSIVE — TELEVISOR / PANTALLAS GRANDES
-   ============================================================ */
+/* TV / pantallas grandes */
 @media (min-width:1600px){
   .pantalla{ max-width:1100px; }
   .titulo-principal{ font-size:clamp(5rem, 7vw, 8rem); }
@@ -580,21 +625,65 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     <div class="error-reintentar" id="error-reintentar">VOLVED A INTENTARLO.</div>
   </div>
 
-  <!-- Overlay del VIRUS FINAL -->
+  <!-- ============================================================
+       OVERLAY DEL VIRUS FINAL
+       ============================================================ -->
   <div id="virus-overlay" aria-hidden="true">
-    <div class="virus-fotos" id="virus-fotos"><!-- Las fotos se insertan desde JS --></div>
-    <div class="scanlines-virus"></div>
+
+    <!-- Fotos Saw por toda la pantalla (se generan desde JS) -->
+    <div class="virus-fotos" id="virus-fotos"></div>
+
+    <!-- Contenido rojo glitch -->
     <div class="virus-contenido">
       <h1 class="virus-glitch" id="virus-glitch">JA JA JA</h1>
       <p class="virus-sub" id="virus-sub">SISTEMA COMPROMETIDO</p>
-      <div class="virus-lineas" id="virus-lineas">
-        <span>&gt; conexión establecida con el más allá…</span>
-        <span>&gt; extrayendo alma del jugador…</span>
-        <span>&gt; 100% completado.</span>
-        <span>&gt; no hay salida.</span>
-        <span>&gt; … o eso creíais.</span>
-      </div>
     </div>
+
+    <!-- Scanlines rojas -->
+    <div class="scanlines-virus"></div>
+
+    <!-- BSOD Windows (aparece más tarde) -->
+    <div id="virus-bsod" aria-hidden="true">
+      <p class="bsod-linea">
+        A problem has been detected and Windows has been shut down to prevent damage
+        to your computer.
+      </p>
+
+      <p class="bsod-linea">
+        <span class="bsod-titulo">JUEGO_SAW_ERROR</span>
+      </p>
+
+      <p class="bsod-linea">
+        If this is the first time you've seen this Stop error screen,
+        restart your computer. If this screen appears again, follow these steps:
+      </p>
+
+      <p class="bsod-linea">
+        Check to make sure any new hardware or software is properly installed.
+        If problems continue, disable or remove any newly installed hardware
+        or software. Disable BIOS memory options such as caching or shadowing.
+        If you need to use Safe Mode to remove or disable components, restart
+        your computer, press F8 to select Advanced Startup Options, and then
+        select Safe Mode.
+      </p>
+
+      <p class="bsod-linea">
+        Technical information:
+      </p>
+
+      <p class="bsod-linea">
+        *** STOP: 0x0000000A (0x00000000, 0x00000002, 0x00000000, 0x804F3B12)
+        <br>
+        *** JUEGO_SAW.sys - Address 804F3B12 base at 80400000, DateStamp 3e5c0bce
+      </p>
+
+      <p class="bsod-linea bsod-pct">
+        Beginning dump of physical memory ...
+        <br>
+        Dumping physical memory to disk: <span id="bsod-pct">0</span>%<span class="bsod-cursor"></span>
+      </p>
+    </div>
+
   </div>
 
 
@@ -628,18 +717,12 @@ const CONFIG = {
   /* ---------- TEXTOS DEL VIRUS FINAL ---------- */
   virusTextoGrande: "JA JA JA",
   virusTextoSub:    "SISTEMA COMPROMETIDO",
-  virusLineas: [
-    "> conexión establecida con el más allá…",
-    "> extrayendo alma del jugador…",
-    "> 100% completado.",
-    "> no hay salida.",
-    "> … o eso creíais."
-  ],
 
   /* ---------- FOTOS DEL VIRUS (tipo Saw) ----------
      Pon aquí las URLs de las imágenes que quieras que
-     aparezcan como flashes glitcheados durante el virus.
-     Puedes añadir o quitar las que quieras.
+     aparezcan repartidas por toda la pantalla.
+     Cada URL se usará varias veces en posiciones
+     aleatorias. Puedes poner tantas como quieras.
   -------------------------------------------------- */
   virusImagenes: [
     "https://picsum.photos/seed/saw1/500/400?grayscale",
@@ -647,8 +730,22 @@ const CONFIG = {
     "https://picsum.photos/seed/saw3/500/400?grayscale",
     "https://picsum.photos/seed/saw4/500/400?grayscale",
     "https://picsum.photos/seed/saw5/500/400?grayscale",
-    "https://picsum.photos/seed/saw6/500/400?grayscale"
+    "https://picsum.photos/seed/saw6/500/400?grayscale",
+    "https://picsum.photos/seed/saw7/500/400?grayscale",
+    "https://picsum.photos/seed/saw8/500/400?grayscale"
   ],
+
+  /* Cuántas fotos se colocan por toda la pantalla.
+     Cuanto más alto, más "lleno" se ve. */
+  virusNumeroFotos: 24,
+
+  /* Retardo (en milisegundos) desde que aparece el virus
+     hasta que aparece la pantalla azul de Windows. */
+  virusRetardoBSOD: 2600,
+
+  /* Duración total (en milisegundos) del efecto virus
+     antes de cerrarse solo. */
+  virusDuracionTotal: 9500,
 
   /* Temporizador */
   temporizador: {
@@ -924,6 +1021,18 @@ const Sonido = {
 
       setTimeout(() => this.estatica(0.5), 1500);
     }catch(e){}
+  },
+
+  /* Sonido de "error del sistema" justo cuando aparece el BSOD */
+  errorSistema(){
+    if (!this.ctx || !this.activo) return;
+    try{
+      // Beep agudo tipo Windows
+      this.tono(1200, 0.15, 'square', 0.15);
+      setTimeout(() => this.tono(900, 0.15, 'square', 0.14), 170);
+      setTimeout(() => this.tono(600, 0.35, 'square', 0.13), 340);
+      this.estatica(0.4);
+    }catch(e){}
   }
 };
 
@@ -1153,9 +1262,11 @@ function pintarFinal(){
 }
 
 /* ---------------------------------------------------------------
-   PANTALLA FINAL — con virus + fotos Saw + risa
+   PANTALLA FINAL — con virus + fotos Saw + BSOD + risa
    --------------------------------------------------------------- */
 let virusTimer = null;
+let bsodTimer  = null;
+let pctTimer   = null;
 
 function pintarFin(){
   app.innerHTML =
@@ -1174,46 +1285,114 @@ function pintarFin(){
   virusTimer = setTimeout(lanzarVirus, 1400);
 }
 
+/* Genera las fotos del virus repartidas por toda la pantalla */
+function generarFotosVirus(){
+  const cont = document.getElementById('virus-fotos');
+  if (!cont) return;
+
+  const urls = CONFIG.virusImagenes;
+  if (!Array.isArray(urls) || urls.length === 0){
+    cont.innerHTML = '';
+    return;
+  }
+
+  const total = CONFIG.virusNumeroFotos || 20;
+  let html = '';
+
+  for (let i = 0; i < total; i++){
+    const url = urls[i % urls.length];
+
+    const top    = (Math.random() * 88).toFixed(1);
+    const left   = (Math.random() * 88).toFixed(1);
+    const rot    = (Math.random() * 70 - 35).toFixed(1);
+    const size   = Math.round(70 + Math.random() * 220);
+    const delay  = (Math.random() * 2).toFixed(2);
+    const dur    = (0.9 + Math.random() * 1.4).toFixed(2);
+
+    html +=
+      '<img class="virus-foto" src="' + esc(url) + '" alt="" loading="eager" style="' +
+        'top:' + top + '%;' +
+        'left:' + left + '%;' +
+        'width:' + size + 'px;' +
+        'transform: rotate(' + rot + 'deg);' +
+        'animation-delay:' + delay + 's;' +
+        'animation-duration:' + dur + 's;' +
+      '">';
+  }
+
+  cont.innerHTML = html;
+}
+
+/* Arranca el contador del BSOD (0% → 100%) */
+function arrancarContadorBSOD(){
+  const el = document.getElementById('bsod-pct');
+  if (!el) return;
+
+  let pct = 0;
+  clearInterval(pctTimer);
+  pctTimer = setInterval(() => {
+    pct += Math.floor(1 + Math.random() * 4);
+    if (pct >= 100){ pct = 100; }
+    el.textContent = pct;
+    if (pct >= 100) clearInterval(pctTimer);
+  }, 180);
+}
+
 function lanzarVirus(){
   const ov = document.getElementById('virus-overlay');
   if (!ov) return;
 
+  /* Texto glitch */
   document.getElementById('virus-glitch').textContent = CONFIG.virusTextoGrande || 'JA JA JA';
   document.getElementById('virus-sub').textContent    = CONFIG.virusTextoSub    || 'SISTEMA COMPROMETIDO';
 
-  const contLineas = document.getElementById('virus-lineas');
-  if (contLineas && Array.isArray(CONFIG.virusLineas)){
-    contLineas.innerHTML = CONFIG.virusLineas
-      .map(l => '<span>' + esc(l) + '</span>')
-      .join('');
-  }
+  /* Fotos Saw por toda la pantalla */
+  generarFotosVirus();
 
-  const contFotos = document.getElementById('virus-fotos');
-  if (contFotos){
-    if (Array.isArray(CONFIG.virusImagenes) && CONFIG.virusImagenes.length){
-      contFotos.innerHTML = CONFIG.virusImagenes
-        .map(url => '<img class="virus-foto" src="' + esc(url) + '" alt="" loading="eager">')
-        .join('');
-    } else {
-      contFotos.innerHTML = '';
-    }
+  /* Reset BSOD */
+  const bsod = document.getElementById('virus-bsod');
+  if (bsod){
+    bsod.classList.remove('activo');
+    bsod.setAttribute('aria-hidden', 'true');
   }
+  const pctEl = document.getElementById('bsod-pct');
+  if (pctEl) pctEl.textContent = '0';
+  clearInterval(pctTimer);
 
+  /* Mostrar overlay del virus */
   ov.classList.add('activo');
   ov.setAttribute('aria-hidden', 'false');
 
+  /* Temblor de la página */
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 900);
 
+  /* Risa + audio */
   Sonido.iniciar();
   Sonido.reanudar();
   Sonido.risa();
 
+  /* BSOD después de un retardo */
+  clearTimeout(bsodTimer);
+  bsodTimer = setTimeout(() => {
+    if (!bsod) return;
+    bsod.classList.add('activo');
+    bsod.setAttribute('aria-hidden', 'false');
+    Sonido.errorSistema();
+    arrancarContadorBSOD();
+  }, CONFIG.virusRetardoBSOD || 2600);
+
+  /* Cerrar todo automáticamente */
   clearTimeout(ov._cierre);
   ov._cierre = setTimeout(() => {
     ov.classList.remove('activo');
     ov.setAttribute('aria-hidden', 'true');
-  }, 7000);
+    if (bsod){
+      bsod.classList.remove('activo');
+      bsod.setAttribute('aria-hidden', 'true');
+    }
+    clearInterval(pctTimer);
+  }, CONFIG.virusDuracionTotal || 9500);
 }
 
 function reiniciarJuego(){
@@ -1221,10 +1400,18 @@ function reiniciarJuego(){
   if (!ok) return;
 
   clearTimeout(virusTimer);
+  clearTimeout(bsodTimer);
+  clearInterval(pctTimer);
+
   const ov = document.getElementById('virus-overlay');
   if (ov){
     ov.classList.remove('activo');
     ov.setAttribute('aria-hidden', 'true');
+  }
+  const bsod = document.getElementById('virus-bsod');
+  if (bsod){
+    bsod.classList.remove('activo');
+    bsod.setAttribute('aria-hidden', 'true');
   }
 
   borrarGuardado();
