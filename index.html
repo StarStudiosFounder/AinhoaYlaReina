@@ -471,9 +471,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   opacity:.95;
 }
 
-/* ============================================================
-   🆕 OVERLAY DE INFO DEL SISTEMA (reloj, fecha, batería, lugar)
-   ============================================================ */
 #system-info-overlay{
   position:fixed;
   top:70px; right:16px; z-index:85;
@@ -647,7 +644,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     </div>
   </div>
 
-  <!-- 🆕 INFO DEL SISTEMA -->
   <div id="system-info-overlay" aria-hidden="true">
     <span class="sys-line"><span class="sys-label">HORA</span><span class="sys-val" id="sys-hora">--:--:--</span></span>
     <span class="sys-line"><span class="sys-label">FECHA</span><span class="sys-val" id="sys-fecha">--/--/----</span></span>
@@ -727,6 +723,10 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 <script>
 /* ==================================================================
    ⚙️  CONFIGURACIÓN — EDITA SOLO ESTA ZONA
+   ==================================================================
+   FLUJO DEL JUEGO:
+     INICIO → VÍDEO 1 → CÓDIGO 1 → VÍDEO 2 → CÓDIGO 2 → ...
+     ... → VÍDEO 5 → CÓDIGO 5 → FINAL
    ================================================================== */
 
 const CONFIG = {
@@ -737,7 +737,8 @@ const CONFIG = {
 
   textoIntroduceCodigo: "INTRODUCE EL CÓDIGO",
   textoBotonDesbloquear: "DESBLOQUEAR",
-  textoBotonContinuar:   "CONTINUAR",
+  /* Texto del botón que aparece bajo cada vídeo (lleva al código) */
+  textoBotonIrACodigo: "INTRODUCIR CÓDIGO",
 
   errorLinea1: "NO.",
   errorLinea2: "VOLVED A INTENTARLO.",
@@ -761,7 +762,6 @@ const CONFIG = {
   jumpscareURL: "https://picsum.photos/seed/scaryface/800/800?grayscale&contrast=1.8",
   jumpscareDuracionMs: 750,
 
-  /* 🆕 FOTO SAW ACTUALIZADA */
   caraSawURL: "https://static1.srcdn.com/wordpress/wp-content/uploads/2025/06/saw-s-blumhouse-deal-could-be-the-best-thing-to-happen-to-the-franchise-in-21-years.jpg?q=70&fit=crop&w=1100&h=618&dpr=1",
   caraSawDuracionMs: 1300,
 
@@ -807,56 +807,50 @@ const CONFIG = {
   /* ==============================================================
      ⭐ LAS 5 PRUEBAS ⭐
      ==============================================================
-     Cada etapa puede tener:
-       nombre            → título
-       codigo            → contraseña
-       videoIntro        → (OPCIONAL) vídeo que se ve ANTES del código
-       video             → vídeo que se ve DESPUÉS de acertar el código
-       pista             → texto bajo el campo del código
+     Cada etapa tiene:
+       nombre  → título que se muestra
+       video   → vídeo que se ve PRIMERO
+       codigo  → contraseña que desbloquea el SIGUIENTE vídeo
+       pista   → texto bajo el campo del código
      ============================================================== */
   etapas: [
 
     {
       nombre: "PRUEBA 1 — LA GRABACIÓN",
-      codigo: "SANGRE",
-      videoIntro: "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
+      codigo: "SANGRE",                                         // ← CAMBIA ESTE CÓDIGO
       pista:  "El vídeo os dirá dónde buscar.",
       mensajePosterior: ""
     },
 
     {
       nombre: "PRUEBA 2 — LA AGUJA",
-      codigo: "AGUJA",
-      videoIntro: "",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
+      codigo: "AGUJA",                                          // ← CAMBIA ESTE CÓDIGO
       pista:  "Buscad donde nadie quiere mirar.",
       mensajePosterior: ""
     },
 
     {
       nombre: "PRUEBA 3 — LA LLAVE",
-      codigo: "LLAVE",
-      videoIntro: "",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
+      codigo: "LLAVE",                                          // ← CAMBIA ESTE CÓDIGO
       pista:  "Ya casi estáis dentro… o fuera.",
       mensajePosterior: ""
     },
 
     {
       nombre: "PRUEBA 4 — LA CINTA",
-      codigo: "CINTA",
-      videoIntro: "",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
+      codigo: "CINTA",                                          // ← CAMBIA ESTE CÓDIGO
       pista:  "El juego recuerda. Vosotros también deberíais.",
       mensajePosterior: ""
     },
 
     {
       nombre: "PRUEBA 5 — LA LIBERTAD",
-      codigo: "LIBERTAD",
-      videoIntro: "",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
+      codigo: "LIBERTAD",                                       // ← CAMBIA ESTE CÓDIGO
       pista:  "Última prueba. No miréis atrás.",
       mensajePosterior: ""
     }
@@ -900,7 +894,7 @@ function crearReproductor(url){
 }
 
 /* ------------------------------------------------------------------
-   INFO DEL SISTEMA (reloj, fecha, batería, lugar)
+   INFO DEL SISTEMA
    ------------------------------------------------------------------ */
 const SystemInfo = {
   battery: null,
@@ -910,7 +904,6 @@ const SystemInfo = {
     this.actualizarReloj();
     setInterval(() => this.actualizarReloj(), 1000);
 
-    /* Batería */
     if (navigator.getBattery){
       navigator.getBattery().then(b => {
         this.battery = b;
@@ -926,7 +919,6 @@ const SystemInfo = {
       if (el) el.textContent = 'N/D';
     }
 
-    /* Lugar */
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(
         pos => {
@@ -1514,12 +1506,11 @@ function render(){
     MusicaFondo.reproducir();
   }
   switch (estado.fase){
-    case 'inicio':     return pintarInicio();
-    case 'codigo':     return pintarCodigo();
-    case 'videoIntro': return pintarVideoIntro();
-    case 'video':      return pintarVideo();
-    case 'final':      return pintarFinal();
-    case 'fin':        return pintarFin();
+    case 'inicio': return pintarInicio();
+    case 'video':  return pintarVideo();
+    case 'codigo': return pintarCodigo();
+    case 'final':  return pintarFinal();
+    case 'fin':    return pintarFin();
     default: estado.fase = 'inicio'; return pintarInicio();
   }
 }
@@ -1548,26 +1539,29 @@ function pintarInicio(){
   document.getElementById('btn-comenzar').addEventListener('click', comenzar);
 }
 
-/* 🆕 PANTALLA DE VÍDEO INTRO (antes del código) */
-function pintarVideoIntro(){
+/* 🎬 VÍDEO — se ve ANTES del código. Tras él, se introduce el código
+   que desbloquea el SIGUIENTE vídeo. */
+function pintarVideo(){
   const i = estado.etapa;
   const etapa = CONFIG.etapas[i];
   if (!etapa){ irA('final'); return; }
   app.innerHTML =
     '<section class="pantalla">' +
-      '<div class="marca">ETAPA ' + (i+1) + ' / ' + CONFIG.etapas.length + ' — MENSAJE</div>' +
+      '<div class="marca">ETAPA ' + (i+1) + ' / ' + CONFIG.etapas.length + ' — GRABACIÓN</div>' +
       '<h2 class="titulo-etapa">' + esc(etapa.nombre || ('PRUEBA ' + (i+1))) + '</h2>' +
-      '<div class="marco-video">' + crearReproductor(etapa.videoIntro) + '</div>' +
+      '<div class="marco-video">' + crearReproductor(etapa.video) + '</div>' +
+      (etapa.mensajePosterior ? '<p class="pista">' + esc(etapa.mensajePosterior) + '</p>' : '') +
       '<button class="btn btn--grande" id="btn-ir-codigo" type="button">' +
-        esc(CONFIG.textoBotonContinuar) +
+        esc(CONFIG.textoBotonIrACodigo) +
       '</button>' +
     '</section>';
   document.getElementById('btn-ir-codigo').addEventListener('click', function(){
     Sonido.clic();
-    irA('codigo');
+    irA('codigo', estado.etapa);
   });
 }
 
+/* 🔐 CÓDIGO — al acertar, avanza al VÍDEO de la siguiente etapa */
 function pintarCodigo(){
   const i = estado.etapa;
   const etapa = CONFIG.etapas[i];
@@ -1604,36 +1598,6 @@ function pintarCodigo(){
     setTimeout(() => { try{ input.focus(); }catch(e){} }, 350);
   }
   resetInactividad();
-}
-
-function pintarVideo(){
-  const i = estado.etapa;
-  const etapa = CONFIG.etapas[i];
-  if (!etapa){ irA('final'); return; }
-  app.innerHTML =
-    '<section class="pantalla">' +
-      '<div class="marca">ETAPA ' + (i+1) + ' / ' + CONFIG.etapas.length + ' — DESBLOQUEADA</div>' +
-      '<h2 class="titulo-etapa">' + esc(etapa.nombre || ('PRUEBA ' + (i+1))) + '</h2>' +
-      '<div class="marco-video">' + crearReproductor(etapa.video) + '</div>' +
-      (etapa.mensajePosterior ? '<p class="pista">' + esc(etapa.mensajePosterior) + '</p>' : '') +
-      '<button class="btn btn--grande" id="btn-continuar" type="button">' +
-        esc(CONFIG.textoBotonContinuar) +
-      '</button>' +
-    '</section>';
-  document.getElementById('btn-continuar').addEventListener('click', function(){
-    Sonido.clic();
-    const siguiente = estado.etapa + 1;
-    if (siguiente >= CONFIG.etapas.length) irA('final');
-    else {
-      /* Si la siguiente etapa tiene videoIntro, mostrarlo */
-      const siguienteEtapa = CONFIG.etapas[siguiente];
-      if (siguienteEtapa && siguienteEtapa.videoIntro && String(siguienteEtapa.videoIntro).trim()){
-        irA('videoIntro', siguiente);
-      } else {
-        irA('codigo', siguiente);
-      }
-    }
-  });
 }
 
 function pintarFinal(){
@@ -1893,14 +1857,8 @@ function comenzar(){
   estado.iniciado = true; estado.segundos = 0;
   intentosFallidos = 0;
   ultimaEtapaSonido = -1;
-
-  /* Si la primera etapa tiene videoIntro, mostrarlo antes */
-  const primera = CONFIG.etapas[0];
-  if (primera && primera.videoIntro && String(primera.videoIntro).trim()){
-    irA('videoIntro', 0);
-  } else {
-    irA('codigo', 0);
-  }
+  /* 🆕 Empezamos con el VÍDEO de la primera etapa */
+  irA('video', 0);
 }
 function comprobarCodigo(valor, input){
   const etapa = CONFIG.etapas[estado.etapa];
@@ -1915,12 +1873,19 @@ function comprobarCodigo(valor, input){
     fallo(input);
   }
 }
+/* 🆕 Al acertar el código, avanza al VÍDEO de la siguiente etapa
+   (o al FINAL si era el último código). */
 function acierto(){
   Sonido.exito();
   document.body.classList.add('desbloqueando');
   setTimeout(() => {
     document.body.classList.remove('desbloqueando');
-    irA('video');
+    const siguiente = estado.etapa + 1;
+    if (siguiente >= CONFIG.etapas.length){
+      irA('final');
+    } else {
+      irA('video', siguiente);
+    }
   }, 1050);
 }
 function fallo(input){
