@@ -199,8 +199,7 @@ body::before{
   color:#ff2b2b;
   text-shadow:0 0 20px rgba(255,43,43,.95), 0 0 50px rgba(193,18,31,.8);
   animation:pulso .55s infinite;
-  opacity:0;
-  transform:scale(.85);
+  opacity:0; transform:scale(.85);
   transition:opacity .35s ease, transform .35s ease;
   display:none;
 }
@@ -272,7 +271,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   overflow:hidden;
 }
 #cara-saw-overlay.activo{ display:flex; }
-
 #cara-saw-overlay::before{
   content:''; position:absolute; inset:0;
   background:radial-gradient(circle at 50% 50%, rgba(150,0,0,.35), transparent 70%);
@@ -283,7 +281,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   from{ opacity:.25; }
   to{ opacity:.75; }
 }
-
 #cara-saw-overlay img{
   position:relative; z-index:2;
   max-width:75vw; max-height:88vh;
@@ -302,7 +299,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   from{ transform:scale(1); }
   to{ transform:scale(1.04); }
 }
-
 #cara-saw-overlay .cara-saw-lineas{
   position:absolute; inset:0; z-index:3; pointer-events:none;
   background:repeating-linear-gradient(to bottom,
@@ -432,68 +428,40 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 }
 #virus-bsod{
   position:absolute; inset:0; z-index:8;
-  background:#0067B8;
-  color:#ffffff;
+  background:#0067B8; color:#ffffff;
   font-family:'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;
   padding:8vh 8vw;
-  display:none;
-  flex-direction:column;
-  justify-content:center;
-  text-align:left;
-  overflow:hidden;
+  display:none; flex-direction:column; justify-content:center;
+  text-align:left; overflow:hidden;
 }
 #virus-bsod.activo{ display:flex; }
 .bsod-sad{
-  font-size:clamp(4rem, 12vw, 10rem);
-  font-weight:100;
-  line-height:1;
-  margin:0 0 2.5rem 0;
-  letter-spacing:-6px;
-  color:#ffffff;
+  font-size:clamp(4rem, 12vw, 10rem); font-weight:100;
+  line-height:1; margin:0 0 2.5rem 0; letter-spacing:-6px; color:#ffffff;
 }
 .bsod-texto{
-  font-size:clamp(1.1rem, 2.6vw, 1.85rem);
-  font-weight:300;
-  line-height:1.5;
-  max-width:950px;
-  margin-bottom:2rem;
+  font-size:clamp(1.1rem, 2.6vw, 1.85rem); font-weight:300;
+  line-height:1.5; max-width:950px; margin-bottom:2rem;
 }
 .bsod-pct{
-  font-size:clamp(1.2rem, 3vw, 1.9rem);
-  font-weight:300;
-  margin-bottom:3rem;
+  font-size:clamp(1.2rem, 3vw, 1.9rem); font-weight:300; margin-bottom:3rem;
 }
 .bsod-info{
-  font-size:clamp(.72rem, 1.4vw, .95rem);
-  font-weight:300;
-  line-height:1.65;
-  max-width:750px;
-  opacity:.95;
+  font-size:clamp(.72rem, 1.4vw, .95rem); font-weight:300;
+  line-height:1.65; max-width:750px; opacity:.95;
 }
 
 #system-info-overlay{
-  position:fixed;
-  top:70px; right:16px; z-index:85;
-  background:rgba(5,0,0,.72);
-  border:1px solid #3a0000;
-  padding:10px 14px;
-  font-family:'Special Elite',monospace;
-  font-size:.72rem;
-  letter-spacing:1.5px;
-  color:#c9c9c9;
+  position:fixed; top:70px; right:16px; z-index:85;
+  background:rgba(5,0,0,.72); border:1px solid #3a0000;
+  padding:10px 14px; font-family:'Special Elite',monospace;
+  font-size:.72rem; letter-spacing:1.5px; color:#c9c9c9;
   line-height:1.65;
   box-shadow:0 0 20px rgba(120,0,0,.35), inset 0 0 30px rgba(0,0,0,.6);
-  text-align:left;
-  min-width:180px;
-  pointer-events:none;
-  transition:opacity .6s ease;
-  backdrop-filter:blur(2px);
+  text-align:left; min-width:180px; pointer-events:none;
+  transition:opacity .6s ease; backdrop-filter:blur(2px);
 }
-#system-info-overlay .sys-line{
-  display:block;
-  opacity:0;
-  animation:sysLinea .4s forwards;
-}
+#system-info-overlay .sys-line{ display:block; opacity:0; animation:sysLinea .4s forwards; }
 #system-info-overlay .sys-line:nth-child(1){ animation-delay:.1s; }
 #system-info-overlay .sys-line:nth-child(2){ animation-delay:.25s; }
 #system-info-overlay .sys-line:nth-child(3){ animation-delay:.4s; }
@@ -503,28 +471,20 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   to{ opacity:1; transform:translateX(0); }
 }
 #system-info-overlay .sys-label{
-  color:#7a1414;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  margin-right:6px;
+  color:#7a1414; text-transform:uppercase;
+  letter-spacing:2px; margin-right:6px;
 }
-#system-info-overlay .sys-val{
-  color:#e8e8e8;
-}
+#system-info-overlay .sys-val{ color:#e8e8e8; }
 
 #tv-rota-overlay{
   position:absolute; inset:0; z-index:9;
-  background:#000;
-  display:none;
-  align-items:center; justify-content:center;
-  overflow:hidden;
+  background:#000; display:none;
+  align-items:center; justify-content:center; overflow:hidden;
 }
 #tv-rota-overlay.activo{ display:flex; }
 .tv-rota-imagen{
   position:absolute; inset:0;
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-size:cover; background-position:center; background-repeat:no-repeat;
   z-index:1;
   filter:contrast(1.4) brightness(.9) saturate(1.2);
   animation:tvRotaEntrada .5s ease-out both, tvRotaShake .12s infinite .5s;
@@ -542,8 +502,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 .tv-rota-estatica{
   position:absolute; inset:0; z-index:2; pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
-  mix-blend-mode:screen;
-  opacity:.18;
+  mix-blend-mode:screen; opacity:.18;
   animation:estaticaMov .08s steps(2) infinite;
 }
 @keyframes estaticaMov{
@@ -554,8 +513,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 .tv-rota-grietas{
   position:absolute; inset:0; z-index:3; pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 600' preserveAspectRatio='none'%3E%3Cg stroke='%23ffffff' stroke-width='1.5' fill='none' opacity='0.9'%3E%3Cpath d='M500,300 L300,100 M500,300 L750,80 M500,300 L880,220 M500,300 L920,400 M500,300 L800,540 M500,300 L620,560 M500,300 L300,540 M500,300 L120,470 M500,300 L80,320 M500,300 L150,160 M500,300 L400,60 M500,300 L580,40'/%3E%3Cpath d='M500,300 L420,180 L360,140 M500,300 L640,200 L720,150 M500,300 L680,380 L780,420 M500,300 L600,460 L680,520 M500,300 L400,440 L340,500 M500,300 L280,380 L200,430 M500,300 L240,240 L180,200 M500,300 L360,220 L300,180' stroke-width='.8' opacity='0.7'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:cover;
-  background-position:center;
+  background-size:cover; background-position:center;
   opacity:0;
   animation:grietasAparecen .55s ease-out .15s forwards;
 }
@@ -565,22 +523,243 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 }
 .tv-rota-flash{
   position:absolute; inset:0; z-index:4; pointer-events:none;
-  background:#ffffff;
-  opacity:0;
+  background:#ffffff; opacity:0;
   animation:tvFlash .35s ease-out .15s both;
 }
 @keyframes tvFlash{
-  0%{ opacity:0; }
-  20%{ opacity:.9; }
-  100%{ opacity:0; }
+  0%{ opacity:0; } 20%{ opacity:.9; } 100%{ opacity:0; }
 }
 .tv-rota-scanlines{
   position:absolute; inset:0; z-index:5; pointer-events:none;
   background:repeating-linear-gradient(to bottom,
     rgba(0,0,0,0) 0px, rgba(0,0,0,0) 3px,
     rgba(0,0,0,.5) 4px, rgba(0,0,0,.5) 6px);
-  mix-blend-mode:multiply;
+  mix-blend-mode:multiply; opacity:.7;
+}
+
+/* ============================================================
+   🆕 INTRO OVERLAYS (Disclaimer / PEGI / Menú principal)
+   ============================================================ */
+.intro-overlay{
+  position:fixed; inset:0; z-index:300;
+  display:none;
+  align-items:center; justify-content:center;
+  background:#000;
+  overflow:hidden;
+  padding:20px;
+}
+.intro-overlay.activo{ display:flex; }
+
+.intro-content{
+  position:relative; z-index:2;
+  max-width:720px; width:100%;
+  text-align:center;
+  padding:40px 30px;
+  animation:aparecer 1s ease both;
+}
+
+.intro-titulo{
+  font-family:'Creepster',cursive;
+  font-size:clamp(2rem, 7vw, 3.6rem);
+  letter-spacing:6px;
+  color:#e9e9e9;
+  text-shadow:0 0 22px rgba(180,0,0,.55), 0 0 70px rgba(120,0,0,.35);
+  margin:0 0 10px;
+}
+.intro-subtitulo{
+  font-family:'Special Elite',monospace;
+  font-size:clamp(.85rem, 2.4vw, 1.1rem);
+  letter-spacing:8px;
+  color:#c1121f;
+  text-transform:uppercase;
+  margin:0 0 30px;
+  text-shadow:0 0 12px rgba(193,18,31,.7);
+}
+.intro-texto{
+  font-size:clamp(.9rem, 2.4vw, 1.05rem);
+  line-height:1.9;
+  letter-spacing:1px;
+  color:#b9b9b9;
+  margin:0 auto 36px;
+  max-width:600px;
+  text-align:left;
+}
+.intro-texto p{ margin:0 0 14px; }
+.intro-btn{
+  margin-top:10px;
+}
+
+/* Disclaimer específico */
+#disclaimer-overlay .intro-titulo{ color:#ffaa00; text-shadow:0 0 22px rgba(255,170,0,.5); }
+#disclaimer-overlay .intro-subtitulo{ color:#ffaa00; text-shadow:0 0 12px rgba(255,170,0,.7); }
+
+/* PEGI overlay */
+#pegi-overlay{ background:#000; }
+#pegi-overlay .intro-content{ max-width:620px; }
+.pegi-logo{
+  display:inline-flex;
+  align-items:center; justify-content:center;
+  width:clamp(120px, 20vw, 180px);
+  height:clamp(120px, 20vw, 180px);
+  background:#000;
+  border:6px solid #ffffff;
+  font-family:'Arial Black',Arial,sans-serif;
+  font-weight:900;
+  font-size:clamp(4rem, 12vw, 7rem);
+  color:#ffffff;
+  margin:0 auto 24px;
+  box-shadow:0 0 60px rgba(193,18,31,.4), 0 0 120px rgba(193,18,31,.2);
+  animation:pegiPulse 2s ease-in-out infinite;
+}
+@keyframes pegiPulse{
+  0%,100%{ box-shadow:0 0 60px rgba(193,18,31,.4), 0 0 120px rgba(193,18,31,.2); }
+  50%{ box-shadow:0 0 90px rgba(193,18,31,.7), 0 0 160px rgba(193,18,31,.35); }
+}
+
+/* Menú principal The Quarry */
+#menu-overlay{
+  background:#000;
+  padding:0;
+}
+.menu-bg{
+  position:absolute; inset:0; z-index:1;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  filter:brightness(.35) contrast(1.2) saturate(.8);
+  opacity:.85;
+}
+.menu-bg::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(0,0,0,.95) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.15) 70%, rgba(0,0,0,.85) 100%);
+}
+.menu-contenido{
+  position:relative; z-index:3;
+  width:100%; height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  padding:0 clamp(30px, 8vw, 120px);
+  max-width:100%;
+}
+.menu-logo{
+  font-family:'Creepster',cursive;
+  font-size:clamp(2.2rem, 7vw, 5rem);
+  letter-spacing:8px;
+  color:#e9e9e9;
+  text-shadow:0 0 30px rgba(180,0,0,.6), 3px 3px 0 rgba(120,0,0,.35);
+  margin:0 0 8px;
+  animation:parpadeo 6s infinite;
+}
+.menu-logo-sub{
+  font-family:'Special Elite',monospace;
+  font-size:clamp(.7rem, 1.8vw, .9rem);
+  letter-spacing:10px;
+  text-transform:uppercase;
+  color:#7a1414;
+  margin:0 0 50px;
+  text-shadow:0 0 12px rgba(139,0,0,.6);
+}
+.menu-lista{
+  list-style:none;
+  padding:0; margin:0;
+  display:flex; flex-direction:column;
+  gap:clamp(8px, 1.4vh, 16px);
+}
+.menu-item{
+  position:relative;
+  font-family:'Special Elite',monospace;
+  font-size:clamp(1rem, 2.6vw, 1.45rem);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:#6a6a6a;
+  padding-left:38px;
+  cursor:pointer;
+  transition:all .25s ease;
+  user-select:none;
+}
+.menu-item::before{
+  content:'>';
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  color:#c1121f;
+  opacity:0;
+  font-weight:bold;
+  transition:all .25s ease;
+  text-shadow:0 0 12px rgba(193,18,31,.9);
+}
+.menu-item.activo{
+  color:#ffffff;
+  text-shadow:0 0 14px rgba(193,18,31,.7);
+  letter-spacing:8px;
+}
+.menu-item.activo::before{
+  opacity:1;
+  animation:pulso .8s infinite;
+}
+.menu-item:hover{
+  color:#e0e0e0;
+}
+.menu-pie{
+  position:absolute;
+  bottom:clamp(20px, 3vh, 40px);
+  left:clamp(30px, 8vw, 120px);
+  right:clamp(30px, 8vw, 120px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-family:'Special Elite',monospace;
+  font-size:clamp(.65rem, 1.6vw, .8rem);
+  letter-spacing:3px;
+  color:#4a4a4a;
+  text-transform:uppercase;
+  z-index:3;
+}
+.menu-hint{
+  position:absolute;
+  bottom:clamp(20px, 3vh, 40px);
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Special Elite',monospace;
+  font-size:clamp(.6rem, 1.5vw, .75rem);
+  letter-spacing:3px;
+  color:#5a5a5a;
+  text-transform:uppercase;
   opacity:.7;
+  z-index:3;
+  animation:parpadeo 3s infinite;
+}
+@media (max-width:768px){
+  .menu-hint{ display:none; }
+  .menu-contenido{ align-items:center; padding:0 24px; }
+  .menu-item{ padding-left:28px; font-size:1.05rem; letter-spacing:4px; }
+  .menu-item.activo{ letter-spacing:5px; }
+  .menu-logo{ letter-spacing:4px; }
+  .menu-pie{ flex-direction:column; gap:6px; font-size:.6rem; }
+}
+
+/* Título grande "EL JUEGO HA COMENZADO" tras elegir nueva partida */
+#intro-titulo-overlay{
+  position:fixed; inset:0; z-index:280;
+  display:none;
+  align-items:center; justify-content:center;
+  background:#000;
+  flex-direction:column;
+  text-align:center;
+  padding:24px;
+}
+#intro-titulo-overlay.activo{ display:flex; }
+#intro-titulo-overlay .intro-titulo{
+  font-size:clamp(2.5rem, 11vw, 7rem);
+  letter-spacing:8px;
+  animation:aparecer 1.6s cubic-bezier(.2,.7,.3,1) both;
+}
+#intro-titulo-overlay .intro-subtitulo{
+  opacity:0;
+  animation:aparecer 1.2s ease 1s both;
 }
 
 @media (max-width:520px){
@@ -597,6 +776,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .virus-glitch{ font-size:clamp(2rem, 14vw, 4rem); }
   #cara-saw-overlay img{ max-width:90vw; max-height:75vh; }
   #system-info-overlay{ top:60px; right:10px; padding:8px 10px; font-size:.62rem; min-width:150px; }
+  .intro-content{ padding:30px 20px; }
 }
 @media (min-width:521px) and (max-width:1024px){ .pantalla{ max-width:720px; } }
 @media (min-width:1600px){
@@ -635,6 +815,68 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   <div class="fx fx--scanlines"></div>
   <div class="fx fx--vineta"></div>
 
+  <!-- ============================================================
+       🆕 1) DISCLAIMER FOTOSENSIBLE
+       ============================================================ -->
+  <div id="disclaimer-overlay" class="intro-overlay activo">
+    <div class="intro-content">
+      <h2 class="intro-titulo">ADVERTENCIA</h2>
+      <p class="intro-subtitulo">Fotosensibilidad</p>
+      <div class="intro-texto">
+        <p>Este juego contiene <strong>efectos visuales</strong> como destellos, parpadeos, patrones cambiantes y flashes intensos que pueden no ser aptos para personas con <strong>epilepsia fotosensible</strong>.</p>
+        <p>Si tú o alguien con quien juegas ha tenido alguna vez convulsiones, mareos, pérdida de conciencia o molestias al ver luces parpadeantes, <strong>consultad a un médico antes de jugar</strong>.</p>
+        <p>Se recomienda jugar en una habitación bien iluminada y mantener cierta distancia de la pantalla.</p>
+      </div>
+      <button class="btn btn--grande intro-btn" id="btn-disclaimer" type="button">ENTENDIDO</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       🆕 2) PEGI 18 (con audio)
+       ============================================================ -->
+  <div id="pegi-overlay" class="intro-overlay">
+    <div class="intro-content">
+      <div class="pegi-logo">18</div>
+      <p class="intro-subtitulo">Contenido no apto para menores</p>
+      <div class="intro-texto">
+        <p>Este juego está <strong>recomendado para mayores de 18 años</strong>.</p>
+        <p>Contiene escenas de violencia, terror psicológico, referencias a sangre, tortura y contenido perturbador.</p>
+        <p>Al continuar, confirmas que eres mayor de edad y aceptas el contenido.</p>
+      </div>
+      <button class="btn btn--grande intro-btn" id="btn-pegi" type="button">CONTINUAR</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       🆕 3) MENÚ PRINCIPAL (estilo The Quarry)
+       ============================================================ -->
+  <div id="menu-overlay" class="intro-overlay">
+    <div class="menu-bg" id="menu-bg"></div>
+    <div class="menu-contenido">
+      <h1 class="menu-logo">EL JUEGO</h1>
+      <p class="menu-logo-sub">Ha comenzado</p>
+      <ul class="menu-lista" id="menu-lista">
+        <li class="menu-item activo" data-accion="nuevo">Nueva partida</li>
+        <li class="menu-item" data-accion="opciones">Opciones</li>
+        <li class="menu-item" data-accion="creditos">Créditos</li>
+      </ul>
+    </div>
+    <div class="menu-pie">
+      <span>v1.0 — Escape Room Casero</span>
+      <span id="menu-sonido-estado">♪ MÚSICA: ON</span>
+    </div>
+    <div class="menu-hint">↑ ↓ navegar · ENTER seleccionar</div>
+  </div>
+
+  <!-- Título grande al empezar nueva partida -->
+  <div id="intro-titulo-overlay">
+    <h1 class="intro-titulo">EL JUEGO HA COMENZADO</h1>
+    <p class="intro-subtitulo">Habéis entrado voluntariamente</p>
+  </div>
+
+  <!-- ============================================================
+       HUD Y JUEGO NORMAL
+       ============================================================ -->
   <div id="hud" class="oculto">
     <div id="temporizador">00:00</div>
     <div id="hud-botones">
@@ -653,13 +895,8 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 
   <main id="app"></main>
 
-  <div id="fantasma" aria-hidden="true">
-    <img id="fantasma-img" src="" alt="">
-  </div>
-
-  <div id="jumpscare" aria-hidden="true">
-    <img id="jumpscare-img" src="" alt="">
-  </div>
+  <div id="fantasma" aria-hidden="true"><img id="fantasma-img" src="" alt=""></div>
+  <div id="jumpscare" aria-hidden="true"><img id="jumpscare-img" src="" alt=""></div>
 
   <div id="cara-saw-overlay" aria-hidden="true">
     <img id="cara-saw-img" src="" alt="">
@@ -682,16 +919,12 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   </div>
 
   <div id="virus-overlay" aria-hidden="true">
-
     <div class="virus-fotos" id="virus-fotos"></div>
-
     <div class="virus-contenido">
       <h1 class="virus-glitch" id="virus-glitch">OS ESTÁBAMOS ESPERANDO</h1>
       <p class="virus-sub" id="virus-sub">SISTEMA COMPROMETIDO</p>
     </div>
-
     <div class="scanlines-virus"></div>
-
     <div id="virus-bsod" aria-hidden="true">
       <div class="bsod-sad">:(</div>
       <div class="bsod-texto">
@@ -708,7 +941,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
         Stop code: 0x00000000
       </div>
     </div>
-
     <div id="tv-rota-overlay" aria-hidden="true">
       <div class="tv-rota-imagen" id="tv-rota-imagen"></div>
       <div class="tv-rota-estatica"></div>
@@ -716,7 +948,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
       <div class="tv-rota-flash"></div>
       <div class="tv-rota-scanlines"></div>
     </div>
-
   </div>
 
 
@@ -724,12 +955,47 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 /* ==================================================================
    ⚙️  CONFIGURACIÓN — EDITA SOLO ESTA ZONA
    ==================================================================
-   FLUJO DEL JUEGO:
-     INICIO → VÍDEO 1 → CÓDIGO 1 → VÍDEO 2 → CÓDIGO 2 → ...
-     ... → VÍDEO 5 → CÓDIGO 5 → FINAL
+   FLUJO:
+     DISCLAIMER → PEGI 18 → MENÚ → VÍDEO 1 → CÓDIGO 1 → VÍDEO 2
+     → CÓDIGO 2 → ... → VÍDEO 5 → CÓDIGO 5 → FINAL
    ================================================================== */
 
 const CONFIG = {
+
+  /* ==============================================================
+     🆕 ASSETS — Archivos locales (carpeta Assets/)
+     ==============================================================
+     Coloca tus archivos en:
+       Assets/Audios/...     → audios (mp3, ogg, wav)
+       Assets/Imagenes/...   → imágenes (jpg, png)
+       Assets/Videos/...     → vídeos (mp4)
+     ============================================================== */
+  assets: {
+    /* Audio que dice "PEGI 18" al entrar en la pantalla PEGI */
+    pegi18Audio:        "Assets/Audios/pegi18.mp3",
+
+    /* Audio que dice "El juego ha comenzado" al pulsar NUEVA PARTIDA */
+    juegoComenzadoAudio:"Assets/Audios/juego-comenzado.mp3",
+
+    /* Música del menú principal (en bucle) */
+    menuMusic:          "Assets/Audios/menu-theme.mp3",
+
+    /* Imagen de fondo del menú principal */
+    menuBgImage:        "Assets/Imagenes/menu-bg.jpg",
+
+    /* Imagen de fondo del PEGI (opcional, si no se pone queda negro) */
+    pegiBgImage:        ""
+  },
+
+  /* Textos intro */
+  disclaimerTitulo:    "ADVERTENCIA",
+  disclaimerSubtitulo: "Fotosensibilidad",
+  pegiTitulo:          "PEGI 18",
+  pegiSubtitulo:       "Contenido no apto para menores",
+
+  /* ==============================================================
+     RESTO DE CONFIGURACIÓN DEL JUEGO
+     ============================================================== */
 
   tituloInicial:  "EL JUEGO HA COMENZADO",
   fraseInicial:   "Habéis entrado voluntariamente. Ahora tendréis que encontrar la salida.",
@@ -737,7 +1003,6 @@ const CONFIG = {
 
   textoIntroduceCodigo: "INTRODUCE EL CÓDIGO",
   textoBotonDesbloquear: "DESBLOQUEAR",
-  /* Texto del botón que aparece bajo cada vídeo (lleva al código) */
   textoBotonIrACodigo: "INTRODUCIR CÓDIGO",
 
   errorLinea1: "NO.",
@@ -754,20 +1019,25 @@ const CONFIG = {
 
   inactividadSegundos: 30,
 
+  /* Imagen fantasma (URL o Assets/Imagenes/...) */
   imagenFantasmaURL: "https://picsum.photos/seed/jigsawface/500/600?grayscale&blur=1",
   imagenFantasmaMinSeg: 10,
   imagenFantasmaMaxSeg: 25,
   imagenFantasmaDuraMs: 120,
 
+  /* Jumpscare */
   jumpscareURL: "https://picsum.photos/seed/scaryface/800/800?grayscale&contrast=1.8",
   jumpscareDuracionMs: 750,
 
+  /* Cara SAW (URL que nos diste) */
   caraSawURL: "https://static1.srcdn.com/wordpress/wp-content/uploads/2025/06/saw-s-blumhouse-deal-could-be-the-best-thing-to-happen-to-the-franchise-in-21-years.jpg?q=70&fit=crop&w=1100&h=618&dpr=1",
   caraSawDuracionMs: 1300,
 
+  /* TV rota (URL o Assets/Imagenes/tv-rota.jpg) */
   tvRotaURL: "https://picsum.photos/seed/brokentv/1920/1080?grayscale&contrast=1.6&blur=0",
   tvRotaDuracionMs: 2800,
 
+  /* Música ambiental del juego (si vacío → melodía sintetizada) */
   musicaFondo: "",
   melodiaIntervaloMs: 12000,
 
@@ -806,51 +1076,42 @@ const CONFIG = {
 
   /* ==============================================================
      ⭐ LAS 5 PRUEBAS ⭐
-     ==============================================================
-     Cada etapa tiene:
-       nombre  → título que se muestra
-       video   → vídeo que se ve PRIMERO
-       codigo  → contraseña que desbloquea el SIGUIENTE vídeo
-       pista   → texto bajo el campo del código
      ============================================================== */
   etapas: [
-
     {
       nombre: "PRUEBA 1 — LA GRABACIÓN",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      codigo: "SANGRE",                                         // ← CAMBIA ESTE CÓDIGO
+      /* Para vídeo local: "Assets/Videos/prueba1.mp4"
+         Para YouTube:      "https://www.youtube.com/watch?v=..." */
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      codigo: "SANGRE",
       pista:  "El vídeo os dirá dónde buscar.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 2 — LA AGUJA",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      codigo: "AGUJA",                                          // ← CAMBIA ESTE CÓDIGO
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      codigo: "AGUJA",
       pista:  "Buscad donde nadie quiere mirar.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 3 — LA LLAVE",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      codigo: "LLAVE",                                          // ← CAMBIA ESTE CÓDIGO
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      codigo: "LLAVE",
       pista:  "Ya casi estáis dentro… o fuera.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 4 — LA CINTA",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      codigo: "CINTA",                                          // ← CAMBIA ESTE CÓDIGO
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      codigo: "CINTA",
       pista:  "El juego recuerda. Vosotros también deberíais.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 5 — LA LIBERTAD",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      codigo: "LIBERTAD",                                       // ← CAMBIA ESTE CÓDIGO
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      codigo: "LIBERTAD",
       pista:  "Última prueba. No miréis atrás.",
       mensajePosterior: ""
     }
@@ -898,12 +1159,9 @@ function crearReproductor(url){
    ------------------------------------------------------------------ */
 const SystemInfo = {
   battery: null,
-  geo: null,
-
   iniciar(){
     this.actualizarReloj();
     setInterval(() => this.actualizarReloj(), 1000);
-
     if (navigator.getBattery){
       navigator.getBattery().then(b => {
         this.battery = b;
@@ -918,7 +1176,6 @@ const SystemInfo = {
       const el = document.getElementById('sys-bateria');
       if (el) el.textContent = 'N/D';
     }
-
     if (navigator.geolocation){
       navigator.geolocation.getCurrentPosition(
         pos => {
@@ -938,7 +1195,6 @@ const SystemInfo = {
       if (el) el.textContent = 'N/D';
     }
   },
-
   actualizarReloj(){
     const ahora = new Date();
     const dos = n => String(n).padStart(2, '0');
@@ -949,31 +1205,85 @@ const SystemInfo = {
     if (elH) elH.textContent = hora;
     if (elF) elF.textContent = dia;
   },
-
   actualizarBateria(){
     const el = document.getElementById('sys-bateria');
     if (!el) return;
-    if (!this.battery){
-      el.textContent = 'N/D';
-      return;
-    }
+    if (!this.battery){ el.textContent = 'N/D'; return; }
     const pct = Math.round(this.battery.level * 100);
     const cargando = this.battery.charging ? ' ⚡' : '';
     el.textContent = pct + '%' + cargando;
-    if (pct <= 15){
-      el.style.color = '#ff2b2b';
-    } else if (pct <= 30){
-      el.style.color = '#ffaa00';
-    } else {
-      el.style.color = '#e8e8e8';
+    if (pct <= 15) el.style.color = '#ff2b2b';
+    else if (pct <= 30) el.style.color = '#ffaa00';
+    else el.style.color = '#e8e8e8';
+  }
+};
+
+/* ------------------------------------------------------------------
+   GESTOR DE AUDIO DE LA INTRO
+   ------------------------------------------------------------------ */
+const IntroAudio = {
+  pegi: null,
+  juego: null,
+  musica: null,
+  musicaActiva: true,
+
+  precargar(){
+    try {
+      this.pegi  = new Audio(CONFIG.assets.pegi18Audio);
+      this.juego = new Audio(CONFIG.assets.juegoComenzadoAudio);
+      this.musica = new Audio(CONFIG.assets.menuMusic);
+      this.musica.loop = true;
+      this.musica.volume = 0.45;
+      this.pegi.volume = 0.9;
+      this.juego.volume = 0.9;
+    } catch(e){}
+  },
+
+  tocarPegi(){
+    if (!this.pegi) return;
+    try { this.pegi.currentTime = 0; } catch(e){}
+    const p = this.pegi.play();
+    if (p && p.catch) p.catch(()=>{});
+  },
+
+  tocarJuego(onEnded){
+    if (!this.juego){
+      if (onEnded) setTimeout(onEnded, 2500);
+      return;
     }
+    try { this.juego.currentTime = 0; } catch(e){}
+    this.juego.onended = () => { if (onEnded) onEnded(); };
+    /* Fallback por si onended no funciona */
+    const fallback = setTimeout(() => { if (onEnded) onEnded(); }, 8000);
+    this.juego.addEventListener('ended', () => clearTimeout(fallback), { once:true });
+    const p = this.juego.play();
+    if (p && p.catch) p.catch(()=>{});
+  },
+
+  iniciarMusica(){
+    if (!this.musicaActiva || !this.musica) return;
+    try { this.musica.currentTime = 0; } catch(e){}
+    const p = this.musica.play();
+    if (p && p.catch) p.catch(()=>{});
+  },
+
+  pararMusica(){
+    if (!this.musica) return;
+    try { this.musica.pause(); } catch(e){}
+  },
+
+  toggleMusica(){
+    this.musicaActiva = !this.musicaActiva;
+    if (this.musicaActiva) this.iniciarMusica();
+    else this.pararMusica();
+    const el = document.getElementById('menu-sonido-estado');
+    if (el) el.textContent = '♪ MÚSICA: ' + (this.musicaActiva ? 'ON' : 'OFF');
   }
 };
 
 const Sonido = {
   ctx:null, activo:true, silencioso:false, ambiente:null,
   melodiaTimer:null,
-
   iniciar(){
     if (this.ctx) return;
     const AC = window.AudioContext || window.webkitAudioContext;
@@ -981,7 +1291,6 @@ const Sonido = {
     try { this.ctx = new AC(); } catch(e){ this.ctx = null; }
   },
   reanudar(){ if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume(); },
-
   ambienteOn(){
     if (!this.ctx || this.ambiente || !this.activo || this.silencioso) return;
     const t = this.ctx.currentTime;
@@ -1011,7 +1320,6 @@ const Sonido = {
       setTimeout(() => { try{ a.o1.stop(); a.o2.stop(); a.lfo.stop(); }catch(e){} }, 800);
     }catch(e){}
   },
-
   melodiaOn(){
     if (!this.ctx || this.melodiaTimer || !this.activo || this.silencioso) return;
     const self = this;
@@ -1047,7 +1355,6 @@ const Sonido = {
   melodiaOff(){
     if (this.melodiaTimer){ clearInterval(this.melodiaTimer); this.melodiaTimer = null; }
   },
-
   puerta(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
@@ -1061,7 +1368,6 @@ const Sonido = {
       g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
       o.connect(g); g.connect(this.ctx.destination);
       o.start(t); o.stop(t + 0.55);
-
       const n = Math.floor(this.ctx.sampleRate * 0.15);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
@@ -1073,7 +1379,6 @@ const Sonido = {
       src.connect(f); f.connect(gg); gg.connect(this.ctx.destination); src.start(t);
     }catch(e){}
   },
-
   grito(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
@@ -1103,7 +1408,6 @@ const Sonido = {
       src.start(t); src.stop(t + dur + 0.1);
     }catch(e){}
   },
-
   gritoFuerte(){
     if (!this.ctx || !this.activo) return;
     try{
@@ -1121,7 +1425,6 @@ const Sonido = {
       f.type = 'bandpass'; f.frequency.value = 1400; f.Q.value = 2;
       const g = this.ctx.createGain(); g.gain.value = 0.5;
       src.connect(f); f.connect(g); g.connect(this.ctx.destination); src.start(t);
-
       const o = this.ctx.createOscillator();
       const og = this.ctx.createGain();
       o.type = 'sawtooth';
@@ -1131,7 +1434,6 @@ const Sonido = {
       og.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
       o.connect(og); og.connect(this.ctx.destination);
       o.start(t); o.stop(t + 0.8);
-
       const og2 = this.ctx.createOscillator();
       const og2g = this.ctx.createGain();
       og2.type = 'sine';
@@ -1143,7 +1445,6 @@ const Sonido = {
       og2.start(t + 0.05); og2.stop(t + 0.65);
     }catch(e){}
   },
-
   pasos(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
@@ -1163,7 +1464,6 @@ const Sonido = {
       }
     }catch(e){}
   },
-
   crujido(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
@@ -1183,7 +1483,6 @@ const Sonido = {
       src.connect(f); f.connect(g); g.connect(this.ctx.destination); src.start(t);
     }catch(e){}
   },
-
   latido(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
@@ -1204,7 +1503,6 @@ const Sonido = {
       tocar(t + 0.28, 0.18);
     }catch(e){}
   },
-
   respiracion(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
@@ -1236,7 +1534,6 @@ const Sonido = {
       src.start(t); src.stop(t + dur + 0.1);
     }catch(e){}
   },
-
   tono(freq, dur, tipo, vol, slideTo){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
@@ -1269,7 +1566,6 @@ const Sonido = {
   exito(){ this.tono(180, 0.5, 'sine', 0.14, 720);
     setTimeout(() => this.tono(540, 0.6, 'triangle', 0.09, 1080), 130); },
   error(){ this.tono(90, 0.75, 'sawtooth', 0.16, 42); this.estatica(0.3); },
-
   risa(){
     if (!this.ctx || !this.activo) return;
     try{
@@ -1308,7 +1604,6 @@ const Sonido = {
       setTimeout(() => this.estatica(0.5), 1500);
     }catch(e){}
   },
-
   errorSistema(){
     if (!this.ctx || !this.activo) return;
     try{
@@ -1318,7 +1613,6 @@ const Sonido = {
       this.estatica(0.4);
     }catch(e){}
   },
-
   caraSaw(){
     if (!this.ctx || !this.activo) return;
     try{
@@ -1333,7 +1627,6 @@ const Sonido = {
       g.gain.linearRampToValueAtTime(0.0001, t + 1.6);
       o.connect(g); g.connect(this.ctx.destination);
       o.start(t); o.stop(t + 1.7);
-
       const og2 = this.ctx.createOscillator();
       const og2g = this.ctx.createGain();
       og2.type = 'sine';
@@ -1343,7 +1636,6 @@ const Sonido = {
       og2g.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
       og2.connect(og2g); og2g.connect(this.ctx.destination);
       og2.start(t); og2.stop(t + 0.75);
-
       const n = Math.floor(this.ctx.sampleRate * 1.4);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
@@ -1357,7 +1649,6 @@ const Sonido = {
       src.connect(f); f.connect(gg); gg.connect(this.ctx.destination); src.start(t);
     }catch(e){}
   },
-
   cristalRoto(){
     if (!this.ctx || !this.activo) return;
     try{
@@ -1376,7 +1667,6 @@ const Sonido = {
       const g = this.ctx.createGain(); g.gain.value = 0.4;
       src.connect(f); f.connect(g); g.connect(this.ctx.destination);
       src.start(t);
-
       const o = this.ctx.createOscillator();
       const og = this.ctx.createGain();
       o.type = 'triangle';
@@ -1386,7 +1676,6 @@ const Sonido = {
       og.gain.exponentialRampToValueAtTime(0.0001, t + 0.8);
       o.connect(og); og.connect(this.ctx.destination);
       o.start(t); o.stop(t + 0.85);
-
       for (let k = 0; k < 7; k++){
         const tk = t + 0.05 + Math.random() * 0.45;
         const nn = Math.floor(this.ctx.sampleRate * 0.04);
@@ -1400,7 +1689,6 @@ const Sonido = {
         ss.connect(ff); ff.connect(gg); gg.connect(this.ctx.destination);
         ss.start(tk);
       }
-
       setTimeout(() => this.estatica(0.4), 400);
     }catch(e){}
   }
@@ -1527,20 +1815,16 @@ function actualizarHUD(){
 
 const app = document.getElementById('app');
 
+/* La pantalla de inicio ya no se usa (se sustituye por el menú),
+   pero la dejamos por si el jugador pulsa reiniciar sin querer. */
 function pintarInicio(){
   app.innerHTML =
     '<section class="pantalla">' +
       '<h1 class="titulo-principal">' + esc(CONFIG.tituloInicial) + '</h1>' +
       '<p class="frase">' + esc(CONFIG.fraseInicial) + '</p>' +
-      '<button class="btn btn--grande" id="btn-comenzar" type="button">' +
-        esc(CONFIG.textoBotonComenzar) +
-      '</button>' +
     '</section>';
-  document.getElementById('btn-comenzar').addEventListener('click', comenzar);
 }
 
-/* 🎬 VÍDEO — se ve ANTES del código. Tras él, se introduce el código
-   que desbloquea el SIGUIENTE vídeo. */
 function pintarVideo(){
   const i = estado.etapa;
   const etapa = CONFIG.etapas[i];
@@ -1561,7 +1845,6 @@ function pintarVideo(){
   });
 }
 
-/* 🔐 CÓDIGO — al acertar, avanza al VÍDEO de la siguiente etapa */
 function pintarCodigo(){
   const i = estado.etapa;
   const etapa = CONFIG.etapas[i];
@@ -1628,7 +1911,7 @@ function pintarFin(){
     mostrarAccesoHacker(() => {
       mostrarCaraSaw(() => {
         lanzarVirus(() => {
-          setTimeout(() => resetSilencioso(), 800);
+          setTimeout(() => volverAlMenu(), 800);
         });
       });
     });
@@ -1642,13 +1925,11 @@ function mostrarAccesoHacker(callback){
   void ov.offsetWidth;
   ov.classList.add('activo');
   ov.setAttribute('aria-hidden', 'false');
-
   Sonido.iniciar(); Sonido.reanudar();
   Sonido.tono(880, 0.06, 'square', 0.10);
   setTimeout(() => Sonido.tono(1200, 0.05, 'square', 0.09), 250);
   setTimeout(() => Sonido.tono(1600, 0.05, 'square', 0.08), 500);
   setTimeout(() => Sonido.estatica(0.25), 900);
-
   clearTimeout(mostrarAccesoHacker._t);
   mostrarAccesoHacker._t = setTimeout(() => {
     ov.classList.remove('activo');
@@ -1666,13 +1947,10 @@ function mostrarCaraSaw(callback){
   void ov.offsetWidth;
   ov.classList.add('activo');
   ov.setAttribute('aria-hidden', 'false');
-
   Sonido.iniciar(); Sonido.reanudar();
   Sonido.caraSaw();
-
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 800);
-
   clearTimeout(mostrarCaraSaw._t);
   mostrarCaraSaw._t = setTimeout(() => {
     ov.classList.remove('activo');
@@ -1709,7 +1987,6 @@ function arrancarContadorBSOD(onLlegar100){
   if (!el) return;
   const duracion = CONFIG.bsodDuracionMs || 9000;
   const inicio = performance.now();
-
   clearInterval(pctInterval);
   pctInterval = setInterval(() => {
     const transcurrido = performance.now() - inicio;
@@ -1718,7 +1995,6 @@ function arrancarContadorBSOD(onLlegar100){
     let pct = Math.floor(eased * 100);
     if (pct > 100) pct = 100;
     el.textContent = pct;
-
     if (t >= 1){
       clearInterval(pctInterval);
       pctInterval = null;
@@ -1729,11 +2005,7 @@ function arrancarContadorBSOD(onLlegar100){
 
 function lanzarVirus(onFinalizado){
   const ov = document.getElementById('virus-overlay');
-  if (!ov){
-    if (onFinalizado) onFinalizado();
-    return;
-  }
-
+  if (!ov){ if (onFinalizado) onFinalizado(); return; }
   const txt = CONFIG.virusTextoGrande || '';
   const elTxt = document.getElementById('virus-glitch');
   if (txt.trim()){
@@ -1743,44 +2015,31 @@ function lanzarVirus(onFinalizado){
     elTxt.textContent = '';
     elTxt.classList.add('oculto');
   }
-
   document.getElementById('virus-sub').textContent = CONFIG.virusTextoSub || 'SISTEMA COMPROMETIDO';
   generarFotosVirus();
-
   const bsod = document.getElementById('virus-bsod');
   const tvRota = document.getElementById('tv-rota-overlay');
   const bsodPct = document.getElementById('bsod-pct');
-
   if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
   if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden', 'true'); }
   if (bsodPct) bsodPct.textContent = '0';
-
   clearInterval(pctInterval);
   clearTimeout(bsodTimer);
   clearTimeout(tvTimer);
-
   ov.classList.add('activo');
   ov.setAttribute('aria-hidden', 'false');
-
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 900);
-
   Sonido.iniciar(); Sonido.reanudar(); Sonido.risa();
-
   bsodTimer = setTimeout(() => {
     if (!bsod) return;
     bsod.classList.add('activo');
     bsod.setAttribute('aria-hidden', 'false');
     Sonido.errorSistema();
-
     arrancarContadorBSOD(() => {
       setTimeout(() => {
         if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
-        if (!tvRota){
-          if (onFinalizado) onFinalizado();
-          return;
-        }
-
+        if (!tvRota){ if (onFinalizado) onFinalizado(); return; }
         const img = document.getElementById('tv-rota-imagen');
         if (img){
           if (CONFIG.tvRotaURL && String(CONFIG.tvRotaURL).trim()){
@@ -1791,12 +2050,9 @@ function lanzarVirus(onFinalizado){
         }
         tvRota.classList.add('activo');
         tvRota.setAttribute('aria-hidden', 'false');
-
         Sonido.cristalRoto();
-
         document.body.classList.add('temblando');
         setTimeout(() => document.body.classList.remove('temblando'), 800);
-
         tvTimer = setTimeout(() => {
           if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden', 'true'); }
           ov.classList.remove('activo');
@@ -1808,7 +2064,8 @@ function lanzarVirus(onFinalizado){
   }, CONFIG.virusRetardoBSOD || 2600);
 }
 
-function resetSilencioso(){
+/* 🆕 Al terminar el juego, volvemos al MENÚ en vez de a la pantalla de inicio */
+function volverAlMenu(){
   clearTimeout(virusTimer);
   clearTimeout(bsodTimer);
   clearTimeout(tvTimer);
@@ -1840,10 +2097,11 @@ function resetSilencioso(){
     sonido: CONFIG.sonidoActivoPorDefecto,
     temporizador: CONFIG.temporizador.activo
   };
-  render();
+  /* Volver al menú principal */
+  mostrarMenu();
 }
 
-function reiniciarJuego(){ resetSilencioso(); }
+function resetSilencioso(){ volverAlMenu(); }
 
 function normalizar(txt){
   let t = String(txt == null ? '' : txt).trim();
@@ -1857,7 +2115,6 @@ function comenzar(){
   estado.iniciado = true; estado.segundos = 0;
   intentosFallidos = 0;
   ultimaEtapaSonido = -1;
-  /* 🆕 Empezamos con el VÍDEO de la primera etapa */
   irA('video', 0);
 }
 function comprobarCodigo(valor, input){
@@ -1873,8 +2130,6 @@ function comprobarCodigo(valor, input){
     fallo(input);
   }
 }
-/* 🆕 Al acertar el código, avanza al VÍDEO de la siguiente etapa
-   (o al FINAL si era el último código). */
 function acierto(){
   Sonido.exito();
   document.body.classList.add('desbloqueando');
@@ -1891,9 +2146,7 @@ function acierto(){
 function fallo(input){
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 420);
-
   const llegadoSusto = intentosFallidos >= (CONFIG.intentosParaSusto || 5);
-
   if (llegadoSusto){
     Sonido.gritoFuerte();
     mostrarJumpscare();
@@ -1905,7 +2158,6 @@ function fallo(input){
     }
     mostrarError();
   }
-
   if (input){
     input.value = '';
     setTimeout(() => {
@@ -1924,7 +2176,6 @@ function mostrarJumpscare(){
   js.classList.add('activo');
   js.setAttribute('aria-hidden', 'false');
   document.body.classList.add('temblando');
-
   clearTimeout(js._t);
   js._t = setTimeout(() => {
     js.classList.remove('activo');
@@ -1938,16 +2189,13 @@ function mostrarError(){
   const no = document.getElementById('error-no');
   const reint = document.getElementById('error-reintentar');
   const ultima = document.getElementById('error-ultima');
-
   no.textContent = CONFIG.errorLinea1;
   reint.textContent = CONFIG.errorLinea2;
-
   if (intentosFallidos >= (CONFIG.intentosParaUltimaOportunidad || 3)){
     ultima.classList.add('visible');
   } else {
     ultima.classList.remove('visible');
   }
-
   reint.classList.remove('visible');
   ov.classList.add('visible'); ov.setAttribute('aria-hidden', 'false');
   clearTimeout(ov._t1); clearTimeout(ov._t2);
@@ -1977,7 +2225,6 @@ function bucleSonidosTerror(){
   const min = CONFIG.sonidosTerrorMinMs || 20000;
   const max = CONFIG.sonidosTerrorMaxMs || 60000;
   const espera = min + Math.random() * (max - min);
-
   setTimeout(() => {
     if (estado.iniciado && estado.sonido && !Sonido.silencioso){
       const r = Math.random();
@@ -2029,7 +2276,10 @@ function bucleFantasma(){
     const img = document.getElementById('fantasma-img');
     const virus = document.getElementById('virus-overlay');
     const enVirus = virus && virus.classList.contains('activo');
-    if (f && img && !enVirus){
+    const enIntro = document.getElementById('menu-overlay').classList.contains('activo')
+                 || document.getElementById('disclaimer-overlay').classList.contains('activo')
+                 || document.getElementById('pegi-overlay').classList.contains('activo');
+    if (f && img && !enVirus && !enIntro){
       img.src = CONFIG.imagenFantasmaURL;
       f.classList.add('visible');
       Sonido.estatica(0.05);
@@ -2062,38 +2312,57 @@ document.getElementById('btn-tiempo').addEventListener('click', function(){
 });
 document.getElementById('btn-reiniciar').addEventListener('click', resetSilencioso);
 
-(function init(){
-  borrarGuardado();
-  SystemInfo.iniciar();
-  estado = {
-    iniciado:false, fase:'inicio', etapa:0, segundos:0,
-    sonido: CONFIG.sonidoActivoPorDefecto,
-    temporizador: CONFIG.temporizador.activo
-  };
-  Sonido.activo = !!estado.sonido;
-  render();
-  arrancarIntervalo();
-  detectarActividad();
-  resetInactividad();
-  bucleFantasma();
-  bucleSonidosTerror();
-  bucleTemblores();
+/* ==================================================================
+   🆕 FLUJO DE INTRO: DISCLAIMER → PEGI → MENÚ → JUEGO
+   ================================================================== */
 
-  const desbloquearAudio = function(){
-    Sonido.iniciar(); Sonido.reanudar();
-    MusicaFondo.crear();
-    if (estado.iniciado && estado.sonido && !Sonido.silencioso){
-      Sonido.ambienteOn();
-      MusicaFondo.reproducir();
+const Intro = {
+  estado: 'disclaimer', // disclaimer | pegi | menu | juego
+
+  iniciar(){
+    IntroAudio.precargar();
+
+    /* Aplicar fondo al menú */
+    const bg = document.getElementById('menu-bg');
+    if (bg && CONFIG.assets.menuBgImage){
+      bg.style.backgroundImage = 'url("' + CONFIG.assets.menuBgImage + '")';
     }
-    document.removeEventListener('click', desbloquearAudio);
-    document.removeEventListener('touchstart', desbloquearAudio);
-  };
-  document.addEventListener('click', desbloquearAudio);
-  document.addEventListener('touchstart', desbloquearAudio);
-  bucleGlitch();
-})();
-</script>
 
-</body>
-</html>
+    /* Aplicar fondo al PEGI si lo hay */
+    if (CONFIG.assets.pegiBgImage){
+      const pegiOv = document.getElementById('pegi-overlay');
+      if (pegiOv){
+        pegiOv.style.backgroundImage = 'url("' + CONFIG.assets.pegiBgImage + '")';
+        pegiOv.style.backgroundSize = 'cover';
+        pegiOv.style.backgroundPosition = 'center';
+      }
+    }
+
+    /* Botón DISCLAIMER */
+    const btnDisc = document.getElementById('btn-disclaimer');
+    btnDisc.addEventListener('click', () => {
+      // Primer clic → desbloquea audio en navegadores
+      Sonido.iniciar(); Sonido.reanudar();
+      IntroAudio.precargar();
+      document.getElementById('disclaimer-overlay').classList.remove('activo');
+      Intro.irAPegi();
+    });
+
+    /* Botón PEGI */
+    const btnPegi = document.getElementById('btn-pegi');
+    btnPegi.addEventListener('click', () => {
+      document.getElementById('pegi-overlay').classList.remove('activo');
+      Intro.irAMenu();
+    });
+
+    /* Menú: click en items */
+    const items = document.querySelectorAll('.menu-item');
+    items.forEach(it => {
+      it.addEventListener('click', () => {
+        const activo = document.querySelector('.menu-item.activo');
+        if (activo) activo.classList.remove('activo');
+        it.classList.add('activo');
+        Intro.seleccionar(it.dataset.accion);
+      });
+      it.addEventListener('mouseenter', () => {
+        const activo = document.querySelector
