@@ -919,15 +919,21 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 <script>
 /* ==================================================================
    CONFIGURACIÓN
+   ==================================================================
+   📁 ESTRUCTURA DE ASSETS (plana, sin subcarpetas):
+      Assets/pegi18.mp3
+      Assets/juego-comenzado.mp3
+      Assets/menu-theme.mp3
+      Assets/menu-bg.jpg
    ================================================================== */
 const CONFIG = {
 
-  /* 🆕 Archivos locales (carpeta Assets/) */
+  /* 🆕 Rutas planas: todo directamente dentro de Assets/ */
   assets: {
-    pegi18Audio:         "Assets/Audios/pegi18.mp3",
-    juegoComenzadoAudio: "Assets/Audios/juego-comenzado.mp3",
-    menuMusic:           "Assets/Audios/menu-theme.mp3",
-    menuBgImage:         "Assets/Imagenes/menu-bg.jpg",
+    pegi18Audio:         "Assets/pegi18.mp3",
+    juegoComenzadoAudio: "Assets/juego-comenzado.mp3",
+    menuMusic:           "Assets/menu-theme.mp3",
+    menuBgImage:         "Assets/menu-bg.jpg",
     pegiBgImage:         ""
   },
 
@@ -1122,6 +1128,8 @@ const IntroAudio = {
       }
       this.pegi.volume = 0.9;
       this.juego.volume = 0.9;
+      this.pegi.load();
+      this.juego.load();
     } catch(e){ console.warn('Audio error:', e); }
   },
 
@@ -1146,7 +1154,6 @@ const IntroAudio = {
       console.warn('Audio juego bloqueado:', err);
       setTimeout(llamar, 2500);
     });
-    // Fallback máximo 8s
     setTimeout(llamar, 8000);
   },
 
@@ -1811,7 +1818,7 @@ function lanzarVirus(cb){
         }, CONFIG.tvRotaDuracionMs || 2800);
       }, 700);
     });
-  }, CONFIG.virusRetardoBSOD || 2600);
+  }, CONFIG.virusRetardoBSod || 2600);
 }
 
 function volverAlMenu(){
@@ -2021,17 +2028,12 @@ function actualizarItemMenu(idx){
 
 function accionMenu(accion){
   if (accion === 'nuevo'){
-    // Ocultar menú y parar música
     document.getElementById('menu-overlay').classList.remove('activo');
     IntroAudio.pararMusica();
     enMenu = false;
-
-    // Sonido "El juego ha comenzado"
     IntroAudio.tocarJuego(() => {
-      // Al terminar el audio, transición al juego
       const introTitulo = document.getElementById('intro-titulo-overlay');
       introTitulo.classList.add('activo');
-      // Pequeño delay para que se vea el título grande
       setTimeout(() => {
         introTitulo.classList.remove('activo');
         empezarJuego();
@@ -2044,7 +2046,6 @@ function accionMenu(accion){
   }
 }
 
-/* Botones del HUD */
 document.getElementById('btn-sonido').addEventListener('click', function(){
   estado.sonido = !estado.sonido;
   Sonido.activo = estado.sonido;
@@ -2073,16 +2074,12 @@ document.getElementById('btn-reiniciar').addEventListener('click', volverAlMenu)
   bucleTemblores();
   bucleGlitch();
 
-  /* Precargar audios en cuanto se pueda */
   IntroAudio.precargar();
 
-  /* Aplicar fondo del menú */
   const bg = document.getElementById('menu-bg');
   if (bg && CONFIG.assets.menuBgImage){
     bg.style.backgroundImage = 'url("' + CONFIG.assets.menuBgImage + '")';
   }
-
-  /* Aplicar fondo del PEGI (opcional) */
   if (CONFIG.assets.pegiBgImage){
     const pegiOv = document.getElementById('pegi-overlay');
     if (pegiOv){
@@ -2092,30 +2089,29 @@ document.getElementById('btn-reiniciar').addEventListener('click', volverAlMenu)
     }
   }
 
-  /* ------- BOTÓN DISCLAIMER ------- */
+  /* ---------- BOTÓN DISCLAIMER ---------- */
   document.getElementById('btn-disclaimer').addEventListener('click', function(){
-    // Desbloquea audio (importante en navegadores móviles)
+    /* Desbloqueo de audio */
     Sonido.iniciar(); Sonido.reanudar();
     IntroAudio.precargar();
 
-    // Ocultar disclaimer
+    /* Ocultar disclaimer, mostrar PEGI */
     document.getElementById('disclaimer-overlay').classList.remove('activo');
-
-    // Mostrar PEGI
     document.getElementById('pegi-overlay').classList.add('activo');
 
-    // Reproducir audio PEGI 18 (con pequeño delay para que el usuario lo oiga)
-    setTimeout(() => IntroAudio.tocarPegi(), 400);
+    /* 🆕 Reproducir audio PEGI INMEDIATAMENTE dentro del gesto del usuario
+       (sin setTimeout) para evitar el bloqueo de autoplay */
+    IntroAudio.tocarPegi();
   });
 
-  /* ------- BOTÓN PEGI ------- */
+  /* ---------- BOTÓN PEGI ---------- */
   document.getElementById('btn-pegi').addEventListener('click', function(){
     Sonido.iniciar(); Sonido.reanudar();
     document.getElementById('pegi-overlay').classList.remove('activo');
     mostrarMenu();
   });
 
-  /* ------- MENÚ: click y hover ------- */
+  /* ---------- MENÚ ---------- */
   const items = document.querySelectorAll('.menu-item');
   items.forEach((it, idx) => {
     it.addEventListener('click', () => {
@@ -2127,7 +2123,6 @@ document.getElementById('btn-reiniciar').addEventListener('click', volverAlMenu)
     });
   });
 
-  /* ------- MENÚ: teclado ------- */
   document.addEventListener('keydown', function(e){
     if (!enMenu) return;
     const items = document.querySelectorAll('.menu-item');
@@ -2142,16 +2137,11 @@ document.getElementById('btn-reiniciar').addEventListener('click', volverAlMenu)
       const activo = document.querySelector('.menu-item.activo');
       if (activo) accionMenu(activo.dataset.accion);
     }
-  });
-
-  /* ------- MENÚ: música toggle con M ------- */
-  document.addEventListener('keydown', function(e){
-    if (enMenu && (e.key === 'm' || e.key === 'M')){
+    if (e.key === 'm' || e.key === 'M'){
       IntroAudio.toggleMusica();
     }
   });
 
-  /* Volver a intentar desbloquear audio en cualquier interacción */
   const unlockAudio = function(){
     Sonido.iniciar(); Sonido.reanudar();
     IntroAudio.precargar();
