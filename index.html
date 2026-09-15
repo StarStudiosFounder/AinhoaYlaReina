@@ -197,14 +197,6 @@ body::before{
   font-style:italic;
 }
 
-.nota{
-  margin-top:46px;
-  font-size:.7rem;
-  letter-spacing:3px;
-  color:#3d3d3d;
-  text-transform:uppercase;
-}
-
 .separador{
   width:150px; height:1px;
   margin:18px auto 0;
@@ -391,8 +383,44 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   100%{ opacity:.85; }
 }
 
+/* Fotos Saw que aparecen como flashes */
+.virus-fotos{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1;
+}
+.virus-foto{
+  position:absolute;
+  width:clamp(120px, 22vw, 320px);
+  height:auto;
+  opacity:0;
+  filter:grayscale(1) contrast(1.8) brightness(.85) sepia(.3) hue-rotate(-30deg);
+  mix-blend-mode:screen;
+  pointer-events:none;
+  border:1px solid rgba(193,18,31,.4);
+  box-shadow:0 0 30px rgba(193,18,31,.6);
+  animation:virusFotoFlash 1.2s steps(2) infinite;
+}
+.virus-foto:nth-child(1){ top:8%;  left:6%;  animation-delay:0s;    transform:rotate(-8deg); }
+.virus-foto:nth-child(2){ top:14%; right:5%; animation-delay:.4s;   transform:rotate(7deg); }
+.virus-foto:nth-child(3){ bottom:10%; left:10%; animation-delay:.8s; transform:rotate(-4deg); }
+.virus-foto:nth-child(4){ bottom:14%; right:9%; animation-delay:1.2s; transform:rotate(10deg); }
+.virus-foto:nth-child(5){ top:44%; left:2%;  animation-delay:.6s;    transform:rotate(5deg); }
+.virus-foto:nth-child(6){ top:48%; right:3%; animation-delay:1s;    transform:rotate(-6deg); }
+
+@keyframes virusFotoFlash{
+  0%,20%   { opacity:0; }
+  21%,45%  { opacity:.55; }
+  46%,70%  { opacity:0; }
+  71%,90%  { opacity:.35; }
+  91%,100% { opacity:0; }
+}
+
 #virus-overlay .scanlines-virus{
   position:absolute; inset:0; pointer-events:none;
+  z-index:3;
   background:repeating-linear-gradient(
     to bottom,
     rgba(0,0,0,0)   0px,
@@ -405,6 +433,15 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 @keyframes scanlineMov{
   from{ background-position:0 0; }
   to  { background-position:0 20px; }
+}
+
+.virus-contenido{
+  position:relative;
+  z-index:5;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
 }
 
 .virus-glitch{
@@ -432,7 +469,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 }
 
 .virus-sub{
-  margin-top:20px;
+  margin-top:10px;
   font-family:'Special Elite',monospace;
   font-size:clamp(.75rem, 2.6vw, 1.1rem);
   letter-spacing:6px;
@@ -443,7 +480,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 }
 
 .virus-lineas{
-  margin-top:34px;
+  margin-top:24px;
   font-family:'Special Elite',monospace;
   font-size:clamp(.65rem, 2.2vw, .85rem);
   letter-spacing:3px;
@@ -467,7 +504,9 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   to{ opacity:1; }
 }
 
-/* Responsive */
+/* ============================================================
+   RESPONSIVE — MÓVIL
+   ============================================================ */
 @media (max-width:520px){
   #hud{ padding:10px 10px; font-size:.6rem; }
   #temporizador{ font-size:.95rem; }
@@ -476,6 +515,41 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .btn--grande{ padding:16px 30px; letter-spacing:4px; }
   .input-codigo{ letter-spacing:6px; font-size:1.1rem; }
   #app{ padding:88px 16px 60px; }
+  .virus-foto{ width:clamp(90px, 32vw, 180px); }
+}
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+@media (min-width:521px) and (max-width:1024px){
+  .pantalla{ max-width:720px; }
+}
+
+/* ============================================================
+   RESPONSIVE — TELEVISOR / PANTALLAS GRANDES
+   ============================================================ */
+@media (min-width:1600px){
+  .pantalla{ max-width:1100px; }
+  .titulo-principal{ font-size:clamp(5rem, 7vw, 8rem); }
+  .titulo-etapa{ font-size:clamp(2.6rem, 3.5vw, 4rem); }
+  .frase{ font-size:1.35rem; max-width:900px; }
+  .instruccion{ font-size:1.4rem; }
+  .pista{ font-size:1rem; }
+  .btn{ font-size:1.15rem; padding:18px 52px; }
+  .btn--grande{ font-size:1.35rem; padding:22px 68px; letter-spacing:7px; }
+  .input-codigo{ font-size:1.7rem; width:440px; padding:18px 22px; }
+  .btn-icono{ font-size:.8rem; padding:10px 14px; }
+  #temporizador{ font-size:1.5rem; }
+  #hud{ padding:20px 34px; }
+  .marca{ font-size:.9rem; letter-spacing:8px; }
+}
+
+@media (min-width:2400px){
+  .pantalla{ max-width:1400px; }
+  .titulo-principal{ font-size:9rem; }
+  .frase{ font-size:1.6rem; }
+  .btn--grande{ font-size:1.55rem; padding:26px 80px; }
+  .input-codigo{ font-size:2rem; width:520px; }
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -508,15 +582,18 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 
   <!-- Overlay del VIRUS FINAL -->
   <div id="virus-overlay" aria-hidden="true">
+    <div class="virus-fotos" id="virus-fotos"><!-- Las fotos se insertan desde JS --></div>
     <div class="scanlines-virus"></div>
-    <h1 class="virus-glitch" id="virus-glitch">JA JA JA</h1>
-    <p class="virus-sub">SISTEMA COMPROMETIDO</p>
-    <div class="virus-lineas">
-      <span>&gt; conexión establecida con el más allá…</span>
-      <span>&gt; extrayendo alma del jugador…</span>
-      <span>&gt; 100% completado.</span>
-      <span>&gt; no hay salida.</span>
-      <span>&gt; … o eso creíais.</span>
+    <div class="virus-contenido">
+      <h1 class="virus-glitch" id="virus-glitch">JA JA JA</h1>
+      <p class="virus-sub" id="virus-sub">SISTEMA COMPROMETIDO</p>
+      <div class="virus-lineas" id="virus-lineas">
+        <span>&gt; conexión establecida con el más allá…</span>
+        <span>&gt; extrayendo alma del jugador…</span>
+        <span>&gt; 100% completado.</span>
+        <span>&gt; no hay salida.</span>
+        <span>&gt; … o eso creíais.</span>
+      </div>
     </div>
   </div>
 
@@ -524,8 +601,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 <script>
 /* ==================================================================
    ⚙️  CONFIGURACIÓN — EDITA SOLO ESTA ZONA
-   ==================================================================
-   Aquí puedes cambiar códigos, vídeos, textos y pruebas.
    ================================================================== */
 
 const CONFIG = {
@@ -533,7 +608,6 @@ const CONFIG = {
   tituloInicial:  "EL JUEGO HA COMENZADO",
   fraseInicial:   "Habéis entrado voluntariamente. Ahora tendréis que encontrar la salida.",
   textoBotonComenzar: "COMENZAR",
-  notaInicial:    "Un juego casero de Halloween",
 
   textoIntroduceCodigo: "INTRODUCE EL CÓDIGO",
   textoBotonDesbloquear: "DESBLOQUEAR",
@@ -551,7 +625,7 @@ const CONFIG = {
   textoFin:      "Por esta noche… el juego ha terminado.",
   textoBotonReiniciar: "VOLVER A JUGAR",
 
-  /* Texto que aparece en la pantalla de virus al final */
+  /* ---------- TEXTOS DEL VIRUS FINAL ---------- */
   virusTextoGrande: "JA JA JA",
   virusTextoSub:    "SISTEMA COMPROMETIDO",
   virusLineas: [
@@ -562,10 +636,25 @@ const CONFIG = {
     "> … o eso creíais."
   ],
 
+  /* ---------- FOTOS DEL VIRUS (tipo Saw) ----------
+     Pon aquí las URLs de las imágenes que quieras que
+     aparezcan como flashes glitcheados durante el virus.
+     Puedes añadir o quitar las que quieras.
+     Cualquier URL pública vale: https://...
+  -------------------------------------------------- */
+  virusImagenes: [
+    "https://picsum.photos/seed/saw1/500/400?grayscale",
+    "https://picsum.photos/seed/saw2/500/400?grayscale",
+    "https://picsum.photos/seed/saw3/500/400?grayscale",
+    "https://picsum.photos/seed/saw4/500/400?grayscale",
+    "https://picsum.photos/seed/saw5/500/400?grayscale",
+    "https://picsum.photos/seed/saw6/500/400?grayscale"
+  ],
+
   /* Temporizador */
   temporizador: {
     activo: true,
-    modo: "cuentaAtras",        // "cuentaAtras" o "cronometro"
+    modo: "cuentaAtras",
     minutos: 60,
     avisoUltimosMinutos: 5
   },
@@ -619,9 +708,8 @@ const CONFIG = {
       mensajePosterior: ""
     }
 
-  ],
-
-  videoFinal: "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
+  ]
+  /* Ya NO existe videoFinal: al pulsar "VER EL FINAL" se va directo al virus */
 };
 
 /* ==================================================================
@@ -672,7 +760,7 @@ function crearReproductor(url){
 const Sonido = {
   ctx: null,
   activo: true,
-  silencioso: false,   // ← se pone a true mientras hay vídeo
+  silencioso: false,
   ambiente: null,
 
   iniciar(){
@@ -778,7 +866,6 @@ const Sonido = {
     this.estatica(0.3);
   },
 
-  /* ---------- RISA MALÉFICA ---------- */
   risa(){
     if (!this.ctx || !this.activo) return;
     try{
@@ -796,7 +883,6 @@ const Sonido = {
         { f: 170, t: 1.32 }
       ];
 
-      // Rumble bajo por debajo
       const rumble = this.ctx.createOscillator();
       const rGain  = this.ctx.createGain();
       rumble.type = 'sawtooth';
@@ -820,7 +906,6 @@ const Sonido = {
         o1.frequency.setValueAtTime(n.f, t);
         o2.frequency.setValueAtTime(n.f * 1.012, t);
 
-        // vibrato
         const lfo  = this.ctx.createOscillator();
         const lfoG = this.ctx.createGain();
         lfo.frequency.value = 28;
@@ -839,7 +924,6 @@ const Sonido = {
         o2.start(t); o2.stop(t + 0.17);
       });
 
-      // Estática final
       setTimeout(() => this.estatica(0.5), 1500);
     }catch(e){}
   }
@@ -940,8 +1024,7 @@ function render(){
   actualizarHUD();
   actualizarReloj();
 
-  /* 🔇 MUTE AUTOMÁTICO DURANTE VÍDEOS */
-  const enVideo = (estado.fase === 'video' || estado.fase === 'videoFinal');
+  const enVideo = (estado.fase === 'video');
   Sonido.silencioso = enVideo;
 
   if (enVideo){
@@ -955,7 +1038,6 @@ function render(){
     case 'codigo':     return pintarCodigo();
     case 'video':      return pintarVideo();
     case 'final':      return pintarFinal();
-    case 'videoFinal': return pintarVideoFinal();
     case 'fin':        return pintarFin();
     default:           estado.fase = 'inicio'; return pintarInicio();
   }
@@ -989,7 +1071,6 @@ function pintarInicio(){
       '<button class="btn btn--grande" id="btn-comenzar" type="button">' +
         esc(CONFIG.textoBotonComenzar) +
       '</button>' +
-      (CONFIG.notaInicial ? '<p class="nota">' + esc(CONFIG.notaInicial) + '</p>' : '') +
     '</section>';
 
   document.getElementById('btn-comenzar').addEventListener('click', comenzar);
@@ -1070,29 +1151,13 @@ function pintarFinal(){
 
   document.getElementById('btn-ver-final').addEventListener('click', function(){
     Sonido.clic();
-    if (CONFIG.videoFinal && String(CONFIG.videoFinal).trim()) irA('videoFinal');
-    else irA('fin');
-  });
-}
-
-function pintarVideoFinal(){
-  app.innerHTML =
-    '<section class="pantalla">' +
-      '<div class="marca">◈ VÍDEO FINAL ◈</div>' +
-      '<div class="marco-video">' + crearReproductor(CONFIG.videoFinal) + '</div>' +
-      '<button class="btn btn--grande" id="btn-fin" type="button">' +
-        esc(CONFIG.textoBotonFin) +
-      '</button>' +
-    '</section>';
-
-  document.getElementById('btn-fin').addEventListener('click', function(){
-    Sonido.clic();
+    /* Ya no hay vídeo final: se va directo a la pantalla del virus */
     irA('fin');
   });
 }
 
 /* ---------------------------------------------------------------
-   PANTALLA FINAL (con virus + risa)
+   PANTALLA FINAL — con virus + fotos Saw + risa
    --------------------------------------------------------------- */
 let virusTimer = null;
 
@@ -1109,7 +1174,6 @@ function pintarFin(){
 
   document.getElementById('btn-reiniciar-final').addEventListener('click', reiniciarJuego);
 
-  // Lanzamos el virus después de 1,4 s
   clearTimeout(virusTimer);
   virusTimer = setTimeout(lanzarVirus, 1400);
 }
@@ -1118,35 +1182,45 @@ function lanzarVirus(){
   const ov = document.getElementById('virus-overlay');
   if (!ov) return;
 
-  // Configuramos los textos
+  /* Texto grande */
   document.getElementById('virus-glitch').textContent = CONFIG.virusTextoGrande || 'JA JA JA';
+  document.getElementById('virus-sub').textContent    = CONFIG.virusTextoSub    || 'SISTEMA COMPROMETIDO';
 
-  // Reconstruimos las líneas por si el usuario las cambia
-  const contLineas = ov.querySelector('.virus-lineas');
+  /* Líneas de consola */
+  const contLineas = document.getElementById('virus-lineas');
   if (contLineas && Array.isArray(CONFIG.virusLineas)){
-    contLineas.innerHTML = CONFIG.virusLineas.map(l => '<span>' + esc(l) + '</span>').join('');
+    contLineas.innerHTML = CONFIG.virusLineas
+      .map(l => '<span>' + esc(l) + '</span>')
+      .join('');
   }
-  const sub = ov.querySelector('.virus-sub');
-  if (sub) sub.textContent = CONFIG.virusTextoSub || 'SISTEMA COMPROMETIDO';
+
+  /* Fotos Saw */
+  const contFotos = document.getElementById('virus-fotos');
+  if (contFotos){
+    if (Array.isArray(CONFIG.virusImagenes) && CONFIG.virusImagenes.length){
+      contFotos.innerHTML = CONFIG.virusImagenes
+        .map(url => '<img class="virus-foto" src="' + esc(url) + '" alt="" loading="eager">')
+        .join('');
+    } else {
+      contFotos.innerHTML = '';
+    }
+  }
 
   ov.classList.add('activo');
   ov.setAttribute('aria-hidden', 'false');
 
-  // Sacudida de toda la página
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 900);
 
-  // Risa maléfica
   Sonido.iniciar();
   Sonido.reanudar();
   Sonido.risa();
 
-  // Se cierra solo a los 6,5 s
   clearTimeout(ov._cierre);
   ov._cierre = setTimeout(() => {
     ov.classList.remove('activo');
     ov.setAttribute('aria-hidden', 'true');
-  }, 6500);
+  }, 7000);
 }
 
 function reiniciarJuego(){
@@ -1264,8 +1338,8 @@ function bucleGlitch(){
   const espera = 6000 + Math.random() * 14000;
 
   setTimeout(() => {
-    // No hacemos glitch si estamos en la pantalla final con virus
-    if (!document.getElementById('virus-overlay').classList.contains('activo')){
+    const virus = document.getElementById('virus-overlay');
+    if (!virus || !virus.classList.contains('activo')){
       document.body.classList.add('glitch');
       Sonido.estatica(0.18 + Math.random() * 0.2);
       const duracion = 160 + Math.random() * 260;
