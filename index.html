@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#050505">
-<title>EL JUEGO HA COMENZADO</title>
+<title>LA MAMA TE ESPERA</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,7 +264,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   100%{ transform:translate(6px,6px); }
 }
 
-/* 🆕 CARA SAW (aparece al 100% de la pantalla hacker) */
 #cara-saw-overlay{
   position:fixed; inset:0; z-index:205;
   display:none;
@@ -431,37 +430,135 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   text-transform:uppercase; color:#ff5c5c;
   text-shadow:0 0 12px rgba(193,18,31,.9); animation:parpadeo 1.2s infinite;
 }
+
+/* ============================================================
+   🆕 BSOD MODERNO (Windows 10/11)
+   ============================================================ */
 #virus-bsod{
-  position:absolute; inset:0; z-index:8; background:#0000AA;
-  color:#ffffff; font-family:'Lucida Console','Courier New',monospace;
-  font-size:clamp(.65rem, 1.6vw, 1rem); line-height:1.55;
-  padding:6vh 6vw; text-align:left; display:none;
-  flex-direction:column; justify-content:center; overflow:hidden;
+  position:absolute; inset:0; z-index:8;
+  background:#0067B8;
+  color:#ffffff;
+  font-family:'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif;
+  padding:8vh 8vw;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  text-align:left;
+  overflow:hidden;
 }
 #virus-bsod.activo{ display:flex; }
-#virus-bsod::before{
-  content:''; position:absolute; inset:0;
+
+.bsod-sad{
+  font-size:clamp(4rem, 12vw, 10rem);
+  font-weight:100;
+  line-height:1;
+  margin:0 0 2.5rem 0;
+  letter-spacing:-6px;
+  color:#ffffff;
+}
+.bsod-texto{
+  font-size:clamp(1.1rem, 2.6vw, 1.85rem);
+  font-weight:300;
+  line-height:1.5;
+  max-width:950px;
+  margin-bottom:2rem;
+}
+.bsod-pct{
+  font-size:clamp(1.2rem, 3vw, 1.9rem);
+  font-weight:300;
+  margin-bottom:3rem;
+}
+.bsod-info{
+  font-size:clamp(.72rem, 1.4vw, .95rem);
+  font-weight:300;
+  line-height:1.65;
+  max-width:750px;
+  opacity:.95;
+}
+
+/* ============================================================
+   🆕 PANTALLA DE TV ROTA (al 100%)
+   ============================================================ */
+#tv-rota-overlay{
+  position:absolute; inset:0; z-index:9;
+  background:#000;
+  display:none;
+  align-items:center; justify-content:center;
+  overflow:hidden;
+}
+#tv-rota-overlay.activo{ display:flex; }
+
+/* Imagen de la tele rota (background configurable desde JS) */
+.tv-rota-imagen{
+  position:absolute; inset:0;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  z-index:1;
+  filter:contrast(1.4) brightness(.9) saturate(1.2);
+  animation:tvRotaEntrada .5s ease-out both, tvRotaShake .12s infinite .5s;
+}
+@keyframes tvRotaEntrada{
+  from{ opacity:0; transform:scale(1.15); filter:brightness(4) blur(12px); }
+  to{ opacity:1; transform:scale(1); filter:contrast(1.4) brightness(.9) saturate(1.2); }
+}
+@keyframes tvRotaShake{
+  0%,100%{ transform:translate(0,0); }
+  25%{ transform:translate(-3px,2px); }
+  50%{ transform:translate(3px,-2px); }
+  75%{ transform:translate(-2px,-2px); }
+}
+
+/* Estática encima */
+.tv-rota-estatica{
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E");
+  mix-blend-mode:screen;
+  opacity:.18;
+  animation:estaticaMov .08s steps(2) infinite;
+}
+@keyframes estaticaMov{
+  0%{ background-position:0 0; }
+  50%{ background-position:50px -30px; }
+  100%{ background-position:-40px 60px; }
+}
+
+/* Grietas SVG encima */
+.tv-rota-grietas{
+  position:absolute; inset:0; z-index:3; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 600' preserveAspectRatio='none'%3E%3Cg stroke='%23ffffff' stroke-width='1.5' fill='none' opacity='0.9'%3E%3Cpath d='M500,300 L300,100 M500,300 L750,80 M500,300 L880,220 M500,300 L920,400 M500,300 L800,540 M500,300 L620,560 M500,300 L300,540 M500,300 L120,470 M500,300 L80,320 M500,300 L150,160 M500,300 L400,60 M500,300 L580,40'/%3E%3Cpath d='M500,300 L420,180 L360,140 M500,300 L640,200 L720,150 M500,300 L680,380 L780,420 M500,300 L600,460 L680,520 M500,300 L400,440 L340,500 M500,300 L280,380 L200,430 M500,300 L240,240 L180,200 M500,300 L360,220 L300,180' stroke-width='.8' opacity='0.7'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  animation:grietasAparecen .55s ease-out .15s forwards;
+}
+@keyframes grietasAparecen{
+  from{ opacity:0; transform:scale(1.3); }
+  to{ opacity:1; transform:scale(1); }
+}
+
+/* Flash blanco de rotura */
+.tv-rota-flash{
+  position:absolute; inset:0; z-index:4; pointer-events:none;
+  background:#ffffff;
+  opacity:0;
+  animation:tvFlash .35s ease-out .15s both;
+}
+@keyframes tvFlash{
+  0%{ opacity:0; }
+  20%{ opacity:.9; }
+  100%{ opacity:0; }
+}
+
+/* Scanlines rotas */
+.tv-rota-scanlines{
+  position:absolute; inset:0; z-index:5; pointer-events:none;
   background:repeating-linear-gradient(to bottom,
-    rgba(255,255,255,0) 0px, rgba(255,255,255,0) 3px,
-    rgba(0,0,0,.15) 4px, rgba(0,0,0,.15) 5px);
-  pointer-events:none; opacity:.6;
+    rgba(0,0,0,0) 0px, rgba(0,0,0,0) 3px,
+    rgba(0,0,0,.5) 4px, rgba(0,0,0,.5) 6px);
+  mix-blend-mode:multiply;
+  opacity:.7;
 }
-.bsod-linea{ margin:0 0 1em; opacity:0; animation:bsodAparece .15s forwards; }
-.bsod-linea:nth-child(1){animation-delay:.05s;} .bsod-linea:nth-child(2){animation-delay:.35s;}
-.bsod-linea:nth-child(3){animation-delay:.65s;} .bsod-linea:nth-child(4){animation-delay:.95s;}
-.bsod-linea:nth-child(5){animation-delay:1.25s;} .bsod-linea:nth-child(6){animation-delay:1.55s;}
-.bsod-linea:nth-child(7){animation-delay:1.85s;}
-@keyframes bsodAparece{ to{opacity:1;} }
-.bsod-titulo{
-  display:inline-block; background:#ffffff; color:#0000AA;
-  padding:1px 8px; font-weight:bold; margin-bottom:.6em;
-}
-.bsod-pct{ margin-top:1.2em; font-weight:bold; }
-.bsod-cursor{
-  display:inline-block; width:.55em; height:1em; background:#fff;
-  vertical-align:-2px; animation:bsodCursor 1s steps(2) infinite;
-}
-@keyframes bsodCursor{ 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
 
 @media (max-width:520px){
   #hud{ padding:10px 10px; font-size:.6rem; }
@@ -471,7 +568,8 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .btn--grande{ padding:16px 30px; letter-spacing:4px; }
   .input-codigo{ letter-spacing:6px; font-size:1.1rem; }
   #app{ padding:88px 16px 60px; }
-  #virus-bsod{ padding:8vh 5vw; font-size:.7rem; }
+  #virus-bsod{ padding:6vh 6vw; }
+  .bsod-sad{ letter-spacing:-3px; }
   #fantasma img{ max-width:75vw; max-height:50vh; }
   .virus-glitch{ font-size:clamp(2rem, 14vw, 4rem); }
   #cara-saw-overlay img{ max-width:90vw; max-height:75vh; }
@@ -531,7 +629,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     <img id="jumpscare-img" src="" alt="">
   </div>
 
-  <!-- 🆕 CARA SAW (entre hacker y virus) -->
   <div id="cara-saw-overlay" aria-hidden="true">
     <img id="cara-saw-img" src="" alt="">
     <div class="cara-saw-lineas"></div>
@@ -553,42 +650,43 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   </div>
 
   <div id="virus-overlay" aria-hidden="true">
+
     <div class="virus-fotos" id="virus-fotos"></div>
+
     <div class="virus-contenido">
       <h1 class="virus-glitch" id="virus-glitch">OS ESTÁBAMOS ESPERANDO</h1>
       <p class="virus-sub" id="virus-sub">SISTEMA COMPROMETIDO</p>
     </div>
+
     <div class="scanlines-virus"></div>
+
+    <!-- BSOD MODERNO -->
     <div id="virus-bsod" aria-hidden="true">
-      <p class="bsod-linea">
-        A problem has been detected and Windows has been shut down to prevent damage
-        to your computer.
-      </p>
-      <p class="bsod-linea"><span class="bsod-titulo">JUEGO_SAW_ERROR</span></p>
-      <p class="bsod-linea">
-        If this is the first time you've seen this Stop error screen,
-        restart your computer. If this screen appears again, follow these steps:
-      </p>
-      <p class="bsod-linea">
-        Check to make sure any new hardware or software is properly installed.
-        If problems continue, disable or remove any newly installed hardware
-        or software. Disable BIOS memory options such as caching or shadowing.
-        If you need to use Safe Mode to remove or disable components, restart
-        your computer, press F8 to select Advanced Startup Options, and then
-        select Safe Mode.
-      </p>
-      <p class="bsod-linea">Technical information:</p>
-      <p class="bsod-linea">
-        *** STOP: 0x0000000A (0x00000000, 0x00000002, 0x00000000, 0x804F3B12)
+      <div class="bsod-sad">:(</div>
+      <div class="bsod-texto">
+        Your PC ran into a problem and needs to restart. We're
+        just collecting some error info, and then we'll restart for
+        you.
+      </div>
+      <div class="bsod-pct"><span id="bsod-pct">0</span>% complete</div>
+      <div class="bsod-info">
+        For more information about this issue and possible fixes, visit our website.
+        <br><br>
+        If you call a support person, give them this info:
         <br>
-        *** JUEGO_SAW.sys - Address 804F3B12 base at 80400000, DateStamp 3e5c0bce
-      </p>
-      <p class="bsod-linea bsod-pct">
-        Beginning dump of physical memory ...
-        <br>
-        Dumping physical memory to disk: <span id="bsod-pct">0</span>%<span class="bsod-cursor"></span>
-      </p>
+        Stop code: 0x00000000
+      </div>
     </div>
+
+    <!-- PANTALLA DE TV ROTA (al 100%) -->
+    <div id="tv-rota-overlay" aria-hidden="true">
+      <div class="tv-rota-imagen" id="tv-rota-imagen"></div>
+      <div class="tv-rota-estatica"></div>
+      <div class="tv-rota-grietas"></div>
+      <div class="tv-rota-flash"></div>
+      <div class="tv-rota-scanlines"></div>
+    </div>
+
   </div>
 
 
@@ -615,12 +713,9 @@ const CONFIG = {
 
   tituloFinal: "ENHORABUENA.",
   textoFinal:  "Habéis completado todas las pruebas.",
-  textoBotonFinal: "VER EL FINAL",
 
-  textoBotonFin: "FINALIZAR",
   tituloFin:     "HABÉIS SALIDO.",
   textoFin:      "Por esta noche… el juego ha terminado.",
-  textoBotonReiniciar: "VOLVER A JUGAR",
 
   inactividadSegundos: 30,
 
@@ -632,13 +727,16 @@ const CONFIG = {
   jumpscareURL: "https://picsum.photos/seed/scaryface/800/800?grayscale&contrast=1.8",
   jumpscareDuracionMs: 750,
 
-  /* 🆕 CARA DE SAW (aparece al 100% de la pantalla hacker)
-     ⚠️ CAMBIA ESTA URL POR TU FOTO (el "nosotros" que mencionas):
-     - Puede ser una URL pública: "https://tu-servidor/mi-foto.jpg"
-     - O una ruta local: "imagenes/nosotros.jpg"
-     - Cuanto más oscura y contrastada, mejor queda. */
   caraSawURL: "https://picsum.photos/seed/sawpuppetface/800/1000?grayscale&contrast=1.4",
   caraSawDuracionMs: 2800,
+
+  /* 🆕 IMAGEN DE LA TELE ROTA — aparece al 100% del BSOD
+     ⚠️ CAMBIA ESTA URL POR TU IMAGEN DE TELE ROTA:
+     - URL pública: "https://tu-servidor/tele-rota.jpg"
+     - Archivo local: "imagenes/tele-rota.jpg"
+     - Si lo dejas vacío, se verá solo la grieta blanca sobre negro. */
+  tvRotaURL: "https://picsum.photos/seed/brokentv/1920/1080?grayscale&contrast=1.6&blur=0",
+  tvRotaDuracionMs: 2800,
 
   musicaFondo: "",
   melodiaIntervaloMs: 12000,
@@ -660,7 +758,12 @@ const CONFIG = {
   ],
   virusNumeroFotos: 30,
   virusRetardoBSOD: 2600,
-  virusDuracionTotal: 9500,
+  /* El tiempo total ya no es fijo: se calcula por el contador (0→100)
+     y la duración de la TV rota. */
+
+  /* 🆕 Cuánto tarda el contador del BSOD en llegar de 0 a 100 (ms).
+     Menos = más rápido. 8000 ms = 8 s. */
+  bsodDuracionMs: 9000,
 
   sonidosTerrorMinMs: 20000,
   sonidosTerrorMaxMs: 60000,
@@ -1089,6 +1192,7 @@ const Sonido = {
       setTimeout(() => this.estatica(0.5), 1500);
     }catch(e){}
   },
+
   errorSistema(){
     if (!this.ctx || !this.activo) return;
     try{
@@ -1099,12 +1203,10 @@ const Sonido = {
     }catch(e){}
   },
 
-  /* 🆕 Sonido especial para la cara SAW */
   caraSaw(){
     if (!this.ctx || !this.activo) return;
     try{
       const t = this.ctx.currentTime;
-      // Rumble grave
       const o = this.ctx.createOscillator();
       const g = this.ctx.createGain();
       o.type = 'sawtooth';
@@ -1116,7 +1218,6 @@ const Sonido = {
       o.connect(g); g.connect(this.ctx.destination);
       o.start(t); o.stop(t + 1.7);
 
-      // Golpe grave al aparecer
       const og2 = this.ctx.createOscillator();
       const og2g = this.ctx.createGain();
       og2.type = 'sine';
@@ -1127,7 +1228,6 @@ const Sonido = {
       og2.connect(og2g); og2g.connect(this.ctx.destination);
       og2.start(t); og2.stop(t + 0.75);
 
-      // Susurro metálico
       const n = Math.floor(this.ctx.sampleRate * 1.4);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
@@ -1139,6 +1239,58 @@ const Sonido = {
       f.type = 'bandpass'; f.frequency.value = 900; f.Q.value = 3;
       const gg = this.ctx.createGain(); gg.gain.value = 0.12;
       src.connect(f); f.connect(gg); gg.connect(this.ctx.destination); src.start(t);
+    }catch(e){}
+  },
+
+  /* 🆕 CRISTAL ROMPIÉNDOSE (para la TV rota) */
+  cristalRoto(){
+    if (!this.ctx || !this.activo) return;
+    try{
+      const t = this.ctx.currentTime;
+      // Estallido de ruido blanco de alta frecuencia
+      const dur = 0.7;
+      const n = Math.floor(this.ctx.sampleRate * dur);
+      const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
+      const d = buf.getChannelData(0);
+      for (let i = 0; i < n; i++){
+        const env = Math.exp(-i / (n * 0.25));
+        d[i] = (Math.random()*2-1) * env;
+      }
+      const src = this.ctx.createBufferSource(); src.buffer = buf;
+      const f = this.ctx.createBiquadFilter();
+      f.type = 'highpass'; f.frequency.value = 2200;
+      const g = this.ctx.createGain(); g.gain.value = 0.4;
+      src.connect(f); f.connect(g); g.connect(this.ctx.destination);
+      src.start(t);
+
+      // Golpe grave
+      const o = this.ctx.createOscillator();
+      const og = this.ctx.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(140, t);
+      o.frequency.exponentialRampToValueAtTime(40, t + 0.6);
+      og.gain.setValueAtTime(0.35, t);
+      og.gain.exponentialRampToValueAtTime(0.0001, t + 0.8);
+      o.connect(og); og.connect(this.ctx.destination);
+      o.start(t); o.stop(t + 0.85);
+
+      // Crujidos cortos sucesivos (astillas)
+      for (let k = 0; k < 7; k++){
+        const tk = t + 0.05 + Math.random() * 0.45;
+        const nn = Math.floor(this.ctx.sampleRate * 0.04);
+        const bb = this.ctx.createBuffer(1, nn, this.ctx.sampleRate);
+        const dd = bb.getChannelData(0);
+        for (let i = 0; i < nn; i++) dd[i] = (Math.random()*2-1) * Math.exp(-i/(nn*0.3));
+        const ss = this.ctx.createBufferSource(); ss.buffer = bb;
+        const ff = this.ctx.createBiquadFilter();
+        ff.type = 'highpass'; ff.frequency.value = 3000 + Math.random()*1500;
+        const gg = this.ctx.createGain(); gg.gain.value = 0.15;
+        ss.connect(ff); ff.connect(gg); gg.connect(this.ctx.destination);
+        ss.start(tk);
+      }
+
+      // Estática residual
+      setTimeout(() => this.estatica(0.4), 400);
     }catch(e){}
   }
 };
@@ -1336,7 +1488,6 @@ function pintarVideo(){
   });
 }
 
-/* 🆕 ENHORABUENA — avanza solo tras unos segundos */
 function pintarFinal(){
   app.innerHTML =
     '<section class="pantalla">' +
@@ -1344,16 +1495,15 @@ function pintarFinal(){
       '<h1 class="titulo-principal">' + esc(CONFIG.tituloFinal) + '</h1>' +
       '<p class="frase">' + esc(CONFIG.textoFinal) + '</p>' +
     '</section>';
-  /* Auto-avance tras 3.5 s */
   clearTimeout(pintarFinal._t);
   pintarFinal._t = setTimeout(() => {
     if (estado.fase === 'final') irA('fin');
   }, 3500);
 }
 
-let virusTimer = null, bsodTimer = null, pctTimer = null;
+let virusTimer = null, bsodTimer = null, tvTimer = null;
+let pctInterval = null;
 
-/* 🆕 FIN — "HABÉIS SALIDO" + cadena automática hasta el virus */
 function pintarFin(){
   app.innerHTML =
     '<section class="pantalla">' +
@@ -1361,27 +1511,21 @@ function pintarFin(){
       '<h1 class="titulo-principal">' + esc(CONFIG.tituloFin) + '</h1>' +
       '<p class="frase">' + esc(CONFIG.textoFin) + '</p>' +
     '</section>';
-  /* Auto-cadena: 1.4s → hacker → cara SAW → virus → reset */
   clearTimeout(virusTimer);
   virusTimer = setTimeout(() => {
     mostrarAccesoHacker(() => {
       mostrarCaraSaw(() => {
         lanzarVirus(() => {
-          /* Al terminar el virus, reseteo automático silencioso */
-          setTimeout(() => resetSilencioso(), 600);
+          setTimeout(() => resetSilencioso(), 800);
         });
       });
     });
   }, 1400);
 }
 
-/* Pantalla "SISTEMA COMPROMETIDO" (solo antes del virus final) */
 function mostrarAccesoHacker(callback){
   const ov = document.getElementById('acceso-overlay');
-  if (!ov){
-    if (callback) callback();
-    return;
-  }
+  if (!ov){ if (callback) callback(); return; }
   ov.classList.remove('activo');
   void ov.offsetWidth;
   ov.classList.add('activo');
@@ -1401,14 +1545,10 @@ function mostrarAccesoHacker(callback){
   }, CONFIG.accesoSegundos || 2200);
 }
 
-/* 🆕 CARA SAW — aparece al 100% de la pantalla hacker */
 function mostrarCaraSaw(callback){
   const ov = document.getElementById('cara-saw-overlay');
   const img = document.getElementById('cara-saw-img');
-  if (!ov){
-    if (callback) callback();
-    return;
-  }
+  if (!ov){ if (callback) callback(); return; }
   img.src = CONFIG.caraSawURL || '';
   ov.classList.remove('activo');
   void ov.offsetWidth;
@@ -1418,7 +1558,6 @@ function mostrarCaraSaw(callback){
   Sonido.iniciar(); Sonido.reanudar();
   Sonido.caraSaw();
 
-  /* Temblor de pantalla */
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 800);
 
@@ -1452,18 +1591,32 @@ function generarFotosVirus(){
   }
   cont.innerHTML = html;
 }
-function arrancarContadorBSOD(){
+
+/* Contador 0→100 con duración controlada */
+function arrancarContadorBSOD(onLlegar100){
   const el = document.getElementById('bsod-pct');
   if (!el) return;
-  let pct = 0;
-  clearInterval(pctTimer);
-  pctTimer = setInterval(() => {
-    pct += Math.floor(1 + Math.random() * 4);
-    if (pct >= 100) pct = 100;
+  const duracion = CONFIG.bsodDuracionMs || 9000;
+  const inicio = performance.now();
+
+  clearInterval(pctInterval);
+  pctInterval = setInterval(() => {
+    const transcurrido = performance.now() - inicio;
+    const t = Math.min(1, transcurrido / duracion);
+    // Curva suave para que vaya acelerando
+    const eased = t < 1 ? 1 - Math.pow(1 - t, 1.6) : 1;
+    let pct = Math.floor(eased * 100);
+    if (pct > 100) pct = 100;
     el.textContent = pct;
-    if (pct >= 100) clearInterval(pctTimer);
-  }, 180);
+
+    if (t >= 1){
+      clearInterval(pctInterval);
+      pctInterval = null;
+      if (onLlegar100) onLlegar100();
+    }
+  }, 80);
 }
+
 function lanzarVirus(onFinalizado){
   const ov = document.getElementById('virus-overlay');
   if (!ov){
@@ -1485,46 +1638,86 @@ function lanzarVirus(onFinalizado){
   generarFotosVirus();
 
   const bsod = document.getElementById('virus-bsod');
+  const tvRota = document.getElementById('tv-rota-overlay');
+  const bsodPct = document.getElementById('bsod-pct');
+
   if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
-  const pctEl = document.getElementById('bsod-pct');
-  if (pctEl) pctEl.textContent = '0';
-  clearInterval(pctTimer);
+  if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden', 'true'); }
+  if (bsodPct) bsodPct.textContent = '0';
+
+  clearInterval(pctInterval);
+  clearTimeout(bsodTimer);
+  clearTimeout(tvTimer);
+
   ov.classList.add('activo');
   ov.setAttribute('aria-hidden', 'false');
+
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 900);
+
   Sonido.iniciar(); Sonido.reanudar(); Sonido.risa();
-  clearTimeout(bsodTimer);
+
+  // 1) Aparece el BSOD moderno tras virusRetardoBSOD
   bsodTimer = setTimeout(() => {
     if (!bsod) return;
     bsod.classList.add('activo');
     bsod.setAttribute('aria-hidden', 'false');
     Sonido.errorSistema();
-    arrancarContadorBSOD();
+
+    // 2) Arranca el contador 0→100. Al llegar a 100 → TV rota
+    arrancarContadorBSOD(() => {
+      // Pausa breve antes de mostrar la TV rota
+      setTimeout(() => {
+        if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
+        if (!tvRota){
+          if (onFinalizado) onFinalizado();
+          return;
+        }
+
+        // 3) Mostrar TV rota con imagen + grietas + cristal rompiéndose
+        const img = document.getElementById('tv-rota-imagen');
+        if (img){
+          if (CONFIG.tvRotaURL && String(CONFIG.tvRotaURL).trim()){
+            img.style.backgroundImage = 'url("' + CONFIG.tvRotaURL + '")';
+          } else {
+            img.style.backgroundImage = 'none';
+          }
+        }
+        tvRota.classList.add('activo');
+        tvRota.setAttribute('aria-hidden', 'false');
+
+        Sonido.cristalRoto();
+
+        document.body.classList.add('temblando');
+        setTimeout(() => document.body.classList.remove('temblando'), 800);
+
+        // 4) Cerrar todo tras tvRotaDuracionMs
+        tvTimer = setTimeout(() => {
+          if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden', 'true'); }
+          ov.classList.remove('activo');
+          ov.setAttribute('aria-hidden', 'true');
+          if (onFinalizado) onFinalizado();
+        }, CONFIG.tvRotaDuracionMs || 2800);
+      }, 700);
+    });
   }, CONFIG.virusRetardoBSOD || 2600);
-  clearTimeout(ov._cierre);
-  ov._cierre = setTimeout(() => {
-    ov.classList.remove('activo');
-    ov.setAttribute('aria-hidden', 'true');
-    if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
-    clearInterval(pctTimer);
-    if (onFinalizado) onFinalizado();
-  }, CONFIG.virusDuracionTotal || 9500);
 }
 
-/* 🆕 Reset silencioso (sin confirm) tras el virus */
 function resetSilencioso(){
-  /* Limpieza total de timers y overlays */
-  clearTimeout(virusTimer); clearTimeout(bsodTimer); clearInterval(pctTimer);
+  clearTimeout(virusTimer);
+  clearTimeout(bsodTimer);
+  clearTimeout(tvTimer);
+  clearInterval(pctInterval);
   clearTimeout(mostrarAccesoHacker._t);
   clearTimeout(mostrarCaraSaw._t);
   clearTimeout(pintarFinal._t);
-  clearTimeout(pintarAcceso._t);
 
   const ov = document.getElementById('virus-overlay');
   if (ov){ ov.classList.remove('activo'); ov.setAttribute('aria-hidden', 'true'); }
   const bsod = document.getElementById('virus-bsod');
   if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
+  const tv = document.getElementById('tv-rota-overlay');
+  if (tv){ tv.classList.remove('activo'); tv.setAttribute('aria-hidden', 'true'); }
   const ac = document.getElementById('acceso-overlay');
   if (ac){ ac.classList.remove('activo'); ac.setAttribute('aria-hidden', 'true'); }
   const cs = document.getElementById('cara-saw-overlay');
@@ -1545,10 +1738,7 @@ function resetSilencioso(){
   render();
 }
 
-/* 🆕 Reiniciar SIN confirmación (instantáneo) */
-function reiniciarJuego(){
-  resetSilencioso();
-}
+function reiniciarJuego(){ resetSilencioso(); }
 
 function normalizar(txt){
   let t = String(txt == null ? '' : txt).trim();
@@ -1757,7 +1947,6 @@ document.getElementById('btn-tiempo').addEventListener('click', function(){
   estado.temporizador = !estado.temporizador;
   actualizarHUD(); actualizarReloj(); Sonido.clic();
 });
-/* 🆕 Botón reiniciar SIN confirmación */
 document.getElementById('btn-reiniciar').addEventListener('click', resetSilencioso);
 
 (function init(){
