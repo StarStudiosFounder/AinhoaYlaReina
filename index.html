@@ -538,7 +538,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 }
 
 /* ============================================================
-   🆕 INTRO OVERLAYS (Disclaimer / PEGI / Menú principal)
+   INTRO OVERLAYS
    ============================================================ */
 .intro-overlay{
   position:fixed; inset:0; z-index:300;
@@ -557,7 +557,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   padding:40px 30px;
   animation:aparecer 1s ease both;
 }
-
 .intro-titulo{
   font-family:'Creepster',cursive;
   font-size:clamp(2rem, 7vw, 3.6rem);
@@ -585,15 +584,11 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   text-align:left;
 }
 .intro-texto p{ margin:0 0 14px; }
-.intro-btn{
-  margin-top:10px;
-}
+.intro-btn{ margin-top:10px; }
 
-/* Disclaimer específico */
 #disclaimer-overlay .intro-titulo{ color:#ffaa00; text-shadow:0 0 22px rgba(255,170,0,.5); }
 #disclaimer-overlay .intro-subtitulo{ color:#ffaa00; text-shadow:0 0 12px rgba(255,170,0,.7); }
 
-/* PEGI overlay */
 #pegi-overlay{ background:#000; }
 #pegi-overlay .intro-content{ max-width:620px; }
 .pegi-logo{
@@ -616,16 +611,10 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   50%{ box-shadow:0 0 90px rgba(193,18,31,.7), 0 0 160px rgba(193,18,31,.35); }
 }
 
-/* Menú principal The Quarry */
-#menu-overlay{
-  background:#000;
-  padding:0;
-}
+#menu-overlay{ background:#000; padding:0; }
 .menu-bg{
   position:absolute; inset:0; z-index:1;
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-size:cover; background-position:center; background-repeat:no-repeat;
   filter:brightness(.35) contrast(1.2) saturate(.8);
   opacity:.85;
 }
@@ -641,7 +630,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   justify-content:center;
   align-items:flex-start;
   padding:0 clamp(30px, 8vw, 120px);
-  max-width:100%;
 }
 .menu-logo{
   font-family:'Creepster',cursive;
@@ -662,8 +650,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   text-shadow:0 0 12px rgba(139,0,0,.6);
 }
 .menu-lista{
-  list-style:none;
-  padding:0; margin:0;
+  list-style:none; padding:0; margin:0;
   display:flex; flex-direction:column;
   gap:clamp(8px, 1.4vh, 16px);
 }
@@ -682,8 +669,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 .menu-item::before{
   content:'>';
   position:absolute;
-  left:0;
-  top:50%;
+  left:0; top:50%;
   transform:translateY(-50%);
   color:#c1121f;
   opacity:0;
@@ -700,9 +686,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   opacity:1;
   animation:pulso .8s infinite;
 }
-.menu-item:hover{
-  color:#e0e0e0;
-}
+.menu-item:hover{ color:#e0e0e0; }
 .menu-pie{
   position:absolute;
   bottom:clamp(20px, 3vh, 40px);
@@ -741,7 +725,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .menu-pie{ flex-direction:column; gap:6px; font-size:.6rem; }
 }
 
-/* Título grande "EL JUEGO HA COMENZADO" tras elegir nueva partida */
 #intro-titulo-overlay{
   position:fixed; inset:0; z-index:280;
   display:none;
@@ -778,7 +761,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   #system-info-overlay{ top:60px; right:10px; padding:8px 10px; font-size:.62rem; min-width:150px; }
   .intro-content{ padding:30px 20px; }
 }
-@media (min-width:521px) and (max-width:1024px){ .pantalla{ max-width:720px; } }
 @media (min-width:1600px){
   .pantalla{ max-width:1100px; }
   .titulo-principal{ font-size:clamp(5rem, 7vw, 8rem); }
@@ -792,15 +774,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .btn-icono{ font-size:.8rem; padding:10px 14px; }
   #temporizador{ font-size:1.5rem; }
   #hud{ padding:20px 34px; }
-  .marca{ font-size:.9rem; letter-spacing:8px; }
   #system-info-overlay{ font-size:.85rem; padding:14px 18px; min-width:220px; top:80px; right:24px; }
-}
-@media (min-width:2400px){
-  .pantalla{ max-width:1400px; }
-  .titulo-principal{ font-size:9rem; }
-  .frase{ font-size:1.6rem; }
-  .btn--grande{ font-size:1.55rem; padding:26px 80px; }
-  .input-codigo{ font-size:2rem; width:520px; }
 }
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:.001s !important; animation-iteration-count:1 !important;
@@ -815,9 +789,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   <div class="fx fx--scanlines"></div>
   <div class="fx fx--vineta"></div>
 
-  <!-- ============================================================
-       🆕 1) DISCLAIMER FOTOSENSIBLE
-       ============================================================ -->
+  <!-- 1) DISCLAIMER -->
   <div id="disclaimer-overlay" class="intro-overlay activo">
     <div class="intro-content">
       <h2 class="intro-titulo">ADVERTENCIA</h2>
@@ -831,9 +803,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     </div>
   </div>
 
-  <!-- ============================================================
-       🆕 2) PEGI 18 (con audio)
-       ============================================================ -->
+  <!-- 2) PEGI 18 -->
   <div id="pegi-overlay" class="intro-overlay">
     <div class="intro-content">
       <div class="pegi-logo">18</div>
@@ -847,9 +817,7 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     </div>
   </div>
 
-  <!-- ============================================================
-       🆕 3) MENÚ PRINCIPAL (estilo The Quarry)
-       ============================================================ -->
+  <!-- 3) MENÚ PRINCIPAL -->
   <div id="menu-overlay" class="intro-overlay">
     <div class="menu-bg" id="menu-bg"></div>
     <div class="menu-contenido">
@@ -868,15 +836,13 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     <div class="menu-hint">↑ ↓ navegar · ENTER seleccionar</div>
   </div>
 
-  <!-- Título grande al empezar nueva partida -->
+  <!-- Título grande al empezar partida -->
   <div id="intro-titulo-overlay">
     <h1 class="intro-titulo">EL JUEGO HA COMENZADO</h1>
     <p class="intro-subtitulo">Habéis entrado voluntariamente</p>
   </div>
 
-  <!-- ============================================================
-       HUD Y JUEGO NORMAL
-       ============================================================ -->
+  <!-- HUD Y JUEGO -->
   <div id="hud" class="oculto">
     <div id="temporizador">00:00</div>
     <div id="hud-botones">
@@ -950,56 +916,23 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     </div>
   </div>
 
-
 <script>
 /* ==================================================================
-   ⚙️  CONFIGURACIÓN — EDITA SOLO ESTA ZONA
-   ==================================================================
-   FLUJO:
-     DISCLAIMER → PEGI 18 → MENÚ → VÍDEO 1 → CÓDIGO 1 → VÍDEO 2
-     → CÓDIGO 2 → ... → VÍDEO 5 → CÓDIGO 5 → FINAL
+   CONFIGURACIÓN
    ================================================================== */
-
 const CONFIG = {
 
-  /* ==============================================================
-     🆕 ASSETS — Archivos locales (carpeta Assets/)
-     ==============================================================
-     Coloca tus archivos en:
-       Assets/Audios/...     → audios (mp3, ogg, wav)
-       Assets/Imagenes/...   → imágenes (jpg, png)
-       Assets/Videos/...     → vídeos (mp4)
-     ============================================================== */
+  /* 🆕 Archivos locales (carpeta Assets/) */
   assets: {
-    /* Audio que dice "PEGI 18" al entrar en la pantalla PEGI */
-    pegi18Audio:        "Assets/Audios/pegi18.mp3",
-
-    /* Audio que dice "El juego ha comenzado" al pulsar NUEVA PARTIDA */
-    juegoComenzadoAudio:"Assets/Audios/juego-comenzado.mp3",
-
-    /* Música del menú principal (en bucle) */
-    menuMusic:          "Assets/Audios/menu-theme.mp3",
-
-    /* Imagen de fondo del menú principal */
-    menuBgImage:        "Assets/Imagenes/menu-bg.jpg",
-
-    /* Imagen de fondo del PEGI (opcional, si no se pone queda negro) */
-    pegiBgImage:        ""
+    pegi18Audio:         "Assets/Audios/pegi18.mp3",
+    juegoComenzadoAudio: "Assets/Audios/juego-comenzado.mp3",
+    menuMusic:           "Assets/Audios/menu-theme.mp3",
+    menuBgImage:         "Assets/Imagenes/menu-bg.jpg",
+    pegiBgImage:         ""
   },
-
-  /* Textos intro */
-  disclaimerTitulo:    "ADVERTENCIA",
-  disclaimerSubtitulo: "Fotosensibilidad",
-  pegiTitulo:          "PEGI 18",
-  pegiSubtitulo:       "Contenido no apto para menores",
-
-  /* ==============================================================
-     RESTO DE CONFIGURACIÓN DEL JUEGO
-     ============================================================== */
 
   tituloInicial:  "EL JUEGO HA COMENZADO",
   fraseInicial:   "Habéis entrado voluntariamente. Ahora tendréis que encontrar la salida.",
-  textoBotonComenzar: "COMENZAR",
 
   textoIntroduceCodigo: "INTRODUCE EL CÓDIGO",
   textoBotonDesbloquear: "DESBLOQUEAR",
@@ -1019,25 +952,20 @@ const CONFIG = {
 
   inactividadSegundos: 30,
 
-  /* Imagen fantasma (URL o Assets/Imagenes/...) */
   imagenFantasmaURL: "https://picsum.photos/seed/jigsawface/500/600?grayscale&blur=1",
   imagenFantasmaMinSeg: 10,
   imagenFantasmaMaxSeg: 25,
   imagenFantasmaDuraMs: 120,
 
-  /* Jumpscare */
   jumpscareURL: "https://picsum.photos/seed/scaryface/800/800?grayscale&contrast=1.8",
   jumpscareDuracionMs: 750,
 
-  /* Cara SAW (URL que nos diste) */
   caraSawURL: "https://static1.srcdn.com/wordpress/wp-content/uploads/2025/06/saw-s-blumhouse-deal-could-be-the-best-thing-to-happen-to-the-franchise-in-21-years.jpg?q=70&fit=crop&w=1100&h=618&dpr=1",
   caraSawDuracionMs: 1300,
 
-  /* TV rota (URL o Assets/Imagenes/tv-rota.jpg) */
   tvRotaURL: "https://picsum.photos/seed/brokentv/1920/1080?grayscale&contrast=1.6&blur=0",
   tvRotaDuracionMs: 2800,
 
-  /* Música ambiental del juego (si vacío → melodía sintetizada) */
   musicaFondo: "",
   melodiaIntervaloMs: 12000,
 
@@ -1063,65 +991,24 @@ const CONFIG = {
   sonidosTerrorMinMs: 20000,
   sonidosTerrorMaxMs: 60000,
 
-  temporizador: {
-    activo: true,
-    modo: "cuentaAtras",
-    minutos: 60,
-    avisoUltimosMinutos: 5
-  },
+  temporizador: { activo:true, modo:"cuentaAtras", minutos:60, avisoUltimosMinutos:5 },
 
   sonidoActivoPorDefecto: true,
   efectoGlitchAleatorio:  true,
   ignorarMayusculas:      true,
 
-  /* ==============================================================
-     ⭐ LAS 5 PRUEBAS ⭐
-     ============================================================== */
   etapas: [
-    {
-      nombre: "PRUEBA 1 — LA GRABACIÓN",
-      /* Para vídeo local: "Assets/Videos/prueba1.mp4"
-         Para YouTube:      "https://www.youtube.com/watch?v=..." */
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      codigo: "SANGRE",
-      pista:  "El vídeo os dirá dónde buscar.",
-      mensajePosterior: ""
-    },
-    {
-      nombre: "PRUEBA 2 — LA AGUJA",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      codigo: "AGUJA",
-      pista:  "Buscad donde nadie quiere mirar.",
-      mensajePosterior: ""
-    },
-    {
-      nombre: "PRUEBA 3 — LA LLAVE",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      codigo: "LLAVE",
-      pista:  "Ya casi estáis dentro… o fuera.",
-      mensajePosterior: ""
-    },
-    {
-      nombre: "PRUEBA 4 — LA CINTA",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      codigo: "CINTA",
-      pista:  "El juego recuerda. Vosotros también deberíais.",
-      mensajePosterior: ""
-    },
-    {
-      nombre: "PRUEBA 5 — LA LIBERTAD",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-      codigo: "LIBERTAD",
-      pista:  "Última prueba. No miréis atrás.",
-      mensajePosterior: ""
-    }
+    { nombre:"PRUEBA 1 — LA GRABACIÓN", video:"https://www.youtube.com/watch?v=aqz-KE-bpKQ", codigo:"SANGRE",   pista:"El vídeo os dirá dónde buscar.",          mensajePosterior:"" },
+    { nombre:"PRUEBA 2 — LA AGUJA",     video:"https://www.youtube.com/watch?v=aqz-KE-bpKQ", codigo:"AGUJA",    pista:"Buscad donde nadie quiere mirar.",        mensajePosterior:"" },
+    { nombre:"PRUEBA 3 — LA LLAVE",     video:"https://www.youtube.com/watch?v=aqz-KE-bpKQ", codigo:"LLAVE",    pista:"Ya casi estáis dentro… o fuera.",         mensajePosterior:"" },
+    { nombre:"PRUEBA 4 — LA CINTA",     video:"https://www.youtube.com/watch?v=aqz-KE-bpKQ", codigo:"CINTA",    pista:"El juego recuerda. Vosotros también.",    mensajePosterior:"" },
+    { nombre:"PRUEBA 5 — LA LIBERTAD",  video:"https://www.youtube.com/watch?v=aqz-KE-bpKQ", codigo:"LIBERTAD", pista:"Última prueba. No miréis atrás.",         mensajePosterior:"" }
   ]
 };
 
 /* ==================================================================
-   🚫  A PARTIR DE AQUÍ NO HACE FALTA TOCAR NADA
+   UTILIDADES
    ================================================================== */
-
 function esc(s){
   return String(s == null ? '' : s)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
@@ -1137,7 +1024,7 @@ function extraerYouTubeId(url){
 }
 function crearReproductor(url){
   if (!url || !String(url).trim()){
-    return '<div class="video-vacio">SIN VÍDEO CONFIGURADO<br>(edita CONFIG en el archivo)</div>';
+    return '<div class="video-vacio">SIN VÍDEO CONFIGURADO</div>';
   }
   const u = String(url).trim();
   const yt = extraerYouTubeId(u);
@@ -1219,31 +1106,30 @@ const SystemInfo = {
 };
 
 /* ------------------------------------------------------------------
-   GESTOR DE AUDIO DE LA INTRO
+   AUDIO INTRO
    ------------------------------------------------------------------ */
 const IntroAudio = {
-  pegi: null,
-  juego: null,
-  musica: null,
-  musicaActiva: true,
+  pegi:null, juego:null, musica:null, musicaActiva:true,
 
   precargar(){
     try {
-      this.pegi  = new Audio(CONFIG.assets.pegi18Audio);
-      this.juego = new Audio(CONFIG.assets.juegoComenzadoAudio);
-      this.musica = new Audio(CONFIG.assets.menuMusic);
-      this.musica.loop = true;
-      this.musica.volume = 0.45;
+      if (!this.pegi)  this.pegi  = new Audio(CONFIG.assets.pegi18Audio);
+      if (!this.juego) this.juego = new Audio(CONFIG.assets.juegoComenzadoAudio);
+      if (!this.musica){
+        this.musica = new Audio(CONFIG.assets.menuMusic);
+        this.musica.loop = true;
+        this.musica.volume = 0.45;
+      }
       this.pegi.volume = 0.9;
       this.juego.volume = 0.9;
-    } catch(e){}
+    } catch(e){ console.warn('Audio error:', e); }
   },
 
   tocarPegi(){
     if (!this.pegi) return;
     try { this.pegi.currentTime = 0; } catch(e){}
     const p = this.pegi.play();
-    if (p && p.catch) p.catch(()=>{});
+    if (p && p.catch) p.catch(err => console.warn('Audio PEGI bloqueado:', err));
   },
 
   tocarJuego(onEnded){
@@ -1252,12 +1138,16 @@ const IntroAudio = {
       return;
     }
     try { this.juego.currentTime = 0; } catch(e){}
-    this.juego.onended = () => { if (onEnded) onEnded(); };
-    /* Fallback por si onended no funciona */
-    const fallback = setTimeout(() => { if (onEnded) onEnded(); }, 8000);
-    this.juego.addEventListener('ended', () => clearTimeout(fallback), { once:true });
+    let yaLlamado = false;
+    const llamar = () => { if (!yaLlamado){ yaLlamado = true; if (onEnded) onEnded(); } };
+    this.juego.onended = llamar;
     const p = this.juego.play();
-    if (p && p.catch) p.catch(()=>{});
+    if (p && p.catch) p.catch(err => {
+      console.warn('Audio juego bloqueado:', err);
+      setTimeout(llamar, 2500);
+    });
+    // Fallback máximo 8s
+    setTimeout(llamar, 8000);
   },
 
   iniciarMusica(){
@@ -1281,15 +1171,12 @@ const IntroAudio = {
   }
 };
 
+/* ------------------------------------------------------------------
+   SONIDO (efectos)
+   ------------------------------------------------------------------ */
 const Sonido = {
-  ctx:null, activo:true, silencioso:false, ambiente:null,
-  melodiaTimer:null,
-  iniciar(){
-    if (this.ctx) return;
-    const AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) return;
-    try { this.ctx = new AC(); } catch(e){ this.ctx = null; }
-  },
+  ctx:null, activo:true, silencioso:false, ambiente:null, melodiaTimer:null,
+  iniciar(){ if (this.ctx) return; const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; try{ this.ctx = new AC(); }catch(e){ this.ctx = null; } },
   reanudar(){ if (this.ctx && this.ctx.state === 'suspended') this.ctx.resume(); },
   ambienteOn(){
     if (!this.ctx || this.ambiente || !this.activo || this.silencioso) return;
@@ -1327,13 +1214,7 @@ const Sonido = {
       if (!self.ctx || !self.activo || self.silencioso) return;
       try{
         const t = self.ctx.currentTime;
-        const notas = [
-          { f: 523.25, t: 0.00 },
-          { f: 622.25, t: 0.55 },
-          { f: 415.30, t: 1.10 },
-          { f: 466.16, t: 1.65 }
-        ];
-        notas.forEach(n => {
+        [{f:523.25,t:0.00},{f:622.25,t:0.55},{f:415.30,t:1.10},{f:466.16,t:1.65}].forEach(n => {
           const o = self.ctx.createOscillator();
           const g = self.ctx.createGain();
           const filtro = self.ctx.createBiquadFilter();
@@ -1349,32 +1230,24 @@ const Sonido = {
       }catch(e){}
     };
     tocar();
-    const intervalo = CONFIG.melodiaIntervaloMs || 12000;
-    this.melodiaTimer = setInterval(tocar, intervalo);
+    this.melodiaTimer = setInterval(tocar, CONFIG.melodiaIntervaloMs || 12000);
   },
-  melodiaOff(){
-    if (this.melodiaTimer){ clearInterval(this.melodiaTimer); this.melodiaTimer = null; }
-  },
+  melodiaOff(){ if (this.melodiaTimer){ clearInterval(this.melodiaTimer); this.melodiaTimer = null; } },
   puerta(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
       const t = this.ctx.currentTime;
-      const o = this.ctx.createOscillator();
-      const g = this.ctx.createGain();
-      o.type = 'sine';
-      o.frequency.setValueAtTime(130, t);
+      const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+      o.type = 'sine'; o.frequency.setValueAtTime(130, t);
       o.frequency.exponentialRampToValueAtTime(35, t + 0.4);
-      g.gain.setValueAtTime(0.45, t);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
-      o.connect(g); g.connect(this.ctx.destination);
-      o.start(t); o.stop(t + 0.55);
+      g.gain.setValueAtTime(0.45, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+      o.connect(g); g.connect(this.ctx.destination); o.start(t); o.stop(t + 0.55);
       const n = Math.floor(this.ctx.sampleRate * 0.15);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
-      for (let i = 0; i < n; i++) d[i] = (Math.random()*2-1) * Math.exp(-i/2000);
+      for (let i=0;i<n;i++) d[i] = (Math.random()*2-1) * Math.exp(-i/2000);
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter();
-      f.type = 'lowpass'; f.frequency.value = 800;
+      const f = this.ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=800;
       const gg = this.ctx.createGain(); gg.gain.value = 0.5;
       src.connect(f); f.connect(gg); gg.connect(this.ctx.destination); src.start(t);
     }catch(e){}
@@ -1382,23 +1255,15 @@ const Sonido = {
   grito(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
-      const t = this.ctx.currentTime;
-      const dur = 1.6;
+      const t = this.ctx.currentTime; const dur = 1.6;
       const n = Math.floor(this.ctx.sampleRate * dur);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
-      const d = buf.getChannelData(0);
-      let v = 0;
-      for (let i = 0; i < n; i++){
-        v = v * 0.85 + (Math.random()*2-1) * 0.15;
-        d[i] = v;
-      }
+      const d = buf.getChannelData(0); let v = 0;
+      for (let i=0;i<n;i++){ v = v*0.85 + (Math.random()*2-1)*0.15; d[i] = v; }
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter();
-      f.type = 'bandpass';
-      f.frequency.setValueAtTime(900, t);
-      f.frequency.linearRampToValueAtTime(1400, t + 0.3);
-      f.frequency.linearRampToValueAtTime(500, t + dur);
-      f.Q.value = 6;
+      const f = this.ctx.createBiquadFilter(); f.type='bandpass';
+      f.frequency.setValueAtTime(900, t); f.frequency.linearRampToValueAtTime(1400, t+0.3);
+      f.frequency.linearRampToValueAtTime(500, t+dur); f.Q.value = 6;
       const g = this.ctx.createGain();
       g.gain.setValueAtTime(0.0001, t);
       g.gain.linearRampToValueAtTime(0.20, t + 0.15);
@@ -1411,74 +1276,58 @@ const Sonido = {
   gritoFuerte(){
     if (!this.ctx || !this.activo) return;
     try{
-      const t = this.ctx.currentTime;
-      const dur = 0.9;
+      const t = this.ctx.currentTime; const dur = 0.9;
       const n = Math.floor(this.ctx.sampleRate * dur);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
-      for (let i = 0; i < n; i++){
-        const env = Math.exp(-i/(n*0.5));
-        d[i] = (Math.random()*2-1) * env;
-      }
+      for (let i=0;i<n;i++){ const env = Math.exp(-i/(n*0.5)); d[i] = (Math.random()*2-1)*env; }
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter();
-      f.type = 'bandpass'; f.frequency.value = 1400; f.Q.value = 2;
+      const f = this.ctx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=1400; f.Q.value=2;
       const g = this.ctx.createGain(); g.gain.value = 0.5;
       src.connect(f); f.connect(g); g.connect(this.ctx.destination); src.start(t);
-      const o = this.ctx.createOscillator();
-      const og = this.ctx.createGain();
-      o.type = 'sawtooth';
-      o.frequency.setValueAtTime(2400, t);
-      o.frequency.exponentialRampToValueAtTime(800, t + 0.6);
+      const o = this.ctx.createOscillator(); const og = this.ctx.createGain();
+      o.type='sawtooth'; o.frequency.setValueAtTime(2400, t);
+      o.frequency.exponentialRampToValueAtTime(800, t+0.6);
       og.gain.setValueAtTime(0.15, t);
-      og.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
-      o.connect(og); og.connect(this.ctx.destination);
-      o.start(t); o.stop(t + 0.8);
-      const og2 = this.ctx.createOscillator();
-      const og2g = this.ctx.createGain();
-      og2.type = 'sine';
-      og2.frequency.setValueAtTime(80, t + 0.05);
-      og2.frequency.exponentialRampToValueAtTime(30, t + 0.5);
-      og2g.gain.setValueAtTime(0.35, t + 0.05);
-      og2g.gain.exponentialRampToValueAtTime(0.0001, t + 0.6);
+      og.gain.exponentialRampToValueAtTime(0.0001, t+0.7);
+      o.connect(og); og.connect(this.ctx.destination); o.start(t); o.stop(t+0.8);
+      const og2 = this.ctx.createOscillator(); const og2g = this.ctx.createGain();
+      og2.type='sine';
+      og2.frequency.setValueAtTime(80, t+0.05);
+      og2.frequency.exponentialRampToValueAtTime(30, t+0.5);
+      og2g.gain.setValueAtTime(0.35, t+0.05);
+      og2g.gain.exponentialRampToValueAtTime(0.0001, t+0.6);
       og2.connect(og2g); og2g.connect(this.ctx.destination);
-      og2.start(t + 0.05); og2.stop(t + 0.65);
+      og2.start(t+0.05); og2.stop(t+0.65);
     }catch(e){}
   },
   pasos(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
       const t0 = this.ctx.currentTime;
-      for (let k = 0; k < 4; k++){
-        const t = t0 + k * 0.45;
+      for (let k=0;k<4;k++){
+        const t = t0 + k*0.45;
         const n = Math.floor(this.ctx.sampleRate * 0.1);
         const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
         const d = buf.getChannelData(0);
-        for (let i = 0; i < n; i++) d[i] = (Math.random()*2-1) * Math.exp(-i/400);
+        for (let i=0;i<n;i++) d[i] = (Math.random()*2-1) * Math.exp(-i/400);
         const src = this.ctx.createBufferSource(); src.buffer = buf;
-        const f = this.ctx.createBiquadFilter();
-        f.type = 'lowpass'; f.frequency.value = 350;
+        const f = this.ctx.createBiquadFilter(); f.type='lowpass'; f.frequency.value=350;
         const g = this.ctx.createGain(); g.gain.value = 0.15;
-        src.connect(f); f.connect(g); g.connect(this.ctx.destination);
-        src.start(t);
+        src.connect(f); f.connect(g); g.connect(this.ctx.destination); src.start(t);
       }
     }catch(e){}
   },
   crujido(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
-      const t = this.ctx.currentTime;
-      const dur = 0.5;
+      const t = this.ctx.currentTime; const dur = 0.5;
       const n = Math.floor(this.ctx.sampleRate * dur);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
-      for (let i = 0; i < n; i++){
-        const env = Math.sin(Math.PI * (i/n));
-        d[i] = (Math.random()*2-1) * env * 0.5;
-      }
+      for (let i=0;i<n;i++){ const env = Math.sin(Math.PI*(i/n)); d[i] = (Math.random()*2-1)*env*0.5; }
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter();
-      f.type = 'bandpass'; f.frequency.value = 1800; f.Q.value = 8;
+      const f = this.ctx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=1800; f.Q.value=8;
       const g = this.ctx.createGain(); g.gain.value = 0.12;
       src.connect(f); f.connect(g); g.connect(this.ctx.destination); src.start(t);
     }catch(e){}
@@ -1488,50 +1337,37 @@ const Sonido = {
     try{
       const t = this.ctx.currentTime;
       const tocar = (t0, vol) => {
-        const o = this.ctx.createOscillator();
-        const g = this.ctx.createGain();
-        o.type = 'sine';
-        o.frequency.setValueAtTime(70, t0);
-        o.frequency.exponentialRampToValueAtTime(40, t0 + 0.15);
+        const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+        o.type='sine'; o.frequency.setValueAtTime(70, t0);
+        o.frequency.exponentialRampToValueAtTime(40, t0+0.15);
         g.gain.setValueAtTime(0.0001, t0);
-        g.gain.linearRampToValueAtTime(vol, t0 + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.25);
-        o.connect(g); g.connect(this.ctx.destination);
-        o.start(t0); o.stop(t0 + 0.3);
+        g.gain.linearRampToValueAtTime(vol, t0+0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0+0.25);
+        o.connect(g); g.connect(this.ctx.destination); o.start(t0); o.stop(t0+0.3);
       };
-      tocar(t, 0.25);
-      tocar(t + 0.28, 0.18);
+      tocar(t, 0.25); tocar(t+0.28, 0.18);
     }catch(e){}
   },
   respiracion(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
-      const t = this.ctx.currentTime;
-      const dur = 3.2;
+      const t = this.ctx.currentTime; const dur = 3.2;
       const n = Math.floor(this.ctx.sampleRate * dur);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
-      const d = buf.getChannelData(0);
-      let b0=0,b1=0,b2=0;
-      for (let i=0;i<n;i++){
-        const w = Math.random()*2-1;
-        b0 = 0.99*b0 + w*0.05;
-        b1 = 0.96*b1 + w*0.10;
-        b2 = 0.85*b2 + w*0.20;
-        d[i] = b0 + b1 + b2;
-      }
+      const d = buf.getChannelData(0); let b0=0,b1=0,b2=0;
+      for (let i=0;i<n;i++){ const w = Math.random()*2-1; b0=0.99*b0+w*0.05; b1=0.96*b1+w*0.10; b2=0.85*b2+w*0.20; d[i]=b0+b1+b2; }
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter();
-      f.type = 'bandpass'; f.frequency.value = 420; f.Q.value = 1.4;
+      const f = this.ctx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=420; f.Q.value=1.4;
       const g = this.ctx.createGain();
       g.gain.setValueAtTime(0.0001, t);
-      g.gain.linearRampToValueAtTime(0.085, t + 0.55);
-      g.gain.linearRampToValueAtTime(0.0001, t + 1.15);
-      g.gain.linearRampToValueAtTime(0.075, t + 1.75);
-      g.gain.linearRampToValueAtTime(0.0001, t + 2.55);
-      g.gain.linearRampToValueAtTime(0.06,  t + 2.85);
-      g.gain.linearRampToValueAtTime(0.0001, t + dur);
+      g.gain.linearRampToValueAtTime(0.085, t+0.55);
+      g.gain.linearRampToValueAtTime(0.0001, t+1.15);
+      g.gain.linearRampToValueAtTime(0.075, t+1.75);
+      g.gain.linearRampToValueAtTime(0.0001, t+2.55);
+      g.gain.linearRampToValueAtTime(0.06, t+2.85);
+      g.gain.linearRampToValueAtTime(0.0001, t+dur);
       src.connect(f); f.connect(g); g.connect(this.ctx.destination);
-      src.start(t); src.stop(t + dur + 0.1);
+      src.start(t); src.stop(t+dur+0.1);
     }catch(e){}
   },
   tono(freq, dur, tipo, vol, slideTo){
@@ -1540,12 +1376,11 @@ const Sonido = {
       const t = this.ctx.currentTime;
       const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
       o.type = tipo || 'sine'; o.frequency.setValueAtTime(freq, t);
-      if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t + dur);
+      if (slideTo) o.frequency.exponentialRampToValueAtTime(slideTo, t+dur);
       g.gain.setValueAtTime(0.0001, t);
-      g.gain.linearRampToValueAtTime(vol || 0.14, t + 0.02);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-      o.connect(g); g.connect(this.ctx.destination);
-      o.start(t); o.stop(t + dur + 0.05);
+      g.gain.linearRampToValueAtTime(vol || 0.14, t+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t+dur);
+      o.connect(g); g.connect(this.ctx.destination); o.start(t); o.stop(t+dur+0.05);
     }catch(e){}
   },
   estatica(dur){
@@ -1555,51 +1390,45 @@ const Sonido = {
       const n = Math.floor(this.ctx.sampleRate * dur);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
-      for (let i = 0; i < n; i++) d[i] = (Math.random()*2 - 1) * (1 - i/n);
+      for (let i=0;i<n;i++) d[i] = (Math.random()*2-1)*(1-i/n);
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 700;
+      const f = this.ctx.createBiquadFilter(); f.type='highpass'; f.frequency.value=700;
       const g = this.ctx.createGain(); g.gain.value = 0.05;
       src.connect(f); f.connect(g); g.connect(this.ctx.destination); src.start();
     }catch(e){}
   },
   clic(){ this.tono(320, 0.07, 'square', 0.06); },
-  exito(){ this.tono(180, 0.5, 'sine', 0.14, 720);
-    setTimeout(() => this.tono(540, 0.6, 'triangle', 0.09, 1080), 130); },
+  exito(){ this.tono(180, 0.5, 'sine', 0.14, 720); setTimeout(() => this.tono(540, 0.6, 'triangle', 0.09, 1080), 130); },
   error(){ this.tono(90, 0.75, 'sawtooth', 0.16, 42); this.estatica(0.3); },
   risa(){
     if (!this.ctx || !this.activo) return;
     try{
       const ahora = this.ctx.currentTime;
-      const notas = [
-        {f:340,t:0.00},{f:320,t:0.17},{f:300,t:0.33},{f:280,t:0.48},{f:260,t:0.62},
-        {f:240,t:0.76},{f:220,t:0.90},{f:200,t:1.04},{f:185,t:1.18},{f:170,t:1.32}
-      ];
-      const rumble = this.ctx.createOscillator();
-      const rGain = this.ctx.createGain();
+      const notas = [{f:340,t:0.00},{f:320,t:0.17},{f:300,t:0.33},{f:280,t:0.48},{f:260,t:0.62},{f:240,t:0.76},{f:220,t:0.90},{f:200,t:1.04},{f:185,t:1.18},{f:170,t:1.32}];
+      const rumble = this.ctx.createOscillator(); const rGain = this.ctx.createGain();
       rumble.type = 'sawtooth';
       rumble.frequency.setValueAtTime(60, ahora);
-      rumble.frequency.linearRampToValueAtTime(35, ahora + 1.6);
+      rumble.frequency.linearRampToValueAtTime(35, ahora+1.6);
       rGain.gain.setValueAtTime(0.0001, ahora);
-      rGain.gain.linearRampToValueAtTime(0.06, ahora + 0.15);
-      rGain.gain.linearRampToValueAtTime(0.0001, ahora + 1.7);
+      rGain.gain.linearRampToValueAtTime(0.06, ahora+0.15);
+      rGain.gain.linearRampToValueAtTime(0.0001, ahora+1.7);
       rumble.connect(rGain); rGain.connect(this.ctx.destination);
-      rumble.start(ahora); rumble.stop(ahora + 1.8);
+      rumble.start(ahora); rumble.stop(ahora+1.8);
       notas.forEach(n => {
         const t = ahora + n.t;
-        const o1 = this.ctx.createOscillator(); const o2 = this.ctx.createOscillator();
-        const g = this.ctx.createGain();
-        o1.type = 'sawtooth'; o2.type = 'square';
+        const o1 = this.ctx.createOscillator(); const o2 = this.ctx.createOscillator(); const g = this.ctx.createGain();
+        o1.type='sawtooth'; o2.type='square';
         o1.frequency.setValueAtTime(n.f, t);
-        o2.frequency.setValueAtTime(n.f * 1.012, t);
+        o2.frequency.setValueAtTime(n.f*1.012, t);
         const lfo = this.ctx.createOscillator(); const lfoG = this.ctx.createGain();
         lfo.frequency.value = 28; lfoG.gain.value = 9;
         lfo.connect(lfoG); lfoG.connect(o1.frequency);
-        lfo.start(t); lfo.stop(t + 0.16);
+        lfo.start(t); lfo.stop(t+0.16);
         g.gain.setValueAtTime(0.0001, t);
-        g.gain.linearRampToValueAtTime(0.085, t + 0.012);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.15);
+        g.gain.linearRampToValueAtTime(0.085, t+0.012);
+        g.gain.exponentialRampToValueAtTime(0.0001, t+0.15);
         o1.connect(g); o2.connect(g); g.connect(this.ctx.destination);
-        o1.start(t); o1.stop(t + 0.17); o2.start(t); o2.stop(t + 0.17);
+        o1.start(t); o1.stop(t+0.17); o2.start(t); o2.stop(t+0.17);
       });
       setTimeout(() => this.estatica(0.5), 1500);
     }catch(e){}
@@ -1617,34 +1446,25 @@ const Sonido = {
     if (!this.ctx || !this.activo) return;
     try{
       const t = this.ctx.currentTime;
-      const o = this.ctx.createOscillator();
-      const g = this.ctx.createGain();
-      o.type = 'sawtooth';
-      o.frequency.setValueAtTime(90, t);
-      o.frequency.exponentialRampToValueAtTime(40, t + 1.2);
+      const o = this.ctx.createOscillator(); const g = this.ctx.createGain();
+      o.type='sawtooth'; o.frequency.setValueAtTime(90, t);
+      o.frequency.exponentialRampToValueAtTime(40, t+1.2);
       g.gain.setValueAtTime(0.0001, t);
-      g.gain.linearRampToValueAtTime(0.18, t + 0.15);
-      g.gain.linearRampToValueAtTime(0.0001, t + 1.6);
-      o.connect(g); g.connect(this.ctx.destination);
-      o.start(t); o.stop(t + 1.7);
-      const og2 = this.ctx.createOscillator();
-      const og2g = this.ctx.createGain();
-      og2.type = 'sine';
-      og2.frequency.setValueAtTime(120, t);
-      og2.frequency.exponentialRampToValueAtTime(35, t + 0.5);
+      g.gain.linearRampToValueAtTime(0.18, t+0.15);
+      g.gain.linearRampToValueAtTime(0.0001, t+1.6);
+      o.connect(g); g.connect(this.ctx.destination); o.start(t); o.stop(t+1.7);
+      const og2 = this.ctx.createOscillator(); const og2g = this.ctx.createGain();
+      og2.type='sine'; og2.frequency.setValueAtTime(120, t);
+      og2.frequency.exponentialRampToValueAtTime(35, t+0.5);
       og2g.gain.setValueAtTime(0.4, t);
-      og2g.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
-      og2.connect(og2g); og2g.connect(this.ctx.destination);
-      og2.start(t); og2.stop(t + 0.75);
+      og2g.gain.exponentialRampToValueAtTime(0.0001, t+0.7);
+      og2.connect(og2g); og2g.connect(this.ctx.destination); og2.start(t); og2.stop(t+0.75);
       const n = Math.floor(this.ctx.sampleRate * 1.4);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
-      for (let i = 0; i < n; i++){
-        d[i] = (Math.random()*2-1) * Math.exp(-i/(n*0.8));
-      }
+      for (let i=0;i<n;i++) d[i] = (Math.random()*2-1)*Math.exp(-i/(n*0.8));
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter();
-      f.type = 'bandpass'; f.frequency.value = 900; f.Q.value = 3;
+      const f = this.ctx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=900; f.Q.value=3;
       const gg = this.ctx.createGain(); gg.gain.value = 0.12;
       src.connect(f); f.connect(gg); gg.connect(this.ctx.destination); src.start(t);
     }catch(e){}
@@ -1652,42 +1472,31 @@ const Sonido = {
   cristalRoto(){
     if (!this.ctx || !this.activo) return;
     try{
-      const t = this.ctx.currentTime;
-      const dur = 0.7;
+      const t = this.ctx.currentTime; const dur = 0.7;
       const n = Math.floor(this.ctx.sampleRate * dur);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
-      for (let i = 0; i < n; i++){
-        const env = Math.exp(-i / (n * 0.25));
-        d[i] = (Math.random()*2-1) * env;
-      }
+      for (let i=0;i<n;i++){ const env = Math.exp(-i/(n*0.25)); d[i] = (Math.random()*2-1)*env; }
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-      const f = this.ctx.createBiquadFilter();
-      f.type = 'highpass'; f.frequency.value = 2200;
+      const f = this.ctx.createBiquadFilter(); f.type='highpass'; f.frequency.value=2200;
       const g = this.ctx.createGain(); g.gain.value = 0.4;
-      src.connect(f); f.connect(g); g.connect(this.ctx.destination);
-      src.start(t);
-      const o = this.ctx.createOscillator();
-      const og = this.ctx.createGain();
-      o.type = 'triangle';
-      o.frequency.setValueAtTime(140, t);
-      o.frequency.exponentialRampToValueAtTime(40, t + 0.6);
+      src.connect(f); f.connect(g); g.connect(this.ctx.destination); src.start(t);
+      const o = this.ctx.createOscillator(); const og = this.ctx.createGain();
+      o.type='triangle'; o.frequency.setValueAtTime(140, t);
+      o.frequency.exponentialRampToValueAtTime(40, t+0.6);
       og.gain.setValueAtTime(0.35, t);
-      og.gain.exponentialRampToValueAtTime(0.0001, t + 0.8);
-      o.connect(og); og.connect(this.ctx.destination);
-      o.start(t); o.stop(t + 0.85);
-      for (let k = 0; k < 7; k++){
-        const tk = t + 0.05 + Math.random() * 0.45;
+      og.gain.exponentialRampToValueAtTime(0.0001, t+0.8);
+      o.connect(og); og.connect(this.ctx.destination); o.start(t); o.stop(t+0.85);
+      for (let k=0;k<7;k++){
+        const tk = t + 0.05 + Math.random()*0.45;
         const nn = Math.floor(this.ctx.sampleRate * 0.04);
         const bb = this.ctx.createBuffer(1, nn, this.ctx.sampleRate);
         const dd = bb.getChannelData(0);
-        for (let i = 0; i < nn; i++) dd[i] = (Math.random()*2-1) * Math.exp(-i/(nn*0.3));
+        for (let i=0;i<nn;i++) dd[i] = (Math.random()*2-1)*Math.exp(-i/(nn*0.3));
         const ss = this.ctx.createBufferSource(); ss.buffer = bb;
-        const ff = this.ctx.createBiquadFilter();
-        ff.type = 'highpass'; ff.frequency.value = 3000 + Math.random()*1500;
+        const ff = this.ctx.createBiquadFilter(); ff.type='highpass'; ff.frequency.value = 3000 + Math.random()*1500;
         const gg = this.ctx.createGain(); gg.gain.value = 0.15;
-        ss.connect(ff); ff.connect(gg); gg.connect(this.ctx.destination);
-        ss.start(tk);
+        ss.connect(ff); ff.connect(gg); gg.connect(this.ctx.destination); ss.start(tk);
       }
       setTimeout(() => this.estatica(0.4), 400);
     }catch(e){}
@@ -1695,55 +1504,44 @@ const Sonido = {
 };
 
 const MusicaFondo = {
-  audio: null,
-  activa: false,
+  audio:null, activa:false,
   crear(){
     if (!CONFIG.musicaFondo || !String(CONFIG.musicaFondo).trim()) return;
     if (this.audio) return;
     try{
       this.audio = new Audio(CONFIG.musicaFondo);
-      this.audio.loop = true;
-      this.audio.volume = 0.35;
-      this.audio.preload = 'auto';
+      this.audio.loop = true; this.audio.volume = 0.35; this.audio.preload = 'auto';
     }catch(e){ this.audio = null; }
   },
   reproducir(){
     if (!estado.sonido) return;
     if (this.audio){
       this.audio.volume = 0.35;
-      const p = this.audio.play();
-      if (p && p.catch) p.catch(()=>{});
-    } else {
-      Sonido.melodiaOn();
-    }
+      const p = this.audio.play(); if (p && p.catch) p.catch(()=>{});
+    } else { Sonido.melodiaOn(); }
     this.activa = true;
   },
   pausar(){
-    if (this.audio){ this.audio.pause(); }
-    else { Sonido.melodiaOff(); }
+    if (this.audio){ this.audio.pause(); } else { Sonido.melodiaOff(); }
     this.activa = false;
   },
   parar(){
     if (this.audio){ this.audio.pause(); this.audio.currentTime = 0; }
-    Sonido.melodiaOff();
-    this.activa = false;
+    Sonido.melodiaOff(); this.activa = false;
   }
 };
 
-const CLAVE_GUARDADO = 'escapeSaw_v1';
+/* ==================================================================
+   ESTADO GLOBAL
+   ================================================================== */
 let estado = {
   iniciado:false, fase:'inicio', etapa:0, segundos:0,
   sonido: CONFIG.sonidoActivoPorDefecto,
   temporizador: CONFIG.temporizador.activo
 };
 let intervaloTemporizador = null;
-
 let intentosFallidos = 0;
 let ultimaEtapaSonido = -1;
-
-function guardar(){}
-function cargar(){ try{ localStorage.removeItem(CLAVE_GUARDADO); }catch(e){} }
-function borrarGuardado(){ try{ localStorage.removeItem(CLAVE_GUARDADO); }catch(e){} }
 
 function formatearTiempo(s){
   s = Math.max(0, Math.floor(s));
@@ -1757,9 +1555,8 @@ function actualizarReloj(){
   if (!CONFIG.temporizador.activo || !estado.temporizador){ el.style.display = 'none'; return; }
   el.style.display = '';
   let texto, aviso = false;
-  if (CONFIG.temporizador.modo === 'cronometro'){
-    texto = formatearTiempo(estado.segundos);
-  } else {
+  if (CONFIG.temporizador.modo === 'cronometro'){ texto = formatearTiempo(estado.segundos); }
+  else {
     const restante = (CONFIG.temporizador.minutos * 60) - estado.segundos;
     texto = formatearTiempo(restante);
     const umbral = (CONFIG.temporizador.avisoUltimosMinutos || 5) * 60;
@@ -1786,44 +1583,30 @@ function render(){
   actualizarHUD(); actualizarReloj();
   const faseSilencio = (estado.fase === 'video' || estado.fase === 'fin');
   Sonido.silencioso = faseSilencio;
-  if (faseSilencio){
-    Sonido.ambienteOff();
-    MusicaFondo.pausar();
-  } else if (estado.iniciado && estado.sonido){
-    Sonido.ambienteOn();
-    MusicaFondo.reproducir();
-  }
+  if (faseSilencio){ Sonido.ambienteOff(); MusicaFondo.pausar(); }
+  else if (estado.iniciado && estado.sonido){ Sonido.ambienteOn(); MusicaFondo.reproducir(); }
   switch (estado.fase){
-    case 'inicio': return pintarInicio();
     case 'video':  return pintarVideo();
     case 'codigo': return pintarCodigo();
     case 'final':  return pintarFinal();
     case 'fin':    return pintarFin();
-    default: estado.fase = 'inicio'; return pintarInicio();
+    default:       return pintarVideo();
   }
 }
 function actualizarHUD(){
   const hud = document.getElementById('hud');
   if (!hud) return;
-  hud.classList.toggle('oculto', estado.fase === 'inicio');
+  hud.classList.toggle('oculto', !estado.iniciado);
   const btnSonido = document.getElementById('btn-sonido');
   const btnTiempo = document.getElementById('btn-tiempo');
-  btnSonido.classList.toggle('activo', !!estado.sonido);
-  btnTiempo.classList.toggle('activo', !!estado.temporizador);
-  btnTiempo.style.display = CONFIG.temporizador.activo ? '' : 'none';
+  if (btnSonido) btnSonido.classList.toggle('activo', !!estado.sonido);
+  if (btnTiempo){
+    btnTiempo.classList.toggle('activo', !!estado.temporizador);
+    btnTiempo.style.display = CONFIG.temporizador.activo ? '' : 'none';
+  }
 }
 
 const app = document.getElementById('app');
-
-/* La pantalla de inicio ya no se usa (se sustituye por el menú),
-   pero la dejamos por si el jugador pulsa reiniciar sin querer. */
-function pintarInicio(){
-  app.innerHTML =
-    '<section class="pantalla">' +
-      '<h1 class="titulo-principal">' + esc(CONFIG.tituloInicial) + '</h1>' +
-      '<p class="frase">' + esc(CONFIG.fraseInicial) + '</p>' +
-    '</section>';
-}
 
 function pintarVideo(){
   const i = estado.etapa;
@@ -1850,12 +1633,10 @@ function pintarCodigo(){
   const etapa = CONFIG.etapas[i];
   if (!etapa){ irA('final'); return; }
   const total = CONFIG.etapas.length;
-
   if (ultimaEtapaSonido !== i){
     ultimaEtapaSonido = i;
     setTimeout(() => { if (estado.fase === 'codigo') Sonido.puerta(); }, 500);
   }
-
   app.innerHTML =
     '<section class="pantalla">' +
       '<div class="marca">ETAPA ' + (i+1) + ' / ' + total + '</div>' +
@@ -1891,13 +1672,10 @@ function pintarFinal(){
       '<p class="frase">' + esc(CONFIG.textoFinal) + '</p>' +
     '</section>';
   clearTimeout(pintarFinal._t);
-  pintarFinal._t = setTimeout(() => {
-    if (estado.fase === 'final') irA('fin');
-  }, 3500);
+  pintarFinal._t = setTimeout(() => { if (estado.fase === 'final') irA('fin'); }, 3500);
 }
 
-let virusTimer = null, bsodTimer = null, tvTimer = null;
-let pctInterval = null;
+let virusTimer=null, bsodTimer=null, tvTimer=null, pctInterval=null;
 
 function pintarFin(){
   app.innerHTML =
@@ -1910,21 +1688,17 @@ function pintarFin(){
   virusTimer = setTimeout(() => {
     mostrarAccesoHacker(() => {
       mostrarCaraSaw(() => {
-        lanzarVirus(() => {
-          setTimeout(() => volverAlMenu(), 800);
-        });
+        lanzarVirus(() => { setTimeout(() => volverAlMenu(), 800); });
       });
     });
   }, 1400);
 }
 
-function mostrarAccesoHacker(callback){
+function mostrarAccesoHacker(cb){
   const ov = document.getElementById('acceso-overlay');
-  if (!ov){ if (callback) callback(); return; }
-  ov.classList.remove('activo');
-  void ov.offsetWidth;
-  ov.classList.add('activo');
-  ov.setAttribute('aria-hidden', 'false');
+  if (!ov){ if (cb) cb(); return; }
+  ov.classList.remove('activo'); void ov.offsetWidth;
+  ov.classList.add('activo'); ov.setAttribute('aria-hidden','false');
   Sonido.iniciar(); Sonido.reanudar();
   Sonido.tono(880, 0.06, 'square', 0.10);
   setTimeout(() => Sonido.tono(1200, 0.05, 'square', 0.09), 250);
@@ -1932,30 +1706,25 @@ function mostrarAccesoHacker(callback){
   setTimeout(() => Sonido.estatica(0.25), 900);
   clearTimeout(mostrarAccesoHacker._t);
   mostrarAccesoHacker._t = setTimeout(() => {
-    ov.classList.remove('activo');
-    ov.setAttribute('aria-hidden', 'true');
-    if (callback) callback();
+    ov.classList.remove('activo'); ov.setAttribute('aria-hidden','true');
+    if (cb) cb();
   }, CONFIG.accesoSegundos || 2200);
 }
 
-function mostrarCaraSaw(callback){
+function mostrarCaraSaw(cb){
   const ov = document.getElementById('cara-saw-overlay');
   const img = document.getElementById('cara-saw-img');
-  if (!ov){ if (callback) callback(); return; }
+  if (!ov){ if (cb) cb(); return; }
   img.src = CONFIG.caraSawURL || '';
-  ov.classList.remove('activo');
-  void ov.offsetWidth;
-  ov.classList.add('activo');
-  ov.setAttribute('aria-hidden', 'false');
-  Sonido.iniciar(); Sonido.reanudar();
-  Sonido.caraSaw();
+  ov.classList.remove('activo'); void ov.offsetWidth;
+  ov.classList.add('activo'); ov.setAttribute('aria-hidden','false');
+  Sonido.iniciar(); Sonido.reanudar(); Sonido.caraSaw();
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 800);
   clearTimeout(mostrarCaraSaw._t);
   mostrarCaraSaw._t = setTimeout(() => {
-    ov.classList.remove('activo');
-    ov.setAttribute('aria-hidden', 'true');
-    if (callback) callback();
+    ov.classList.remove('activo'); ov.setAttribute('aria-hidden','true');
+    if (cb) cb();
   }, CONFIG.caraSawDuracionMs || 1300);
 }
 
@@ -1966,14 +1735,14 @@ function generarFotosVirus(){
   if (!Array.isArray(urls) || urls.length === 0){ cont.innerHTML = ''; return; }
   const total = CONFIG.virusNumeroFotos || 20;
   let html = '';
-  for (let i = 0; i < total; i++){
+  for (let i=0;i<total;i++){
     const url = urls[i % urls.length];
-    const top = (Math.random() * 88).toFixed(1);
-    const left = (Math.random() * 88).toFixed(1);
-    const rot = (Math.random() * 70 - 35).toFixed(1);
-    const size = Math.round(70 + Math.random() * 220);
-    const delay = (Math.random() * 2).toFixed(2);
-    const dur = (0.9 + Math.random() * 1.4).toFixed(2);
+    const top = (Math.random()*88).toFixed(1);
+    const left = (Math.random()*88).toFixed(1);
+    const rot = (Math.random()*70 - 35).toFixed(1);
+    const size = Math.round(70 + Math.random()*220);
+    const delay = (Math.random()*2).toFixed(2);
+    const dur = (0.9 + Math.random()*1.4).toFixed(2);
     html += '<img class="virus-foto" src="' + esc(url) + '" alt="" loading="eager" style="' +
       'top:' + top + '%; left:' + left + '%; width:' + size + 'px; ' +
       'transform: rotate(' + rot + 'deg); ' +
@@ -1982,153 +1751,111 @@ function generarFotosVirus(){
   cont.innerHTML = html;
 }
 
-function arrancarContadorBSOD(onLlegar100){
+function arrancarContadorBSOD(cb){
   const el = document.getElementById('bsod-pct');
   if (!el) return;
   const duracion = CONFIG.bsodDuracionMs || 9000;
   const inicio = performance.now();
   clearInterval(pctInterval);
   pctInterval = setInterval(() => {
-    const transcurrido = performance.now() - inicio;
-    const t = Math.min(1, transcurrido / duracion);
+    const t = Math.min(1, (performance.now() - inicio) / duracion);
     const eased = t < 1 ? 1 - Math.pow(1 - t, 1.6) : 1;
-    let pct = Math.floor(eased * 100);
-    if (pct > 100) pct = 100;
+    let pct = Math.floor(eased * 100); if (pct > 100) pct = 100;
     el.textContent = pct;
-    if (t >= 1){
-      clearInterval(pctInterval);
-      pctInterval = null;
-      if (onLlegar100) onLlegar100();
-    }
+    if (t >= 1){ clearInterval(pctInterval); pctInterval = null; if (cb) cb(); }
   }, 80);
 }
 
-function lanzarVirus(onFinalizado){
+function lanzarVirus(cb){
   const ov = document.getElementById('virus-overlay');
-  if (!ov){ if (onFinalizado) onFinalizado(); return; }
+  if (!ov){ if (cb) cb(); return; }
   const txt = CONFIG.virusTextoGrande || '';
   const elTxt = document.getElementById('virus-glitch');
-  if (txt.trim()){
-    elTxt.textContent = txt;
-    elTxt.classList.remove('oculto');
-  } else {
-    elTxt.textContent = '';
-    elTxt.classList.add('oculto');
-  }
+  if (txt.trim()){ elTxt.textContent = txt; elTxt.classList.remove('oculto'); }
+  else { elTxt.textContent = ''; elTxt.classList.add('oculto'); }
   document.getElementById('virus-sub').textContent = CONFIG.virusTextoSub || 'SISTEMA COMPROMETIDO';
   generarFotosVirus();
   const bsod = document.getElementById('virus-bsod');
   const tvRota = document.getElementById('tv-rota-overlay');
   const bsodPct = document.getElementById('bsod-pct');
-  if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
-  if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden', 'true'); }
+  if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden','true'); }
+  if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden','true'); }
   if (bsodPct) bsodPct.textContent = '0';
-  clearInterval(pctInterval);
-  clearTimeout(bsodTimer);
-  clearTimeout(tvTimer);
-  ov.classList.add('activo');
-  ov.setAttribute('aria-hidden', 'false');
+  clearInterval(pctInterval); clearTimeout(bsodTimer); clearTimeout(tvTimer);
+  ov.classList.add('activo'); ov.setAttribute('aria-hidden','false');
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 900);
   Sonido.iniciar(); Sonido.reanudar(); Sonido.risa();
   bsodTimer = setTimeout(() => {
     if (!bsod) return;
-    bsod.classList.add('activo');
-    bsod.setAttribute('aria-hidden', 'false');
+    bsod.classList.add('activo'); bsod.setAttribute('aria-hidden','false');
     Sonido.errorSistema();
     arrancarContadorBSOD(() => {
       setTimeout(() => {
-        if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
-        if (!tvRota){ if (onFinalizado) onFinalizado(); return; }
+        if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden','true'); }
+        if (!tvRota){ if (cb) cb(); return; }
         const img = document.getElementById('tv-rota-imagen');
         if (img){
           if (CONFIG.tvRotaURL && String(CONFIG.tvRotaURL).trim()){
             img.style.backgroundImage = 'url("' + CONFIG.tvRotaURL + '")';
-          } else {
-            img.style.backgroundImage = 'none';
-          }
+          } else { img.style.backgroundImage = 'none'; }
         }
-        tvRota.classList.add('activo');
-        tvRota.setAttribute('aria-hidden', 'false');
+        tvRota.classList.add('activo'); tvRota.setAttribute('aria-hidden','false');
         Sonido.cristalRoto();
         document.body.classList.add('temblando');
         setTimeout(() => document.body.classList.remove('temblando'), 800);
         tvTimer = setTimeout(() => {
-          if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden', 'true'); }
-          ov.classList.remove('activo');
-          ov.setAttribute('aria-hidden', 'true');
-          if (onFinalizado) onFinalizado();
+          if (tvRota){ tvRota.classList.remove('activo'); tvRota.setAttribute('aria-hidden','true'); }
+          ov.classList.remove('activo'); ov.setAttribute('aria-hidden','true');
+          if (cb) cb();
         }, CONFIG.tvRotaDuracionMs || 2800);
       }, 700);
     });
   }, CONFIG.virusRetardoBSOD || 2600);
 }
 
-/* 🆕 Al terminar el juego, volvemos al MENÚ en vez de a la pantalla de inicio */
 function volverAlMenu(){
-  clearTimeout(virusTimer);
-  clearTimeout(bsodTimer);
-  clearTimeout(tvTimer);
+  clearTimeout(virusTimer); clearTimeout(bsodTimer); clearTimeout(tvTimer);
   clearInterval(pctInterval);
-  clearTimeout(mostrarAccesoHacker._t);
-  clearTimeout(mostrarCaraSaw._t);
-  clearTimeout(pintarFinal._t);
-
-  const ov = document.getElementById('virus-overlay');
-  if (ov){ ov.classList.remove('activo'); ov.setAttribute('aria-hidden', 'true'); }
-  const bsod = document.getElementById('virus-bsod');
-  if (bsod){ bsod.classList.remove('activo'); bsod.setAttribute('aria-hidden', 'true'); }
-  const tv = document.getElementById('tv-rota-overlay');
-  if (tv){ tv.classList.remove('activo'); tv.setAttribute('aria-hidden', 'true'); }
-  const ac = document.getElementById('acceso-overlay');
-  if (ac){ ac.classList.remove('activo'); ac.setAttribute('aria-hidden', 'true'); }
-  const cs = document.getElementById('cara-saw-overlay');
-  if (cs){ cs.classList.remove('activo'); cs.setAttribute('aria-hidden', 'true'); }
-  const js = document.getElementById('jumpscare');
-  if (js){ js.classList.remove('activo'); js.setAttribute('aria-hidden', 'true'); }
-  const f = document.getElementById('fantasma');
-  if (f){ f.classList.remove('visible'); }
-
+  clearTimeout(mostrarAccesoHacker._t); clearTimeout(mostrarCaraSaw._t); clearTimeout(pintarFinal._t);
+  ['virus-overlay','virus-bsod','tv-rota-overlay','acceso-overlay','cara-saw-overlay','jumpscare','fantasma'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el){ el.classList.remove('activo','visible'); el.setAttribute('aria-hidden','true'); }
+  });
   MusicaFondo.parar();
-  intentosFallidos = 0;
-  ultimaEtapaSonido = -1;
+  intentosFallidos = 0; ultimaEtapaSonido = -1;
   estado = {
     iniciado:false, fase:'inicio', etapa:0, segundos:0,
     sonido: CONFIG.sonidoActivoPorDefecto,
     temporizador: CONFIG.temporizador.activo
   };
-  /* Volver al menú principal */
+  app.innerHTML = '';
   mostrarMenu();
 }
-
-function resetSilencioso(){ volverAlMenu(); }
 
 function normalizar(txt){
   let t = String(txt == null ? '' : txt).trim();
   if (CONFIG.ignorarMayusculas !== false) t = t.toUpperCase();
   return t;
 }
-function comenzar(){
+
+function empezarJuego(){
   Sonido.iniciar(); Sonido.reanudar();
   MusicaFondo.crear();
   if (estado.sonido){ Sonido.ambienteOn(); MusicaFondo.reproducir(); }
   estado.iniciado = true; estado.segundos = 0;
-  intentosFallidos = 0;
-  ultimaEtapaSonido = -1;
+  intentosFallidos = 0; ultimaEtapaSonido = -1;
   irA('video', 0);
 }
+
 function comprobarCodigo(valor, input){
   const etapa = CONFIG.etapas[estado.etapa];
   if (!etapa) return;
   const introducido = normalizar(valor);
   if (!introducido) return;
   if (introducido === normalizar(etapa.codigo)){
-    intentosFallidos = 0;
-    acierto();
-  } else {
-    intentosFallidos++;
-    fallo(input);
-  }
+    intentosFallidos = 0; acierto();
+  } else { intentosFallidos++; fallo(input); }
 }
 function acierto(){
   Sonido.exito();
@@ -2136,11 +1863,8 @@ function acierto(){
   setTimeout(() => {
     document.body.classList.remove('desbloqueando');
     const siguiente = estado.etapa + 1;
-    if (siguiente >= CONFIG.etapas.length){
-      irA('final');
-    } else {
-      irA('video', siguiente);
-    }
+    if (siguiente >= CONFIG.etapas.length) irA('final');
+    else irA('video', siguiente);
   }, 1050);
 }
 function fallo(input){
@@ -2148,9 +1872,7 @@ function fallo(input){
   setTimeout(() => document.body.classList.remove('temblando'), 420);
   const llegadoSusto = intentosFallidos >= (CONFIG.intentosParaSusto || 5);
   if (llegadoSusto){
-    Sonido.gritoFuerte();
-    mostrarJumpscare();
-    intentosFallidos = 0;
+    Sonido.gritoFuerte(); mostrarJumpscare(); intentosFallidos = 0;
   } else {
     Sonido.error();
     if (intentosFallidos >= (CONFIG.intentosParaUltimaOportunidad || 3)){
@@ -2167,23 +1889,19 @@ function fallo(input){
     }, 300);
   }
 }
-
 function mostrarJumpscare(){
   const js = document.getElementById('jumpscare');
   const img = document.getElementById('jumpscare-img');
   if (!js || !img) return;
   img.src = CONFIG.jumpscareURL;
-  js.classList.add('activo');
-  js.setAttribute('aria-hidden', 'false');
+  js.classList.add('activo'); js.setAttribute('aria-hidden','false');
   document.body.classList.add('temblando');
   clearTimeout(js._t);
   js._t = setTimeout(() => {
-    js.classList.remove('activo');
-    js.setAttribute('aria-hidden', 'true');
+    js.classList.remove('activo'); js.setAttribute('aria-hidden','true');
     document.body.classList.remove('temblando');
   }, CONFIG.jumpscareDuracionMs || 750);
 }
-
 function mostrarError(){
   const ov = document.getElementById('overlay-error');
   const no = document.getElementById('error-no');
@@ -2191,40 +1909,36 @@ function mostrarError(){
   const ultima = document.getElementById('error-ultima');
   no.textContent = CONFIG.errorLinea1;
   reint.textContent = CONFIG.errorLinea2;
-  if (intentosFallidos >= (CONFIG.intentosParaUltimaOportunidad || 3)){
-    ultima.classList.add('visible');
-  } else {
-    ultima.classList.remove('visible');
-  }
+  if (intentosFallidos >= (CONFIG.intentosParaUltimaOportunidad || 3)) ultima.classList.add('visible');
+  else ultima.classList.remove('visible');
   reint.classList.remove('visible');
-  ov.classList.add('visible'); ov.setAttribute('aria-hidden', 'false');
+  ov.classList.add('visible'); ov.setAttribute('aria-hidden','false');
   clearTimeout(ov._t1); clearTimeout(ov._t2);
   ov._t1 = setTimeout(() => reint.classList.add('visible'), 850);
   ov._t2 = setTimeout(() => {
-    ov.classList.remove('visible'); ov.setAttribute('aria-hidden', 'true');
+    ov.classList.remove('visible'); ov.setAttribute('aria-hidden','true');
     ultima.classList.remove('visible');
   }, 2900);
 }
 
 function bucleGlitch(){
   if (!CONFIG.efectoGlitchAleatorio) return;
-  const espera = 6000 + Math.random() * 14000;
+  const espera = 6000 + Math.random()*14000;
   setTimeout(() => {
     const virus = document.getElementById('virus-overlay');
     if (!virus || !virus.classList.contains('activo')){
       document.body.classList.add('glitch');
-      Sonido.estatica(0.18 + Math.random() * 0.2);
-      const duracion = 160 + Math.random() * 260;
-      setTimeout(() => document.body.classList.remove('glitch'), duracion);
+      Sonido.estatica(0.18 + Math.random()*0.2);
+      const d = 160 + Math.random()*260;
+      setTimeout(() => document.body.classList.remove('glitch'), d);
     }
     bucleGlitch();
   }, espera);
 }
-
 function bucleSonidosTerror(){
   const min = CONFIG.sonidosTerrorMinMs || 20000;
   const max = CONFIG.sonidosTerrorMaxMs || 60000;
-  const espera = min + Math.random() * (max - min);
+  const espera = min + Math.random()*(max - min);
   setTimeout(() => {
     if (estado.iniciado && estado.sonido && !Sonido.silencioso){
       const r = Math.random();
@@ -2237,9 +1951,8 @@ function bucleSonidosTerror(){
     bucleSonidosTerror();
   }, espera);
 }
-
 function bucleTemblores(){
-  const espera = 35000 + Math.random() * 50000;
+  const espera = 35000 + Math.random()*50000;
   setTimeout(() => {
     if (estado.iniciado && !Sonido.silencioso){
       document.body.classList.add('temblando');
@@ -2248,121 +1961,207 @@ function bucleTemblores(){
     bucleTemblores();
   }, espera);
 }
-
 let inactividadTimer = null;
 function resetInactividad(){
   clearTimeout(inactividadTimer);
   if (!estado.iniciado) return;
   inactividadTimer = setTimeout(() => {
-    if (estado.fase === 'codigo' || estado.fase === 'final'){
-      Sonido.respiracion();
-    }
+    if (estado.fase === 'codigo' || estado.fase === 'final') Sonido.respiracion();
     resetInactividad();
-  }, (CONFIG.inactividadSegundos || 30) * 1000);
+  }, (CONFIG.inactividadSegundos || 30)*1000);
 }
 function detectarActividad(){
   ['keydown','click','touchstart','mousemove','scroll'].forEach(evt => {
-    document.addEventListener(evt, resetInactividad, { passive: true });
+    document.addEventListener(evt, resetInactividad, { passive:true });
   });
 }
-
 function bucleFantasma(){
   if (!CONFIG.imagenFantasmaURL) return;
   const min = CONFIG.imagenFantasmaMinSeg || 10;
   const max = CONFIG.imagenFantasmaMaxSeg || 25;
-  const espera = (min + Math.random() * (max - min)) * 1000;
+  const espera = (min + Math.random()*(max - min))*1000;
   setTimeout(() => {
     const f = document.getElementById('fantasma');
     const img = document.getElementById('fantasma-img');
     const virus = document.getElementById('virus-overlay');
     const enVirus = virus && virus.classList.contains('activo');
-    const enIntro = document.getElementById('menu-overlay').classList.contains('activo')
+    const enIntro = (document.getElementById('menu-overlay').classList.contains('activo')
                  || document.getElementById('disclaimer-overlay').classList.contains('activo')
-                 || document.getElementById('pegi-overlay').classList.contains('activo');
-    if (f && img && !enVirus && !enIntro){
+                 || document.getElementById('pegi-overlay').classList.contains('activo'));
+    if (f && img && !enVirus && !enIntro && estado.iniciado){
       img.src = CONFIG.imagenFantasmaURL;
       f.classList.add('visible');
       Sonido.estatica(0.05);
-      setTimeout(() => f.classList.remove('visible'),
-        CONFIG.imagenFantasmaDuraMs || 120);
+      setTimeout(() => f.classList.remove('visible'), CONFIG.imagenFantasmaDuraMs || 120);
     }
     bucleFantasma();
   }, espera);
 }
 
+/* ==================================================================
+   FLUJO DE INTRO
+   ================================================================== */
+let menuIndex = 0;
+let enMenu = false;
+
+function mostrarMenu(){
+  enMenu = true;
+  const menu = document.getElementById('menu-overlay');
+  if (!menu) return;
+  menu.classList.add('activo');
+  IntroAudio.iniciarMusica();
+  actualizarItemMenu(0);
+}
+
+function actualizarItemMenu(idx){
+  const items = document.querySelectorAll('.menu-item');
+  items.forEach((it, i) => it.classList.toggle('activo', i === idx));
+  menuIndex = idx;
+}
+
+function accionMenu(accion){
+  if (accion === 'nuevo'){
+    // Ocultar menú y parar música
+    document.getElementById('menu-overlay').classList.remove('activo');
+    IntroAudio.pararMusica();
+    enMenu = false;
+
+    // Sonido "El juego ha comenzado"
+    IntroAudio.tocarJuego(() => {
+      // Al terminar el audio, transición al juego
+      const introTitulo = document.getElementById('intro-titulo-overlay');
+      introTitulo.classList.add('activo');
+      // Pequeño delay para que se vea el título grande
+      setTimeout(() => {
+        introTitulo.classList.remove('activo');
+        empezarJuego();
+      }, 2400);
+    });
+  } else if (accion === 'opciones'){
+    alert('Opciones:\n\n· Sonido: ' + (estado.sonido ? 'ON' : 'OFF') + '\n· Temporizador: ' + (estado.temporizador ? 'ON' : 'OFF') + '\n\n(Usa los botones del HUD durante la partida)');
+  } else if (accion === 'creditos'){
+    alert('EL JUEGO HA COMENZADO\n\nUn escape room casero\n\nInspirado en Saw\n\n© ' + new Date().getFullYear());
+  }
+}
+
+/* Botones del HUD */
 document.getElementById('btn-sonido').addEventListener('click', function(){
   estado.sonido = !estado.sonido;
   Sonido.activo = estado.sonido;
   Sonido.iniciar(); Sonido.reanudar();
   if (estado.sonido){
-    if (!Sonido.silencioso){
-      Sonido.ambienteOn();
-      MusicaFondo.reproducir();
-    }
+    if (!Sonido.silencioso){ Sonido.ambienteOn(); MusicaFondo.reproducir(); }
     Sonido.clic();
-  } else {
-    Sonido.ambienteOff();
-    MusicaFondo.pausar();
-  }
+  } else { Sonido.ambienteOff(); MusicaFondo.pausar(); }
   actualizarHUD();
 });
 document.getElementById('btn-tiempo').addEventListener('click', function(){
   estado.temporizador = !estado.temporizador;
   actualizarHUD(); actualizarReloj(); Sonido.clic();
 });
-document.getElementById('btn-reiniciar').addEventListener('click', resetSilencioso);
+document.getElementById('btn-reiniciar').addEventListener('click', volverAlMenu);
 
 /* ==================================================================
-   🆕 FLUJO DE INTRO: DISCLAIMER → PEGI → MENÚ → JUEGO
+   ARRANQUE — INTRO (DISCLAIMER → PEGI → MENÚ)
    ================================================================== */
+(function init(){
+  SystemInfo.iniciar();
+  arrancarIntervalo();
+  detectarActividad();
+  bucleFantasma();
+  bucleSonidosTerror();
+  bucleTemblores();
+  bucleGlitch();
 
-const Intro = {
-  estado: 'disclaimer', // disclaimer | pegi | menu | juego
+  /* Precargar audios en cuanto se pueda */
+  IntroAudio.precargar();
 
-  iniciar(){
+  /* Aplicar fondo del menú */
+  const bg = document.getElementById('menu-bg');
+  if (bg && CONFIG.assets.menuBgImage){
+    bg.style.backgroundImage = 'url("' + CONFIG.assets.menuBgImage + '")';
+  }
+
+  /* Aplicar fondo del PEGI (opcional) */
+  if (CONFIG.assets.pegiBgImage){
+    const pegiOv = document.getElementById('pegi-overlay');
+    if (pegiOv){
+      pegiOv.style.backgroundImage = 'url("' + CONFIG.assets.pegiBgImage + '")';
+      pegiOv.style.backgroundSize = 'cover';
+      pegiOv.style.backgroundPosition = 'center';
+    }
+  }
+
+  /* ------- BOTÓN DISCLAIMER ------- */
+  document.getElementById('btn-disclaimer').addEventListener('click', function(){
+    // Desbloquea audio (importante en navegadores móviles)
+    Sonido.iniciar(); Sonido.reanudar();
     IntroAudio.precargar();
 
-    /* Aplicar fondo al menú */
-    const bg = document.getElementById('menu-bg');
-    if (bg && CONFIG.assets.menuBgImage){
-      bg.style.backgroundImage = 'url("' + CONFIG.assets.menuBgImage + '")';
-    }
+    // Ocultar disclaimer
+    document.getElementById('disclaimer-overlay').classList.remove('activo');
 
-    /* Aplicar fondo al PEGI si lo hay */
-    if (CONFIG.assets.pegiBgImage){
-      const pegiOv = document.getElementById('pegi-overlay');
-      if (pegiOv){
-        pegiOv.style.backgroundImage = 'url("' + CONFIG.assets.pegiBgImage + '")';
-        pegiOv.style.backgroundSize = 'cover';
-        pegiOv.style.backgroundPosition = 'center';
-      }
-    }
+    // Mostrar PEGI
+    document.getElementById('pegi-overlay').classList.add('activo');
 
-    /* Botón DISCLAIMER */
-    const btnDisc = document.getElementById('btn-disclaimer');
-    btnDisc.addEventListener('click', () => {
-      // Primer clic → desbloquea audio en navegadores
-      Sonido.iniciar(); Sonido.reanudar();
-      IntroAudio.precargar();
-      document.getElementById('disclaimer-overlay').classList.remove('activo');
-      Intro.irAPegi();
+    // Reproducir audio PEGI 18 (con pequeño delay para que el usuario lo oiga)
+    setTimeout(() => IntroAudio.tocarPegi(), 400);
+  });
+
+  /* ------- BOTÓN PEGI ------- */
+  document.getElementById('btn-pegi').addEventListener('click', function(){
+    Sonido.iniciar(); Sonido.reanudar();
+    document.getElementById('pegi-overlay').classList.remove('activo');
+    mostrarMenu();
+  });
+
+  /* ------- MENÚ: click y hover ------- */
+  const items = document.querySelectorAll('.menu-item');
+  items.forEach((it, idx) => {
+    it.addEventListener('click', () => {
+      actualizarItemMenu(idx);
+      accionMenu(it.dataset.accion);
     });
-
-    /* Botón PEGI */
-    const btnPegi = document.getElementById('btn-pegi');
-    btnPegi.addEventListener('click', () => {
-      document.getElementById('pegi-overlay').classList.remove('activo');
-      Intro.irAMenu();
+    it.addEventListener('mouseenter', () => {
+      actualizarItemMenu(idx);
     });
+  });
 
-    /* Menú: click en items */
+  /* ------- MENÚ: teclado ------- */
+  document.addEventListener('keydown', function(e){
+    if (!enMenu) return;
     const items = document.querySelectorAll('.menu-item');
-    items.forEach(it => {
-      it.addEventListener('click', () => {
-        const activo = document.querySelector('.menu-item.activo');
-        if (activo) activo.classList.remove('activo');
-        it.classList.add('activo');
-        Intro.seleccionar(it.dataset.accion);
-      });
-      it.addEventListener('mouseenter', () => {
-        const activo = document.querySelector
+    if (!items.length) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      const delta = e.key === 'ArrowDown' ? 1 : -1;
+      let nuevo = (menuIndex + delta + items.length) % items.length;
+      actualizarItemMenu(nuevo);
+    } else if (e.key === 'Enter'){
+      e.preventDefault();
+      const activo = document.querySelector('.menu-item.activo');
+      if (activo) accionMenu(activo.dataset.accion);
+    }
+  });
+
+  /* ------- MENÚ: música toggle con M ------- */
+  document.addEventListener('keydown', function(e){
+    if (enMenu && (e.key === 'm' || e.key === 'M')){
+      IntroAudio.toggleMusica();
+    }
+  });
+
+  /* Volver a intentar desbloquear audio en cualquier interacción */
+  const unlockAudio = function(){
+    Sonido.iniciar(); Sonido.reanudar();
+    IntroAudio.precargar();
+    document.removeEventListener('click', unlockAudio);
+    document.removeEventListener('touchstart', unlockAudio);
+  };
+  document.addEventListener('click', unlockAudio);
+  document.addEventListener('touchstart', unlockAudio);
+})();
+</script>
+
+</body>
+</html>
