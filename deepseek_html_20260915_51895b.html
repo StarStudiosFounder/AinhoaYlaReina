@@ -12,18 +12,15 @@
 
 <style>
 /* ============================================================
-   ESTILOS  (no hace falta tocar nada de aquí para cambiar
-   códigos, vídeos o mensajes → mira la zona CONFIGURACIÓN en el JS)
+   ESTILOS
    ============================================================ */
 
 :root{
   --negro:      #050505;
-  --negro-2:    #0b0b0b;
   --rojo:       #8b0000;
   --rojo-vivo:  #c1121f;
   --rojo-brillo:rgba(193,18,31,.55);
   --texto:      #cfcfcf;
-  --texto-suave:#8a8a8a;
 }
 
 *{ box-sizing:border-box; }
@@ -42,7 +39,6 @@ body{
   -webkit-tap-highlight-color:transparent;
 }
 
-/* Fondo con resplandor rojo sutil */
 body::before{
   content:'';
   position:fixed; inset:0; z-index:0; pointer-events:none;
@@ -52,9 +48,8 @@ body::before{
     radial-gradient(circle at 50% 50%, #0a0a0a 0%, #030303 100%);
 }
 
-/* ---------- CAPAS DE EFECTOS (scanlines, ruido, viñeta) ---------- */
+/* Capas de efectos */
 .fx{ position:fixed; inset:0; pointer-events:none; z-index:90; }
-
 .fx--scanlines{
   background:repeating-linear-gradient(
     to bottom,
@@ -64,14 +59,12 @@ body::before{
     rgba(0,0,0,.28)  4px);
   opacity:.55;
 }
-
 .fx--ruido{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
   opacity:.05;
   mix-blend-mode:screen;
   animation:moverRuido 1.2s steps(4) infinite;
 }
-
 .fx--vineta{
   background:radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.9) 100%);
 }
@@ -84,7 +77,7 @@ body::before{
   100%{ transform:translate(3%,3%); }
 }
 
-/* ---------- HUD SUPERIOR ---------- */
+/* HUD */
 #hud{
   position:fixed; top:0; left:0; right:0; z-index:80;
   display:flex; align-items:center; justify-content:space-between; gap:12px;
@@ -93,7 +86,6 @@ body::before{
   transition:opacity .6s ease;
 }
 #hud.oculto{ opacity:0; pointer-events:none; }
-
 #temporizador{
   font-size:1.15rem;
   letter-spacing:3px;
@@ -106,9 +98,7 @@ body::before{
   text-shadow:0 0 16px rgba(255,0,0,.9);
   animation:pulso .9s infinite;
 }
-
 #hud-botones{ display:flex; gap:8px; }
-
 .btn-icono{
   font-family:'Special Elite',monospace;
   font-size:.66rem; letter-spacing:1.5px;
@@ -127,7 +117,7 @@ body::before{
   box-shadow:0 0 12px rgba(193,18,31,.35), inset 0 0 10px rgba(193,18,31,.15);
 }
 
-/* ---------- CONTENEDOR PRINCIPAL ---------- */
+/* Contenedor principal */
 #app{
   position:relative; z-index:10;
   min-height:100vh;
@@ -147,7 +137,6 @@ body::before{
   to  { opacity:1; transform:translateY(0);    filter:blur(0); }
 }
 
-/* ---------- TEXTOS ---------- */
 .marca{
   font-size:.7rem;
   letter-spacing:6px;
@@ -223,7 +212,7 @@ body::before{
   opacity:.8;
 }
 
-/* ---------- BOTONES ---------- */
+/* Botones */
 .btn{
   display:inline-block;
   font-family:'Special Elite',monospace;
@@ -247,20 +236,18 @@ body::before{
   outline:none;
 }
 .btn:active{ transform:scale(.97); }
-
 .btn--grande{
   font-size:1.05rem;
   padding:18px 52px;
   letter-spacing:6px;
 }
 
-/* ---------- FORMULARIO DE CÓDIGO ---------- */
+/* Formulario */
 .form-codigo{
   display:flex; flex-wrap:wrap; gap:14px;
   justify-content:center; align-items:stretch;
   margin:30px 0 0;
 }
-
 .input-codigo{
   font-family:'Special Elite',monospace;
   font-size:1.35rem;
@@ -284,7 +271,7 @@ body::before{
   box-shadow:0 0 24px rgba(193,18,31,.35);
 }
 
-/* ---------- VÍDEO ---------- */
+/* Vídeo */
 .marco-video{
   position:relative;
   width:100%;
@@ -310,7 +297,7 @@ body::before{
   text-transform:uppercase; line-height:1.9;
 }
 
-/* ---------- OVERLAY DE ERROR ---------- */
+/* Overlay error */
 #overlay-error{
   position:fixed; inset:0; z-index:120;
   display:flex; flex-direction:column;
@@ -321,7 +308,6 @@ body::before{
   padding:24px; text-align:center;
 }
 #overlay-error.visible{ opacity:1; }
-
 .error-no{
   font-family:'Creepster',cursive;
   font-size:clamp(4.5rem, 22vw, 13rem);
@@ -330,7 +316,6 @@ body::before{
   text-shadow:0 0 35px rgba(193,18,31,.85), 0 0 110px rgba(120,0,0,.7);
   animation:temblor .4s infinite;
 }
-
 .error-reintentar{
   margin-top:26px;
   font-size:clamp(.9rem, 3.6vw, 1.6rem);
@@ -342,7 +327,7 @@ body::before{
 }
 .error-reintentar.visible{ opacity:1; transform:translateY(0); }
 
-/* ---------- ANIMACIONES GLOBALES ---------- */
+/* Animaciones base */
 @keyframes parpadeo{
   0%,18%,21%,24%,57%,60%,100%{ opacity:1; }
   19%,22%,25%,58%{ opacity:.5; }
@@ -378,7 +363,111 @@ body.temblando #app{ animation:temblor .4s ease; }
 body.glitch #app{ animation:glitchSacudida .3s steps(3); }
 body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 
-/* ---------- RESPONSIVE ---------- */
+/* ============================================================
+   OVERLAY VIRUS FINAL
+   ============================================================ */
+#virus-overlay{
+  position:fixed; inset:0; z-index:200;
+  display:none;
+  align-items:center; justify-content:center;
+  background:#000;
+  overflow:hidden;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+}
+#virus-overlay.activo{ display:flex; }
+
+#virus-overlay::before{
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(circle at 50% 50%, rgba(120,0,0,.45), #000 70%);
+  animation:virusFlash 0.35s infinite alternate;
+  z-index:-1;
+}
+
+@keyframes virusFlash{
+  0%  { opacity:.35; }
+  100%{ opacity:.85; }
+}
+
+#virus-overlay .scanlines-virus{
+  position:absolute; inset:0; pointer-events:none;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0)   0px,
+    rgba(0,0,0,0)   2px,
+    rgba(255,0,0,.15) 3px,
+    rgba(255,0,0,.15) 4px);
+  mix-blend-mode:screen;
+  animation:scanlineMov 0.4s linear infinite;
+}
+@keyframes scanlineMov{
+  from{ background-position:0 0; }
+  to  { background-position:0 20px; }
+}
+
+.virus-glitch{
+  font-family:'Creepster',cursive;
+  font-size:clamp(3rem, 16vw, 10rem);
+  line-height:1;
+  color:#c1121f;
+  text-shadow:
+    0 0 20px rgba(193,18,31,.9),
+    0 0 60px rgba(193,18,31,.6),
+    4px 0 0 #00ffff,
+    -4px 0 0 #ff00ff;
+  animation:virusGlitch .18s infinite;
+  letter-spacing:6px;
+  margin:0;
+}
+
+@keyframes virusGlitch{
+  0%  { transform:translate(0,0);    clip-path:inset(0 0 0 0); }
+  20% { transform:translate(-4px,2px); clip-path:inset(10% 0 40% 0); }
+  40% { transform:translate(4px,-2px); clip-path:inset(45% 0 10% 0); }
+  60% { transform:translate(-3px,-1px); clip-path:inset(20% 0 55% 0); }
+  80% { transform:translate(3px,3px);  clip-path:inset(55% 0 5% 0); }
+  100%{ transform:translate(0,0);    clip-path:inset(0 0 0 0); }
+}
+
+.virus-sub{
+  margin-top:20px;
+  font-family:'Special Elite',monospace;
+  font-size:clamp(.75rem, 2.6vw, 1.1rem);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  color:#ff5c5c;
+  text-shadow:0 0 12px rgba(193,18,31,.9);
+  animation:parpadeo 1.2s infinite;
+}
+
+.virus-lineas{
+  margin-top:34px;
+  font-family:'Special Elite',monospace;
+  font-size:clamp(.65rem, 2.2vw, .85rem);
+  letter-spacing:3px;
+  color:#7a0000;
+  text-align:left;
+  line-height:1.8;
+  max-width:520px;
+}
+.virus-lineas span{
+  display:block;
+  opacity:0;
+  animation:aparecerLinea .4s forwards;
+}
+.virus-lineas span:nth-child(1){ animation-delay:.2s; }
+.virus-lineas span:nth-child(2){ animation-delay:.9s; }
+.virus-lineas span:nth-child(3){ animation-delay:1.6s; }
+.virus-lineas span:nth-child(4){ animation-delay:2.3s; }
+.virus-lineas span:nth-child(5){ animation-delay:3.0s; }
+
+@keyframes aparecerLinea{
+  to{ opacity:1; }
+}
+
+/* Responsive */
 @media (max-width:520px){
   #hud{ padding:10px 10px; font-size:.6rem; }
   #temporizador{ font-size:.95rem; }
@@ -397,12 +486,10 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 
 <body>
 
-  <!-- Capas de efectos -->
   <div class="fx fx--ruido"></div>
   <div class="fx fx--scanlines"></div>
   <div class="fx fx--vineta"></div>
 
-  <!-- HUD superior -->
   <div id="hud" class="oculto">
     <div id="temporizador">00:00</div>
     <div id="hud-botones">
@@ -412,31 +499,37 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
     </div>
   </div>
 
-  <!-- Contenido -->
   <main id="app"></main>
 
-  <!-- Pantalla de error -->
   <div id="overlay-error" aria-hidden="true">
     <div class="error-no" id="error-no">NO.</div>
     <div class="error-reintentar" id="error-reintentar">VOLVED A INTENTARLO.</div>
   </div>
 
+  <!-- Overlay del VIRUS FINAL -->
+  <div id="virus-overlay" aria-hidden="true">
+    <div class="scanlines-virus"></div>
+    <h1 class="virus-glitch" id="virus-glitch">JA JA JA</h1>
+    <p class="virus-sub">SISTEMA COMPROMETIDO</p>
+    <div class="virus-lineas">
+      <span>&gt; conexión establecida con el más allá…</span>
+      <span>&gt; extrayendo alma del jugador…</span>
+      <span>&gt; 100% completado.</span>
+      <span>&gt; no hay salida.</span>
+      <span>&gt; … o eso creíais.</span>
+    </div>
+  </div>
+
 
 <script>
 /* ==================================================================
+   ⚙️  CONFIGURACIÓN — EDITA SOLO ESTA ZONA
    ==================================================================
-   ⚙️  CONFIGURACIÓN  —  EDITA SOLO ESTA ZONA
-   ==================================================================
-   Aquí puedes cambiar TODOS los códigos, vídeos, textos y pruebas.
-   No necesitas tocar nada más del archivo.
-   ==================================================================
+   Aquí puedes cambiar códigos, vídeos, textos y pruebas.
    ================================================================== */
 
 const CONFIG = {
 
-  /* --------------------------------------------------------------
-     1) TEXTOS GENERALES
-     -------------------------------------------------------------- */
   tituloInicial:  "EL JUEGO HA COMENZADO",
   fraseInicial:   "Habéis entrado voluntariamente. Ahora tendréis que encontrar la salida.",
   textoBotonComenzar: "COMENZAR",
@@ -458,49 +551,38 @@ const CONFIG = {
   textoFin:      "Por esta noche… el juego ha terminado.",
   textoBotonReiniciar: "VOLVER A JUGAR",
 
-  /* --------------------------------------------------------------
-     2) TEMPORIZADOR
-        activo:            true / false  → muestra u oculta el reloj
-        modo:              "cuentaAtras"  (baja desde los minutos)
-                           "cronometro"   (sube desde 0)
-        minutos:           minutos de cuenta atrás
-        avisoUltimosMinutos: se pone en rojo los últimos X minutos
-     -------------------------------------------------------------- */
+  /* Texto que aparece en la pantalla de virus al final */
+  virusTextoGrande: "JA JA JA",
+  virusTextoSub:    "SISTEMA COMPROMETIDO",
+  virusLineas: [
+    "> conexión establecida con el más allá…",
+    "> extrayendo alma del jugador…",
+    "> 100% completado.",
+    "> no hay salida.",
+    "> … o eso creíais."
+  ],
+
+  /* Temporizador */
   temporizador: {
     activo: true,
-    modo: "cuentaAtras",
+    modo: "cuentaAtras",        // "cuentaAtras" o "cronometro"
     minutos: 60,
     avisoUltimosMinutos: 5
   },
 
-  /* --------------------------------------------------------------
-     3) OTRAS OPCIONES
-     -------------------------------------------------------------- */
-  sonidoActivoPorDefecto: true,   // sonido ambiental + efectos
-  efectoGlitchAleatorio:  true,   // interferencias aleatorias de pantalla
-  ignorarMayusculas:      true,   // "sangre" y "SANGRE" valen igual
+  sonidoActivoPorDefecto: true,
+  efectoGlitchAleatorio:  true,
+  ignorarMayusculas:      true,
 
-  /* --------------------------------------------------------------
-     4) ⭐ LAS PRUEBAS ⭐
-     --------------------------------------------------------------
-     Cada prueba es un bloque { ... }.
-     - nombre:  título que se ve en pantalla
-     - codigo:  la contraseña que deben escribir
-     - video:   enlace de YouTube, enlace de Vimeo o ruta de archivo
-                (ej: "videos/prueba1.mp4")
-     - pista:   (opcional) texto pequeño bajo el campo de código
-     - mensajePosterior: (opcional) texto bajo el vídeo
-
-     ➜ Para AÑADIR una prueba: copia un bloque entero y pégalo debajo.
-     ➜ Para QUITAR una prueba: borra su bloque.
-     ➜ Para CAMBIAR EL ORDEN: mueve los bloques de sitio.
-     -------------------------------------------------------------- */
+  /* ==============================================================
+     ⭐ LAS 5 PRUEBAS ⭐
+     ============================================================== */
   etapas: [
 
     {
       nombre: "PRUEBA 1 — LA GRABACIÓN",
       codigo: "SANGRE",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ", // ← CAMBIA ESTO
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "El vídeo os dirá dónde buscar.",
       mensajePosterior: ""
     },
@@ -508,7 +590,7 @@ const CONFIG = {
     {
       nombre: "PRUEBA 2 — LA AGUJA",
       codigo: "AGUJA",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ", // ← CAMBIA ESTO
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "Buscad donde nadie quiere mirar.",
       mensajePosterior: ""
     },
@@ -516,31 +598,36 @@ const CONFIG = {
     {
       nombre: "PRUEBA 3 — LA LLAVE",
       codigo: "LLAVE",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ", // ← CAMBIA ESTO
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "Ya casi estáis dentro… o fuera.",
+      mensajePosterior: ""
+    },
+
+    {
+      nombre: "PRUEBA 4 — LA CINTA",
+      codigo: "CINTA",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      pista:  "El juego recuerda. Vosotros también deberíais.",
+      mensajePosterior: ""
+    },
+
+    {
+      nombre: "PRUEBA 5 — LA LIBERTAD",
+      codigo: "LIBERTAD",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+      pista:  "Última prueba. No miréis atrás.",
       mensajePosterior: ""
     }
 
   ],
 
-  /* --------------------------------------------------------------
-     5) VÍDEO FINAL (el que se ve al pulsar "VER EL FINAL")
-        Si lo dejas vacío ("") se salta directamente a la pantalla final.
-     -------------------------------------------------------------- */
-  videoFinal: "https://www.youtube.com/watch?v=aqz-KE-bpKQ" // ← CAMBIA ESTO
-
+  videoFinal: "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
 };
 
 /* ==================================================================
-   ==================================================================
-   🚫  A PARTIR DE AQUÍ YA NO HACE FALTA TOCAR NADA
-   ==================================================================
+   🚫  A PARTIR DE AQUÍ NO HACE FALTA TOCAR NADA
    ================================================================== */
 
-
-/* ------------------------------------------------------------------
-   UTILIDADES
-   ------------------------------------------------------------------ */
 function esc(s){
   return String(s == null ? '' : s)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
@@ -580,11 +667,12 @@ function crearReproductor(url){
 
 
 /* ------------------------------------------------------------------
-   SONIDO (generado con Web Audio API, sin archivos externos)
+   SONIDO
    ------------------------------------------------------------------ */
 const Sonido = {
   ctx: null,
   activo: true,
+  silencioso: false,   // ← se pone a true mientras hay vídeo
   ambiente: null,
 
   iniciar(){
@@ -599,7 +687,7 @@ const Sonido = {
   },
 
   ambienteOn(){
-    if (!this.ctx || this.ambiente || !this.activo) return;
+    if (!this.ctx || this.ambiente || !this.activo || this.silencioso) return;
     const t = this.ctx.currentTime;
 
     const master = this.ctx.createGain();
@@ -646,7 +734,7 @@ const Sonido = {
   },
 
   tono(freq, dur, tipo, vol, slideTo){
-    if (!this.ctx || !this.activo) return;
+    if (!this.ctx || !this.activo || this.silencioso) return;
     try{
       const t = this.ctx.currentTime;
       const o = this.ctx.createOscillator();
@@ -663,7 +751,7 @@ const Sonido = {
   },
 
   estatica(dur){
-    if (!this.ctx || !this.activo) return;
+    if (!this.ctx || !this.activo || this.silencioso) return;
     try{
       dur = dur || 0.25;
       const n = Math.floor(this.ctx.sampleRate * dur);
@@ -689,21 +777,83 @@ const Sonido = {
     this.tono(90, 0.75, 'sawtooth', 0.16, 42);
     this.estatica(0.3);
   },
-  latido(){
-    this.tono(60, 0.16, 'sine', 0.12);
-    setTimeout(() => this.tono(50, 0.22, 'sine', 0.09), 190);
+
+  /* ---------- RISA MALÉFICA ---------- */
+  risa(){
+    if (!this.ctx || !this.activo) return;
+    try{
+      const ahora = this.ctx.currentTime;
+      const notas = [
+        { f: 340, t: 0.00 },
+        { f: 320, t: 0.17 },
+        { f: 300, t: 0.33 },
+        { f: 280, t: 0.48 },
+        { f: 260, t: 0.62 },
+        { f: 240, t: 0.76 },
+        { f: 220, t: 0.90 },
+        { f: 200, t: 1.04 },
+        { f: 185, t: 1.18 },
+        { f: 170, t: 1.32 }
+      ];
+
+      // Rumble bajo por debajo
+      const rumble = this.ctx.createOscillator();
+      const rGain  = this.ctx.createGain();
+      rumble.type = 'sawtooth';
+      rumble.frequency.setValueAtTime(60, ahora);
+      rumble.frequency.linearRampToValueAtTime(35, ahora + 1.6);
+      rGain.gain.setValueAtTime(0.0001, ahora);
+      rGain.gain.linearRampToValueAtTime(0.06, ahora + 0.15);
+      rGain.gain.linearRampToValueAtTime(0.0001, ahora + 1.7);
+      rumble.connect(rGain); rGain.connect(this.ctx.destination);
+      rumble.start(ahora); rumble.stop(ahora + 1.8);
+
+      notas.forEach(n => {
+        const t = ahora + n.t;
+
+        const o1 = this.ctx.createOscillator();
+        const o2 = this.ctx.createOscillator();
+        const g  = this.ctx.createGain();
+
+        o1.type = 'sawtooth';
+        o2.type = 'square';
+        o1.frequency.setValueAtTime(n.f, t);
+        o2.frequency.setValueAtTime(n.f * 1.012, t);
+
+        // vibrato
+        const lfo  = this.ctx.createOscillator();
+        const lfoG = this.ctx.createGain();
+        lfo.frequency.value = 28;
+        lfoG.gain.value = 9;
+        lfo.connect(lfoG);
+        lfoG.connect(o1.frequency);
+        lfo.start(t); lfo.stop(t + 0.16);
+
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.linearRampToValueAtTime(0.085, t + 0.012);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.15);
+
+        o1.connect(g); o2.connect(g);
+        g.connect(this.ctx.destination);
+        o1.start(t); o1.stop(t + 0.17);
+        o2.start(t); o2.stop(t + 0.17);
+      });
+
+      // Estática final
+      setTimeout(() => this.estatica(0.5), 1500);
+    }catch(e){}
   }
 };
 
 
 /* ------------------------------------------------------------------
-   ESTADO + GUARDADO (localStorage)
+   ESTADO + GUARDADO
    ------------------------------------------------------------------ */
 const CLAVE_GUARDADO = 'escapeSaw_v1';
 
 let estado = {
   iniciado:     false,
-  fase:         'inicio',   // inicio | codigo | video | final | videoFinal | fin
+  fase:         'inicio',
   etapa:        0,
   segundos:     0,
   sonido:       CONFIG.sonidoActivoPorDefecto,
@@ -715,7 +865,6 @@ let intervaloTemporizador = null;
 function guardar(){
   try { localStorage.setItem(CLAVE_GUARDADO, JSON.stringify(estado)); } catch(e){}
 }
-
 function cargar(){
   try{
     const raw = localStorage.getItem(CLAVE_GUARDADO);
@@ -724,7 +873,6 @@ function cargar(){
     if (d && typeof d === 'object') estado = Object.assign(estado, d);
   }catch(e){}
 }
-
 function borrarGuardado(){
   try { localStorage.removeItem(CLAVE_GUARDADO); } catch(e){}
 }
@@ -779,7 +927,7 @@ function arrancarIntervalo(){
 
 
 /* ------------------------------------------------------------------
-   NAVEGACIÓN ENTRE FASES
+   NAVEGACIÓN
    ------------------------------------------------------------------ */
 function irA(fase, etapa){
   estado.fase = fase;
@@ -791,6 +939,16 @@ function irA(fase, etapa){
 function render(){
   actualizarHUD();
   actualizarReloj();
+
+  /* 🔇 MUTE AUTOMÁTICO DURANTE VÍDEOS */
+  const enVideo = (estado.fase === 'video' || estado.fase === 'videoFinal');
+  Sonido.silencioso = enVideo;
+
+  if (enVideo){
+    Sonido.ambienteOff();
+  } else if (estado.iniciado && estado.sonido){
+    Sonido.ambienteOn();
+  }
 
   switch (estado.fase){
     case 'inicio':     return pintarInicio();
@@ -810,7 +968,6 @@ function actualizarHUD(){
 
   const btnSonido = document.getElementById('btn-sonido');
   const btnTiempo = document.getElementById('btn-tiempo');
-  const btnRein   = document.getElementById('btn-reiniciar');
 
   btnSonido.classList.toggle('activo', !!estado.sonido);
   btnTiempo.classList.toggle('activo', !!estado.temporizador);
@@ -870,7 +1027,6 @@ function pintarCodigo(){
     comprobarCodigo(input.value, input);
   });
 
-  // En escritorio enfocamos el campo; en móvil no (para no abrir el teclado solo)
   if (window.matchMedia('(hover: hover)').matches){
     setTimeout(() => { try { input.focus(); } catch(e){} }, 350);
   }
@@ -935,6 +1091,11 @@ function pintarVideoFinal(){
   });
 }
 
+/* ---------------------------------------------------------------
+   PANTALLA FINAL (con virus + risa)
+   --------------------------------------------------------------- */
+let virusTimer = null;
+
 function pintarFin(){
   app.innerHTML =
     '<section class="pantalla">' +
@@ -947,6 +1108,68 @@ function pintarFin(){
     '</section>';
 
   document.getElementById('btn-reiniciar-final').addEventListener('click', reiniciarJuego);
+
+  // Lanzamos el virus después de 1,4 s
+  clearTimeout(virusTimer);
+  virusTimer = setTimeout(lanzarVirus, 1400);
+}
+
+function lanzarVirus(){
+  const ov = document.getElementById('virus-overlay');
+  if (!ov) return;
+
+  // Configuramos los textos
+  document.getElementById('virus-glitch').textContent = CONFIG.virusTextoGrande || 'JA JA JA';
+
+  // Reconstruimos las líneas por si el usuario las cambia
+  const contLineas = ov.querySelector('.virus-lineas');
+  if (contLineas && Array.isArray(CONFIG.virusLineas)){
+    contLineas.innerHTML = CONFIG.virusLineas.map(l => '<span>' + esc(l) + '</span>').join('');
+  }
+  const sub = ov.querySelector('.virus-sub');
+  if (sub) sub.textContent = CONFIG.virusTextoSub || 'SISTEMA COMPROMETIDO';
+
+  ov.classList.add('activo');
+  ov.setAttribute('aria-hidden', 'false');
+
+  // Sacudida de toda la página
+  document.body.classList.add('temblando');
+  setTimeout(() => document.body.classList.remove('temblando'), 900);
+
+  // Risa maléfica
+  Sonido.iniciar();
+  Sonido.reanudar();
+  Sonido.risa();
+
+  // Se cierra solo a los 6,5 s
+  clearTimeout(ov._cierre);
+  ov._cierre = setTimeout(() => {
+    ov.classList.remove('activo');
+    ov.setAttribute('aria-hidden', 'true');
+  }, 6500);
+}
+
+function reiniciarJuego(){
+  const ok = confirm('¿Seguro que queréis reiniciar el juego? Se borrará todo el progreso.');
+  if (!ok) return;
+
+  clearTimeout(virusTimer);
+  const ov = document.getElementById('virus-overlay');
+  if (ov){
+    ov.classList.remove('activo');
+    ov.setAttribute('aria-hidden', 'true');
+  }
+
+  borrarGuardado();
+  estado = {
+    iniciado:     false,
+    fase:         'inicio',
+    etapa:        0,
+    segundos:     0,
+    sonido:       CONFIG.sonidoActivoPorDefecto,
+    temporizador: CONFIG.temporizador.activo
+  };
+  render();
 }
 
 
@@ -994,10 +1217,8 @@ function acierto(){
 
 function fallo(input){
   Sonido.error();
-
   document.body.classList.add('temblando');
   setTimeout(() => document.body.classList.remove('temblando'), 420);
-
   mostrarError();
 
   if (input){
@@ -1033,25 +1254,9 @@ function mostrarError(){
   }, 2900);
 }
 
-function reiniciarJuego(){
-  const ok = confirm('¿Seguro que queréis reiniciar el juego? Se borrará todo el progreso.');
-  if (!ok) return;
-
-  borrarGuardado();
-  estado = {
-    iniciado:     false,
-    fase:         'inicio',
-    etapa:        0,
-    segundos:     0,
-    sonido:       CONFIG.sonidoActivoPorDefecto,
-    temporizador: CONFIG.temporizador.activo
-  };
-  render();
-}
-
 
 /* ------------------------------------------------------------------
-   EFECTOS DE INTERFERENCIA ALEATORIA
+   GLITCH ALEATORIO
    ------------------------------------------------------------------ */
 function bucleGlitch(){
   if (!CONFIG.efectoGlitchAleatorio) return;
@@ -1059,12 +1264,13 @@ function bucleGlitch(){
   const espera = 6000 + Math.random() * 14000;
 
   setTimeout(() => {
-    document.body.classList.add('glitch');
-    Sonido.estatica(0.18 + Math.random() * 0.2);
-
-    const duracion = 160 + Math.random() * 260;
-    setTimeout(() => document.body.classList.remove('glitch'), duracion);
-
+    // No hacemos glitch si estamos en la pantalla final con virus
+    if (!document.getElementById('virus-overlay').classList.contains('activo')){
+      document.body.classList.add('glitch');
+      Sonido.estatica(0.18 + Math.random() * 0.2);
+      const duracion = 160 + Math.random() * 260;
+      setTimeout(() => document.body.classList.remove('glitch'), duracion);
+    }
     bucleGlitch();
   }, espera);
 }
@@ -1081,7 +1287,7 @@ document.getElementById('btn-sonido').addEventListener('click', function(){
   Sonido.reanudar();
 
   if (estado.sonido){
-    Sonido.ambienteOn();
+    if (!Sonido.silencioso) Sonido.ambienteOn();
     Sonido.clic();
   } else {
     Sonido.ambienteOff();
@@ -1108,10 +1314,8 @@ document.getElementById('btn-reiniciar').addEventListener('click', reiniciarJueg
 (function init(){
   cargar();
 
-  // Sincronizamos el sonido con el estado guardado
   Sonido.activo = !!estado.sonido;
 
-  // Validaciones de seguridad por si se edita la config
   if (!Array.isArray(CONFIG.etapas) || CONFIG.etapas.length === 0){
     console.warn('⚠️ CONFIG.etapas está vacío. Añade al menos una prueba.');
   }
@@ -1125,11 +1329,10 @@ document.getElementById('btn-reiniciar').addEventListener('click', reiniciarJueg
   render();
   arrancarIntervalo();
 
-  // El audio necesita un gesto del usuario para arrancar
   const desbloquearAudio = function(){
     Sonido.iniciar();
     Sonido.reanudar();
-    if (estado.iniciado && estado.sonido) Sonido.ambienteOn();
+    if (estado.iniciado && estado.sonido && !Sonido.silencioso) Sonido.ambienteOn();
     document.removeEventListener('click', desbloquearAudio);
     document.removeEventListener('touchstart', desbloquearAudio);
   };
