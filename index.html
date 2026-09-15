@@ -116,18 +116,6 @@ body::before{
   font-size:.85rem; letter-spacing:1.5px; color:#7d7d7d;
   margin-top:26px; line-height:1.7; font-style:italic;
 }
-.descripcion-prueba{
-  font-size:clamp(.9rem, 2.6vw, 1.05rem);
-  letter-spacing:1.5px; color:#c9c9c9; line-height:1.8;
-  margin:26px auto 6px; max-width:640px;
-  padding:16px 22px;
-  border-left:2px solid var(--rojo); border-right:2px solid var(--rojo);
-  background:rgba(60,0,0,.12); text-align:left;
-}
-.descripcion-prueba strong{
-  display:block; font-size:.7rem; letter-spacing:5px;
-  color:#c1121f; text-transform:uppercase; margin-bottom:8px;
-}
 .separador{
   width:150px; height:1px; margin:18px auto 0;
   background:linear-gradient(90deg, transparent, var(--rojo), transparent);
@@ -228,9 +216,6 @@ body.temblando #app{ animation:temblor .4s ease; }
 body.glitch #app{ animation:glitchSacudida .3s steps(3); }
 body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 
-/* ============================================================
-   IMAGEN FANTASMA (aparece 1 frame cada cierto tiempo)
-   ============================================================ */
 #fantasma{
   position:fixed; inset:0; z-index:95; pointer-events:none;
   display:flex; align-items:center; justify-content:center;
@@ -245,9 +230,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   border:1px solid rgba(193,18,31,.3);
 }
 
-/* ============================================================
-   PANTALLA "SISTEMA COMPROMETIDO" (acceso antes del vídeo)
-   ============================================================ */
 #acceso-overlay{
   position:fixed; inset:0; z-index:150;
   display:none;
@@ -315,7 +297,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   to{ width:100%; }
 }
 
-/* VIRUS FINAL */
 #virus-overlay{
   position:fixed; inset:0; z-index:200; display:none;
   align-items:center; justify-content:center; background:#000;
@@ -419,7 +400,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .input-codigo{ letter-spacing:6px; font-size:1.1rem; }
   #app{ padding:88px 16px 60px; }
   #virus-bsod{ padding:8vh 5vw; font-size:.7rem; }
-  .descripcion-prueba{ padding:12px 16px; font-size:.85rem; }
   #fantasma img{ max-width:75vw; max-height:50vh; }
 }
 @media (min-width:521px) and (max-width:1024px){ .pantalla{ max-width:720px; } }
@@ -430,7 +410,6 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
   .frase{ font-size:1.35rem; max-width:900px; }
   .instruccion{ font-size:1.4rem; }
   .pista{ font-size:1rem; }
-  .descripcion-prueba{ font-size:1.15rem; max-width:820px; }
   .btn{ font-size:1.15rem; padding:18px 52px; }
   .btn--grande{ font-size:1.35rem; padding:22px 68px; letter-spacing:7px; }
   .input-codigo{ font-size:1.7rem; width:440px; padding:18px 22px; }
@@ -470,12 +449,10 @@ body.desbloqueando #app{ animation:desbloqueo .95s ease; }
 
   <main id="app"></main>
 
-  <!-- Imagen fantasma -->
   <div id="fantasma" aria-hidden="true">
     <img id="fantasma-img" src="" alt="">
   </div>
 
-  <!-- Pantalla "SISTEMA COMPROMETIDO" -->
   <div id="acceso-overlay" aria-hidden="true">
     <div class="acceso-linea" style="animation-delay:.05s">&gt; inicializando protocolo de acceso...</div>
     <div class="acceso-linea" style="animation-delay:.35s">&gt; bypasseando seguridad del sistema...</div>
@@ -557,40 +534,25 @@ const CONFIG = {
   textoFin:      "Por esta noche… el juego ha terminado.",
   textoBotonReiniciar: "VOLVER A JUGAR",
 
-  /* =========================================================
-     🆕 IDEA 1 — SONIDO DE RESPIRACIÓN POR INACTIVIDAD
-     Segundos que deben pasar SIN que el jugador escriba,
-     haga clic o toque la pantalla, para que se oiga respirar.
-     ========================================================= */
+  /* Inactividad → respiración (segundos sin tocar nada) */
   inactividadSegundos: 30,
 
-  /* =========================================================
-     🆕 IDEA 2 — IMAGEN FANTASMA (aparece 1 frame cada X seg)
-     Cambia esta URL por la foto que quieras (Jigsaw, un rostro,
-     una máscara…). Se muestra como un flash sutil en el fondo.
-     ========================================================= */
+  /* Imagen fantasma */
   imagenFantasmaURL: "https://picsum.photos/seed/jigsawface/500/600?grayscale&blur=1",
-  imagenFantasmaMinSeg: 10,   // intervalo mínimo entre apariciones
-  imagenFantasmaMaxSeg: 25,   // intervalo máximo entre apariciones
-  imagenFantasmaDuraMs: 120,  // cuánto dura visible (muy poco)
+  imagenFantasmaMinSeg: 10,
+  imagenFantasmaMaxSeg: 25,
+  imagenFantasmaDuraMs: 120,
 
-  /* =========================================================
-     🆕 IDEA 15 — MÚSICA DE FONDO
-     - Si lo dejas vacío ("") → se usa una melodía sintetizada
-       estilo tensa, generada con Web Audio.
-     - Si pones una URL a un archivo .mp3/.ogg, se reproduce ese.
-       Ejemplo: "musica/hello-zepp.mp3"
-     ========================================================= */
+  /* Música de fondo */
   musicaFondo: "",
 
-  /* =========================================================
-     🆕 IDEA 20 — PANTALLA "SISTEMA COMPROMETIDO" ANTES DEL VÍDEO
-     Duración en milisegundos que se muestra la pantalla hacker
-     antes de reproducir el vídeo de la prueba.
-     ========================================================= */
+  /* 🆕 Cada cuántos milisegundos se repite la melodía "tun tun tun".
+     Cuanto más alto, menos frecuente. Por defecto: 12000 ms = 12 s */
+  melodiaIntervaloMs: 12000,
+
+  /* Pantalla "SISTEMA COMPROMETIDO" antes de cada vídeo (ms) */
   accesoSegundos: 2200,
 
-  /* ---------- TEXTOS DEL VIRUS FINAL ---------- */
   virusTextoGrande: "JA JA JA",
   virusTextoSub:    "SISTEMA COMPROMETIDO",
 
@@ -619,56 +581,42 @@ const CONFIG = {
   efectoGlitchAleatorio:  true,
   ignorarMayusculas:      true,
 
-  /* ==============================================================
-     ⭐ LAS 5 PRUEBAS ⭐
-     ============================================================== */
   etapas: [
-
     {
       nombre: "PRUEBA 1 — LA GRABACIÓN",
       codigo: "SANGRE",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      descripcionPrueba: "Una grabación os espera. Escuchad con atención: la primera pista está escondida en algún lugar de la habitación.",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "El vídeo os dirá dónde buscar.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 2 — LA AGUJA",
       codigo: "AGUJA",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      descripcionPrueba: "Algo punzante os guiará. Buscad en los rincones donde nadie quiere mirar.",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "Buscad donde nadie quiere mirar.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 3 — LA LLAVE",
       codigo: "LLAVE",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      descripcionPrueba: "Hay una cerradura esperando su llave. No todas las puertas se abren con la misma.",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "Ya casi estáis dentro… o fuera.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 4 — LA CINTA",
       codigo: "CINTA",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      descripcionPrueba: "El juego recuerda. Vosotros también deberíais. Repasad todo lo que habéis visto hasta ahora.",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "El juego recuerda. Vosotros también deberíais.",
       mensajePosterior: ""
     },
-
     {
       nombre: "PRUEBA 5 — LA LIBERTAD",
       codigo: "LIBERTAD",
-      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",   // ← CAMBIA ESTE VÍDEO
-      descripcionPrueba: "Última prueba. No miréis atrás. Si habéis llegado hasta aquí, ya sabéis qué hacer.",
+      video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "Última prueba. No miréis atrás.",
       mensajePosterior: ""
     }
-
   ]
 };
 
@@ -708,9 +656,6 @@ function crearReproductor(url){
   return '<video src="' + esc(u) + '" controls playsinline preload="metadata"></video>';
 }
 
-/* ------------------------------------------------------------------
-   SONIDO (ambiente + melodía + respiración + risa + error)
-   ------------------------------------------------------------------ */
 const Sonido = {
   ctx:null, activo:true, silencioso:false, ambiente:null,
   melodiaTimer:null,
@@ -753,7 +698,7 @@ const Sonido = {
     }catch(e){}
   },
 
-  /* ---------- MELODÍA SINTETIZADA ESTILO SAW ---------- */
+  /* MELODÍA "tun tun tun" — ahora mucho más espaciada */
   melodiaOn(){
     if (!this.ctx || this.melodiaTimer || !this.activo || this.silencioso) return;
     const self = this;
@@ -775,7 +720,7 @@ const Sonido = {
           o.type = 'triangle';
           o.frequency.setValueAtTime(n.f, t + n.t);
           g.gain.setValueAtTime(0.0001, t + n.t);
-          g.gain.linearRampToValueAtTime(0.035, t + n.t + 0.04);
+          g.gain.linearRampToValueAtTime(0.032, t + n.t + 0.04);
           g.gain.exponentialRampToValueAtTime(0.0001, t + n.t + 1.4);
           o.connect(filtro); filtro.connect(g); g.connect(self.ctx.destination);
           o.start(t + n.t); o.stop(t + n.t + 1.6);
@@ -783,20 +728,18 @@ const Sonido = {
       }catch(e){}
     };
     tocar();
-    this.melodiaTimer = setInterval(tocar, 3600);
+    const intervalo = CONFIG.melodiaIntervaloMs || 12000;
+    this.melodiaTimer = setInterval(tocar, intervalo);
   },
   melodiaOff(){
     if (this.melodiaTimer){ clearInterval(this.melodiaTimer); this.melodiaTimer = null; }
   },
 
-  /* ---------- RESpIRACIÓN (idea 1) ---------- */
   respiracion(){
     if (!this.ctx || !this.activo || this.silencioso) return;
     try{
       const t = this.ctx.currentTime;
       const dur = 3.2;
-
-      // Fuente de ruido rosa-ish filtrado
       const n = Math.floor(this.ctx.sampleRate * dur);
       const buf = this.ctx.createBuffer(1, n, this.ctx.sampleRate);
       const d = buf.getChannelData(0);
@@ -809,21 +752,16 @@ const Sonido = {
         d[i] = b0 + b1 + b2;
       }
       const src = this.ctx.createBufferSource(); src.buffer = buf;
-
-      // Filtro para dar tono de "respirar"
       const f = this.ctx.createBiquadFilter();
       f.type = 'bandpass'; f.frequency.value = 420; f.Q.value = 1.4;
-
-      // Envolvente: inspiración + espiración
       const g = this.ctx.createGain();
       g.gain.setValueAtTime(0.0001, t);
-      g.gain.linearRampToValueAtTime(0.085, t + 0.55);   // inspira
-      g.gain.linearRampToValueAtTime(0.0001, t + 1.15);  // pausa
-      g.gain.linearRampToValueAtTime(0.075, t + 1.75);   // espira
+      g.gain.linearRampToValueAtTime(0.085, t + 0.55);
+      g.gain.linearRampToValueAtTime(0.0001, t + 1.15);
+      g.gain.linearRampToValueAtTime(0.075, t + 1.75);
       g.gain.linearRampToValueAtTime(0.0001, t + 2.55);
       g.gain.linearRampToValueAtTime(0.06,  t + 2.85);
       g.gain.linearRampToValueAtTime(0.0001, t + dur);
-
       src.connect(f); f.connect(g); g.connect(this.ctx.destination);
       src.start(t); src.stop(t + dur + 0.1);
     }catch(e){}
@@ -910,13 +848,9 @@ const Sonido = {
   }
 };
 
-/* ------------------------------------------------------------------
-   MÚSICA DE FONDO (idea 15)
-   ------------------------------------------------------------------ */
 const MusicaFondo = {
   audio: null,
   activa: false,
-
   crear(){
     if (!CONFIG.musicaFondo || !String(CONFIG.musicaFondo).trim()) return;
     if (this.audio) return;
@@ -927,7 +861,6 @@ const MusicaFondo = {
       this.audio.preload = 'auto';
     }catch(e){ this.audio = null; }
   },
-
   reproducir(){
     if (!estado.sonido) return;
     if (this.audio){
@@ -939,13 +872,11 @@ const MusicaFondo = {
     }
     this.activa = true;
   },
-
   pausar(){
     if (this.audio){ this.audio.pause(); }
     else { Sonido.melodiaOff(); }
     this.activa = false;
   },
-
   parar(){
     if (this.audio){ this.audio.pause(); this.audio.currentTime = 0; }
     Sonido.melodiaOff();
@@ -953,11 +884,7 @@ const MusicaFondo = {
   }
 };
 
-/* ------------------------------------------------------------------
-   ESTADO + GUARDADO DESACTIVADO (reinicio al recargar)
-   ------------------------------------------------------------------ */
 const CLAVE_GUARDADO = 'escapeSaw_v1';
-
 let estado = {
   iniciado:false, fase:'inicio', etapa:0, segundos:0,
   sonido: CONFIG.sonidoActivoPorDefecto,
@@ -965,15 +892,11 @@ let estado = {
 };
 let intervaloTemporizador = null;
 
-/* 🆕 DESACTIVADO A PROPÓSITO:
-   al recargar la página, el juego vuelve a empezar desde cero. */
-function guardar(){ /* no guarda nada */ }
+/* Guardado desactivado: reinicio al recargar */
+function guardar(){}
 function cargar(){ try{ localStorage.removeItem(CLAVE_GUARDADO); }catch(e){} }
 function borrarGuardado(){ try{ localStorage.removeItem(CLAVE_GUARDADO); }catch(e){} }
 
-/* ------------------------------------------------------------------
-   TEMPORIZADOR
-   ------------------------------------------------------------------ */
 function formatearTiempo(s){
   s = Math.max(0, Math.floor(s));
   const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sg = s%60;
@@ -1006,9 +929,6 @@ function arrancarIntervalo(){
   }, 1000);
 }
 
-/* ------------------------------------------------------------------
-   NAVEGACIÓN
-   ------------------------------------------------------------------ */
 function irA(fase, etapa){
   estado.fase = fase;
   if (typeof etapa === 'number') estado.etapa = etapa;
@@ -1016,11 +936,8 @@ function irA(fase, etapa){
 }
 function render(){
   actualizarHUD(); actualizarReloj();
-
-  /* Silencio durante vídeo / acceso / virus */
   const faseSilencio = (estado.fase === 'video' || estado.fase === 'acceso' || estado.fase === 'fin');
   Sonido.silencioso = faseSilencio;
-
   if (faseSilencio){
     Sonido.ambienteOff();
     MusicaFondo.pausar();
@@ -1028,7 +945,6 @@ function render(){
     Sonido.ambienteOn();
     MusicaFondo.reproducir();
   }
-
   switch (estado.fase){
     case 'inicio': return pintarInicio();
     case 'codigo': return pintarCodigo();
@@ -1050,9 +966,6 @@ function actualizarHUD(){
   btnTiempo.style.display = CONFIG.temporizador.activo ? '' : 'none';
 }
 
-/* ------------------------------------------------------------------
-   PANTALLAS
-   ------------------------------------------------------------------ */
 const app = document.getElementById('app');
 
 function pintarInicio(){
@@ -1099,26 +1012,18 @@ function pintarCodigo(){
   resetInactividad();
 }
 
-/* 🆕 PANTALLA "SISTEMA COMPROMETIDO" */
 function pintarAcceso(){
   const ov = document.getElementById('acceso-overlay');
   if (!ov){ irA('video'); return; }
-
-  /* Reiniciar animaciones */
   ov.classList.remove('activo');
   void ov.offsetWidth;
   ov.classList.add('activo');
   ov.setAttribute('aria-hidden', 'false');
-
-  /* Sonidos hacker */
-  Sonido.iniciar();
-  Sonido.reanudar();
+  Sonido.iniciar(); Sonido.reanudar();
   Sonido.tono(880, 0.06, 'square', 0.10);
   setTimeout(() => Sonido.tono(1200, 0.05, 'square', 0.09), 250);
   setTimeout(() => Sonido.tono(1600, 0.05, 'square', 0.08), 500);
   setTimeout(() => Sonido.estatica(0.25), 900);
-
-  /* Después de X ms → vídeo */
   clearTimeout(pintarAcceso._t);
   pintarAcceso._t = setTimeout(() => {
     ov.classList.remove('activo');
@@ -1131,16 +1036,11 @@ function pintarVideo(){
   const i = estado.etapa;
   const etapa = CONFIG.etapas[i];
   if (!etapa){ irA('final'); return; }
-  const descripcionHTML = etapa.descripcionPrueba
-    ? '<div class="descripcion-prueba"><strong>➤ PRUEBA A REALIZAR</strong>' +
-      esc(etapa.descripcionPrueba) + '</div>'
-    : '';
   app.innerHTML =
     '<section class="pantalla">' +
       '<div class="marca">ETAPA ' + (i+1) + ' / ' + CONFIG.etapas.length + ' — DESBLOQUEADA</div>' +
       '<h2 class="titulo-etapa">' + esc(etapa.nombre || ('PRUEBA ' + (i+1))) + '</h2>' +
       '<div class="marco-video">' + crearReproductor(etapa.video) + '</div>' +
-      descripcionHTML +
       (etapa.mensajePosterior ? '<p class="pista">' + esc(etapa.mensajePosterior) + '</p>' : '') +
       '<button class="btn btn--grande" id="btn-continuar" type="button">' +
         esc(CONFIG.textoBotonContinuar) +
@@ -1271,9 +1171,6 @@ function reiniciarJuego(){
   render();
 }
 
-/* ------------------------------------------------------------------
-   LÓGICA
-   ------------------------------------------------------------------ */
 function normalizar(txt){
   let t = String(txt == null ? '' : txt).trim();
   if (CONFIG.ignorarMayusculas !== false) t = t.toUpperCase();
@@ -1299,7 +1196,6 @@ function acierto(){
   document.body.classList.add('desbloqueando');
   setTimeout(() => {
     document.body.classList.remove('desbloqueando');
-    /* 🆕 en lugar de ir directo al vídeo, pasamos por la pantalla de "SISTEMA COMPROMETIDO" */
     irA('acceso');
   }, 1050);
 }
@@ -1332,9 +1228,6 @@ function mostrarError(){
   }, 2900);
 }
 
-/* ------------------------------------------------------------------
-   GLITCH ALEATORIO
-   ------------------------------------------------------------------ */
 function bucleGlitch(){
   if (!CONFIG.efectoGlitchAleatorio) return;
   const espera = 6000 + Math.random() * 14000;
@@ -1350,11 +1243,7 @@ function bucleGlitch(){
   }, espera);
 }
 
-/* ------------------------------------------------------------------
-   🆕 IDEA 1 — INACTIVIDAD → RESPIRACIÓN
-   ------------------------------------------------------------------ */
 let inactividadTimer = null;
-
 function resetInactividad(){
   clearTimeout(inactividadTimer);
   if (!estado.iniciado) return;
@@ -1365,28 +1254,22 @@ function resetInactividad(){
     resetInactividad();
   }, (CONFIG.inactividadSegundos || 30) * 1000);
 }
-
 function detectarActividad(){
   ['keydown','click','touchstart','mousemove','scroll'].forEach(evt => {
     document.addEventListener(evt, resetInactividad, { passive: true });
   });
 }
 
-/* ------------------------------------------------------------------
-   🆕 IDEA 2 — IMAGEN FANTASMA
-   ------------------------------------------------------------------ */
 function bucleFantasma(){
   if (!CONFIG.imagenFantasmaURL) return;
   const min = CONFIG.imagenFantasmaMinSeg || 10;
   const max = CONFIG.imagenFantasmaMaxSeg || 25;
   const espera = (min + Math.random() * (max - min)) * 1000;
-
   setTimeout(() => {
     const f = document.getElementById('fantasma');
     const img = document.getElementById('fantasma-img');
     const virus = document.getElementById('virus-overlay');
     const enVirus = virus && virus.classList.contains('activo');
-
     if (f && img && !enVirus){
       img.src = CONFIG.imagenFantasmaURL;
       f.classList.add('visible');
@@ -1398,9 +1281,6 @@ function bucleFantasma(){
   }, espera);
 }
 
-/* ------------------------------------------------------------------
-   BOTONES DEL HUD
-   ------------------------------------------------------------------ */
 document.getElementById('btn-sonido').addEventListener('click', function(){
   estado.sonido = !estado.sonido;
   Sonido.activo = estado.sonido;
@@ -1423,11 +1303,7 @@ document.getElementById('btn-tiempo').addEventListener('click', function(){
 });
 document.getElementById('btn-reiniciar').addEventListener('click', reiniciarJuego);
 
-/* ------------------------------------------------------------------
-   ARRANQUE
-   ------------------------------------------------------------------ */
 (function init(){
-  /* Forzamos siempre el estado inicial */
   borrarGuardado();
   estado = {
     iniciado:false, fase:'inicio', etapa:0, segundos:0,
@@ -1435,13 +1311,11 @@ document.getElementById('btn-reiniciar').addEventListener('click', reiniciarJueg
     temporizador: CONFIG.temporizador.activo
   };
   Sonido.activo = !!estado.sonido;
-
   render();
   arrancarIntervalo();
   detectarActividad();
   resetInactividad();
   bucleFantasma();
-
   const desbloquearAudio = function(){
     Sonido.iniciar(); Sonido.reanudar();
     MusicaFondo.crear();
@@ -1454,7 +1328,6 @@ document.getElementById('btn-reiniciar').addEventListener('click', reiniciarJueg
   };
   document.addEventListener('click', desbloquearAudio);
   document.addEventListener('touchstart', desbloquearAudio);
-
   bucleGlitch();
 })();
 </script>
