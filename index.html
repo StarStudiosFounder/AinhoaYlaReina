@@ -640,7 +640,6 @@ const CONFIG = {
      Pon aquí las URLs de las imágenes que quieras que
      aparezcan como flashes glitcheados durante el virus.
      Puedes añadir o quitar las que quieras.
-     Cualquier URL pública vale: https://...
   -------------------------------------------------- */
   virusImagenes: [
     "https://picsum.photos/seed/saw1/500/400?grayscale",
@@ -673,7 +672,7 @@ const CONFIG = {
       codigo: "SANGRE",
       video:  "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
       pista:  "El vídeo os dirá dónde buscar.",
-      mensajePosterior: "Ainhoa Puta"
+      mensajePosterior: ""
     },
 
     {
@@ -709,7 +708,6 @@ const CONFIG = {
     }
 
   ]
-  /* Ya NO existe videoFinal: al pulsar "VER EL FINAL" se va directo al virus */
 };
 
 /* ==================================================================
@@ -1065,7 +1063,6 @@ const app = document.getElementById('app');
 function pintarInicio(){
   app.innerHTML =
     '<section class="pantalla">' +
-      '<div class="marca">◈ SISTEMA DE PRUEBAS ◈</div>' +
       '<h1 class="titulo-principal">' + esc(CONFIG.tituloInicial) + '</h1>' +
       '<p class="frase">' + esc(CONFIG.fraseInicial) + '</p>' +
       '<button class="btn btn--grande" id="btn-comenzar" type="button">' +
@@ -1151,7 +1148,6 @@ function pintarFinal(){
 
   document.getElementById('btn-ver-final').addEventListener('click', function(){
     Sonido.clic();
-    /* Ya no hay vídeo final: se va directo a la pantalla del virus */
     irA('fin');
   });
 }
@@ -1182,11 +1178,9 @@ function lanzarVirus(){
   const ov = document.getElementById('virus-overlay');
   if (!ov) return;
 
-  /* Texto grande */
   document.getElementById('virus-glitch').textContent = CONFIG.virusTextoGrande || 'JA JA JA';
   document.getElementById('virus-sub').textContent    = CONFIG.virusTextoSub    || 'SISTEMA COMPROMETIDO';
 
-  /* Líneas de consola */
   const contLineas = document.getElementById('virus-lineas');
   if (contLineas && Array.isArray(CONFIG.virusLineas)){
     contLineas.innerHTML = CONFIG.virusLineas
@@ -1194,7 +1188,6 @@ function lanzarVirus(){
       .join('');
   }
 
-  /* Fotos Saw */
   const contFotos = document.getElementById('virus-fotos');
   if (contFotos){
     if (Array.isArray(CONFIG.virusImagenes) && CONFIG.virusImagenes.length){
